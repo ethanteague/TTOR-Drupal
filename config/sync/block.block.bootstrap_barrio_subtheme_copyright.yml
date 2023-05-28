@@ -1,0 +1,25 @@
+uuid: 18195d45-b1b2-4d21-beb5-2f8f684b95c6
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:811ff844-3135-4996-bb57-e1da75ab961a'
+  module:
+    - block_content
+  theme:
+    - bootstrap_barrio_subtheme
+id: bootstrap_barrio_subtheme_copyright
+theme: bootstrap_barrio_subtheme
+region: top_header
+weight: 0
+provider: null
+plugin: 'block_content:811ff844-3135-4996-bb57-e1da75ab961a'
+settings:
+  id: 'block_content:811ff844-3135-4996-bb57-e1da75ab961a'
+  label: Copyright
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

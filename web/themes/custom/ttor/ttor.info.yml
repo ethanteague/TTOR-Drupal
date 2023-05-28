@@ -1,6 +1,6 @@
 name: TTOR Theme
 type: theme
-description: 'The theme used for TTOR.'
+description: 'The theme used for TTOR front end.'
 core: 8.x
 core_version_requirement: ^8 || ^9 || ^10
 base theme: bootstrap_barrio

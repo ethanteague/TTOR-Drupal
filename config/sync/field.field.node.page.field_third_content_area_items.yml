@@ -1,0 +1,70 @@
+uuid: 006fbe00-250a-4b16-975c-ea6e42630960
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_third_content_area_items
+    - node.type.page
+    - paragraphs.paragraphs_type.banner
+    - paragraphs.paragraphs_type.large_video_in_content_area_of_p
+    - paragraphs.paragraphs_type.two_panel_info
+    - paragraphs.paragraphs_type.video_
+  module:
+    - entity_reference_revisions
+id: node.page.field_third_content_area_items
+field_name: field_third_content_area_items
+entity_type: node
+bundle: page
+label: 'Third Content area items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      banner: banner
+      large_video_in_content_area_of_p: large_video_in_content_area_of_p
+      video_: video_
+      two_panel_info: two_panel_info
+    negate: 0
+    target_bundles_drag_drop:
+      banner:
+        weight: 8
+        enabled: true
+      call_to_action:
+        weight: 9
+        enabled: false
+      checklist:
+        weight: 13
+        enabled: false
+      dark_blue_banner_text:
+        weight: 10
+        enabled: false
+      feature_with_video:
+        weight: 12
+        enabled: false
+      feature_without_video:
+        weight: 11
+        enabled: false
+      grey_boxes:
+        weight: 17
+        enabled: false
+      info:
+        weight: 20
+        enabled: false
+      large_video_in_content_area_of_p:
+        weight: 13
+        enabled: true
+      text_only_feature_banner:
+        weight: 14
+        enabled: false
+      two_panel_info:
+        weight: 21
+        enabled: true
+      video_:
+        weight: 20
+        enabled: true
+field_type: entity_reference_revisions

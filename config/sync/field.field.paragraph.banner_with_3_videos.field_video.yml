@@ -1,0 +1,29 @@
+uuid: c4038ad4-da16-4462-9bdb-27dadf814caa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video
+    - media.type.remote_video
+    - paragraphs.paragraphs_type.banner_with_3_videos
+id: paragraph.banner_with_3_videos.field_video
+field_name: field_video
+entity_type: paragraph
+bundle: banner_with_3_videos
+label: Video
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      remote_video: remote_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,33 @@
+uuid: 1438327a-ed3a-424a-b14e-800e8d36c93b
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.field_blocks_from_node_content_5
+  module:
+    - views
+  theme:
+    - ttor
+id: views_block__field_blocks_from_node_content_5_block_1
+theme: ttor
+region: content_six
+weight: 0
+provider: null
+plugin: 'views_block:field_blocks_from_node_content_5-block_1'
+settings:
+  id: 'views_block:field_blocks_from_node_content_5-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+  exposed: {  }
+  arguments:
+    parent_id:
+      type: string
+      value: ''
+    type:
+      type: string
+      value: grey_boxes
+visibility: {  }

@@ -1,0 +1,43 @@
+uuid: e915a267-b589-46fb-9ffb-7b3f78f273f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.two_panel_info.field_byline
+    - field.field.paragraph.two_panel_info.field_feature_title
+    - field.field.paragraph.two_panel_info.field_text
+    - paragraphs.paragraphs_type.two_panel_info
+  module:
+    - text
+id: paragraph.two_panel_info.default
+targetEntityType: paragraph
+bundle: two_panel_info
+mode: default
+content:
+  field_byline:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_feature_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_text:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

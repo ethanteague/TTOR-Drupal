@@ -1,0 +1,23 @@
+uuid: 9c1d2baa-3895-4ea6-947b-4aff487a8afb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_show_image_caption
+    - paragraphs.paragraphs_type.call_to_action
+id: paragraph.call_to_action.field_show_image_caption
+field_name: field_show_image_caption
+entity_type: paragraph
+bundle: call_to_action
+label: 'Show image caption'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

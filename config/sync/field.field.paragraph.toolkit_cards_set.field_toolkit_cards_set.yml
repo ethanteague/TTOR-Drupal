@@ -1,0 +1,91 @@
+uuid: b53f9170-3472-4ca9-94a9-b5dbfbc011b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_toolkit_cards_set
+    - paragraphs.paragraphs_type.toolkit_cards
+    - paragraphs.paragraphs_type.toolkit_cards_set
+  module:
+    - entity_reference_revisions
+id: paragraph.toolkit_cards_set.field_toolkit_cards_set
+field_name: field_toolkit_cards_set
+entity_type: paragraph
+bundle: toolkit_cards_set
+label: 'Toolkit cards set'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      toolkit_cards: toolkit_cards
+    negate: 0
+    target_bundles_drag_drop:
+      banner:
+        weight: 22
+        enabled: false
+      banner_with_3_videos:
+        weight: 23
+        enabled: false
+      call_to_action:
+        weight: 24
+        enabled: false
+      call_to_action_blue_info_panel:
+        weight: 25
+        enabled: false
+      checklist:
+        weight: 26
+        enabled: false
+      dark_blue_banner_text:
+        weight: 27
+        enabled: false
+      feature_with_video:
+        weight: 29
+        enabled: false
+      feature_without_video:
+        weight: 28
+        enabled: false
+      grey_boxes:
+        weight: 30
+        enabled: false
+      grey_lists_pair:
+        weight: 31
+        enabled: false
+      info:
+        weight: 32
+        enabled: false
+      info_grid_box:
+        weight: 33
+        enabled: false
+      info_no_background:
+        weight: 34
+        enabled: false
+      large_video_in_content_area_of_p:
+        weight: 35
+        enabled: false
+      resources_grid_boxes:
+        weight: 36
+        enabled: false
+      text_only_feature_banner:
+        weight: 37
+        enabled: false
+      this_that_slideshow:
+        weight: 38
+        enabled: false
+      toolkit_cards:
+        weight: 39
+        enabled: true
+      toolkit_cards_set:
+        weight: 40
+        enabled: false
+      two_panel_info:
+        weight: 41
+        enabled: false
+      video_:
+        weight: 42
+        enabled: false
+field_type: entity_reference_revisions

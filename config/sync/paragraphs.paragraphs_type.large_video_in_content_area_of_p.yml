@@ -1,0 +1,10 @@
+uuid: 297fbac2-48eb-4812-89de-9274648f10d5
+langcode: en
+status: true
+dependencies: {  }
+id: large_video_in_content_area_of_p
+label: 'Large video in content area of page'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,25 @@
+uuid: 7f34a301-bcfe-4384-8878-e47f0bf8ca18
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.info_no_background.field_text
+    - paragraphs.paragraphs_type.info_no_background
+  module:
+    - text
+id: paragraph.info_no_background.default
+targetEntityType: paragraph
+bundle: info_no_background
+mode: default
+content:
+  field_text:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

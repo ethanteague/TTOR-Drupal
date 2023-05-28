@@ -34,8 +34,6 @@
         "drupal/pathauto": "^1.11",
         "drupal/text_field_formatter": "^2.0",
         "drupal/twig_tweak": "^3.2",
-        "drupal/uswds": "^2.7",
-        "drupal/uswds_base": "^3.3",
         "drush/drush": "^11.5",
         "platformsh/config-reader": "^2.4",
         "twig/twig": "^3.5"

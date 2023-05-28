@@ -1,0 +1,32 @@
+uuid: ec15abeb-67e6-450a-aec8-b336e11b966c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banner_with_3_videos.field_text
+    - field.field.paragraph.banner_with_3_videos.field_video
+    - paragraphs.paragraphs_type.banner_with_3_videos
+  module:
+    - text
+id: paragraph.banner_with_3_videos.default
+targetEntityType: paragraph
+bundle: banner_with_3_videos
+mode: default
+content:
+  field_text:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_video:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: modal_video
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

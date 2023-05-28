@@ -1,0 +1,22 @@
+uuid: 7317b07d-3f55-43d6-a289-ae6868f9ebb5
+langcode: en
+status: false
+dependencies:
+  theme:
+    - ttor
+_core:
+  default_config_hash: ACjBZI5shAMiiUpsz-inLYVXDqNNXRnSzAWV3kV_8Hw
+id: ttor_primary_local_tasks
+theme: ttor
+region: top_header
+weight: -3
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

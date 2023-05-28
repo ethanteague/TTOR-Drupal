@@ -1,0 +1,43 @@
+uuid: fefdc925-ef92-4f2d-98a6-d684377c5b8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.modal_video
+    - field.field.media.remote_video.field_media_oembed_video
+    - media.type.remote_video
+  module:
+    - media_video_micromodal
+_core:
+  default_config_hash: zQoBQ0BtnMM_rlDdgftyu6eI4AVs9mo5K8xq7NFO2Zc
+id: media.remote_video.modal_video
+targetEntityType: media
+bundle: remote_video
+mode: modal_video
+content:
+  field_media_oembed_video:
+    type: micromodal_field_formatter
+    label: hidden
+    settings:
+      string_classes: ''
+      link_text: ''
+      thumbnail_image_style: ''
+      caption_swap: 0
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  thumbnail:
+    type: micromodal_field_formatter
+    label: hidden
+    settings:
+      string_classes: ''
+      link_text: ''
+      thumbnail_image_style: wide
+      caption_swap: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  uid: true

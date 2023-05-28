@@ -1,0 +1,25 @@
+uuid: f9708ca9-fe4a-473b-8246-b292051473fb
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:811ff844-3135-4996-bb57-e1da75ab961a'
+  module:
+    - block_content
+  theme:
+    - ttor
+id: copyright
+theme: ttor
+region: copyright
+weight: 0
+provider: null
+plugin: 'block_content:811ff844-3135-4996-bb57-e1da75ab961a'
+settings:
+  id: 'block_content:811ff844-3135-4996-bb57-e1da75ab961a'
+  label: Copyright
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

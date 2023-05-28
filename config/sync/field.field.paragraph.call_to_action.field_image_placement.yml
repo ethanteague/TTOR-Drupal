@@ -1,0 +1,21 @@
+uuid: 44c71870-dc8d-480d-b835-82adcbb6258b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_placement
+    - paragraphs.paragraphs_type.call_to_action
+  module:
+    - options
+id: paragraph.call_to_action.field_image_placement
+field_name: field_image_placement
+entity_type: paragraph
+bundle: call_to_action
+label: 'Image placement'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

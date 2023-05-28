@@ -1,0 +1,15 @@
+uuid: 049918db-cd33-4de8-ab9e-856596cfded0
+langcode: en
+status: true
+dependencies: {  }
+name: 290x225
+label: 290x225
+effects:
+  57161a14-b9bd-4888-a54b-23d4cee7ffc7:
+    uuid: 57161a14-b9bd-4888-a54b-23d4cee7ffc7
+    id: image_scale
+    weight: 2
+    data:
+      width: 225
+      height: null
+      upscale: false

@@ -27,6 +27,7 @@
         "drupal/ctools": "^4.0",
         "drupal/devel": "^5.1",
         "drupal/editor_advanced_link": "^2.1",
+        "drupal/entity_clone": "^2.0@beta",
         "drupal/field_group": "^3.4",
         "drupal/jquery_ui_effects": "^2.0",
         "drupal/media_video_micromodal": "^1.0",

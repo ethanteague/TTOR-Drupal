@@ -29,7 +29,10 @@ $settings['config_sync_directory'] = '../config/sync';
 if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
   include $app_root . '/' . $site_path . '/settings.platformsh.php';
 }
-
+// Automatically generated include for settings managed by ddev.
+if (file_exists(__DIR__ . '/settings.local.php')) {
+  include __DIR__ . '/settings.local.php';
+}
 // Automatically generated include for settings managed by ddev.
 if (file_exists(__DIR__ . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 'true') {
   include __DIR__ . '/settings.ddev.php';

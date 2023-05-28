@@ -1,0 +1,24 @@
+uuid: b899d99d-97f8-4fd0-aaba-5a3368c631e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.info_grid_box.field_category
+    - field.field.paragraph.info_grid_box.field_info_grid_box
+    - paragraphs.paragraphs_type.info_grid_box
+  module:
+    - text
+id: paragraph.info_grid_box.default
+targetEntityType: paragraph
+bundle: info_grid_box
+mode: default
+content:
+  field_info_grid_box:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_category: true

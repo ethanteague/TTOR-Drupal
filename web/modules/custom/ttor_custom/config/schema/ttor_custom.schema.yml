@@ -1,0 +1,7 @@
+block.settings.ttor_custom_slideshow:
+  type: block_settings
+  label: 'Slideshow block'
+  mapping:
+    foo:
+      type: string
+      label: Foo

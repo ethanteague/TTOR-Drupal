@@ -1,0 +1,23 @@
+uuid: 166b74c4-d71b-42bb-b05b-5cde93aa4880
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_placement
+    - paragraphs.paragraphs_type.feature_without_video
+  module:
+    - options
+id: paragraph.feature_without_video.field_image_placement
+field_name: field_image_placement
+entity_type: paragraph
+bundle: feature_without_video
+label: 'Image placement'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

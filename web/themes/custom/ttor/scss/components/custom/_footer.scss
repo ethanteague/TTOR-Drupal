@@ -1,0 +1,109 @@
+.site-footer {
+  @include small-white-text;
+  background-color: $secondary-color;
+  color: $white;
+
+  .block {
+    p {
+      margin-bottom: .5rem;
+    }
+
+    border-bottom: dotted thin $white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    &#block-fourthfooter {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  a {
+    @include hyperlink($white);
+    background: none;
+
+    &:hover {
+      background-image: none;
+      color: $white;
+    }
+  }
+
+}
+
+.ttor-breakpoint-xxl,
+.ttor-breakpoint-xl,
+.ttor-breakpoint-lg {
+  .site-footer {
+    .block {
+      border-bottom: none;
+      display: inline-block;
+      padding-top: inherit;
+      padding-bottom: inherit;
+      vertical-align: top;
+
+      &#block-firstfooter {
+        padding-right: 10px;
+        width: 45%;
+      }
+
+      &#block-secondfooter {
+        border-left: 1px solid $white;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 17%;
+      }
+
+      &#block-thirdfooter {
+        border-left: 1px solid $white;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 17%;
+      }
+
+      &#block-fourthfooter {
+        border-left: 1px solid $white;
+        padding-left: 20px;
+        width: 17%;
+      }
+    }
+  }
+}
+
+.ttor-breakpoint-xxl {
+  .site-footer {
+    .block {
+      height: 155px;
+    }
+  }
+}
+
+.ttor-breakpoint-xl {
+  .site-footer {
+    .block {
+      height: 185px;
+    }
+  }
+}
+
+.ttor-breakpoint-lg {
+  .site-footer {
+    .block {
+      height: 195px;
+    }
+  }
+}
+
+
+
+.site-copyright {
+  background: $white;
+
+  #block-copyright {
+    color: $secondary-color;
+    font-size: 70%;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

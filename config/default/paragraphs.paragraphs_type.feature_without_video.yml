@@ -1,0 +1,10 @@
+uuid: e6af2b46-4906-471e-9ae3-edaeb896d3de
+langcode: en
+status: true
+dependencies: {  }
+id: feature_without_video
+label: 'Feature without video'
+icon_uuid: null
+icon_default: null
+description: 'Appears on top of page below nav'
+behavior_plugins: {  }

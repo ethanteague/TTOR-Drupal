@@ -1,0 +1,68 @@
+/**
+ * Visual styles for progress bar.
+ */
+
+.progress__track {
+  background-color: #f2f1eb;
+  background-image: linear-gradient(#e7e7df, #f0f0f0);
+  background-image: linear-gradient(#e7e7df, #f0f0f0);
+  border-color: #b3b3b3;
+  border-radius: 10em;
+  box-shadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.16);
+}
+
+.progress__bar {
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  background: #057ec9;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)),
+    linear-gradient(to right to bottom, #0094f0 0%, #0094f0 25%, #007ecc 25%, #007ecc 50%, #0094f0 50%, #0094f0 75%, #0094f0 100%);
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)),
+    linear-gradient(to right to top, #0094f0 0%, #0094f0 25%, #007ecc 25%, #007ecc 50%, #0094f0 50%, #0094f0 75%, #0094f0 100%);
+  background-size: 40px 40px;
+  border: 1px #07629a solid;
+  border-radius: 10em;
+  height: 16px;
+  margin-left: -1px; /* LTR */
+  margin-top: -1px;
+  padding: 0 1px;
+  -webkit-transition: width 0.5s ease-out;
+  transition: width 0.5s ease-out;
+}
+
+[dir='rtl'] .progress__bar {
+  -webkit-animation-direction: reverse;
+  -moz-animation-direction: reverse;
+  animation-direction: reverse;
+  margin-left: 0;
+  margin-right: -1px;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .progress__bar {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+/**
+ * Progress bar animations.
+ */
+@keyframes animate-stripes {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 0, -80px 0; }
+}
+
+@keyframes animate-stripes {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 0, -80px 0; }
+}
+
+@keyframes animate-stripes {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 0, -80px 0; }
+}

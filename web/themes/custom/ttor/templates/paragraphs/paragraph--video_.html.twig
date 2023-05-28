@@ -1,0 +1,42 @@
+{% set vid_placement = paragraph.field_video_placement.value %}
+
+    {%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph-vid-' ~ vid_placement,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% block paragraph %}
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          {% if vid_placement == 'right' %}
+
+            <div
+              class="grid-wrap-left">
+              <h2
+                class="title">{{paragraph.field_feature_title.value}}</h2>
+
+              {{paragraph.field_text.processed}}</div>
+
+            <div
+              class="grid-wrap-right">{{content}}</div>
+          {% else %}
+            <div
+              class="grid-wrap-left">
+              {{content}}
+            </div>
+            <div
+              class="grid-wrap-right">
+              <h2
+                class="title">{{paragraph.field_feature_title.value}}</h2>
+
+              {{paragraph.field_text.processed}}</div>
+
+          {% endif %}
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}

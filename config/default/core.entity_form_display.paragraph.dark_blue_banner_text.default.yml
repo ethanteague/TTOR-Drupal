@@ -1,0 +1,25 @@
+uuid: b15b023d-1136-4657-bd74-01e657d346a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dark_blue_banner_text.field_text
+    - paragraphs.paragraphs_type.dark_blue_banner_text
+  module:
+    - text
+id: paragraph.dark_blue_banner_text.default
+targetEntityType: paragraph
+bundle: dark_blue_banner_text
+mode: default
+content:
+  field_text:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

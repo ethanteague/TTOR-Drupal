@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Styles for the help block.
+ */
+
+.block-help {
+  border: $border-width solid $border-color;
+  margin-bottom: ($spacer * 2);
+  padding: 0 ($spacer * 1.5);
+}

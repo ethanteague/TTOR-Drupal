@@ -1,0 +1,19 @@
+uuid: c83c809a-2062-4b84-af47-7fbc6daa0089
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_say_this
+    - paragraphs.paragraphs_type.this_that_slideshow
+id: paragraph.this_that_slideshow.field_say_this
+field_name: field_say_this
+entity_type: paragraph
+bundle: this_that_slideshow
+label: 'Say This'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ */
+#}
+{{ attach_library('bootstrap_barrio/breadcrumb') }}
+
+{% if breadcrumb %}
+  <nav role="navigation" aria-label="breadcrumb">
+    <ol class="breadcrumb justify-content-center justify-content-md-start">
+    {% for item in breadcrumb %}
+      {% if item.url %}
+        <li class="breadcrumb-item">
+          <span class="ellipse"><a class="text-underline-hover" href="{{ item.url }}">{{ item.text|striptags }}</a></span>
+        </li>
+      {% else %}
+        <li class="breadcrumb-item active">
+          <span class="ellipse">{{ item.text|striptags }}</span>
+        </li>
+      {% endif %}
+    {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

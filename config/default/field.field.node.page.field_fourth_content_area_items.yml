@@ -1,0 +1,78 @@
+uuid: e284f8ba-7bb2-4adc-aae3-41db7f2c4118
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fourth_content_area_items
+    - node.type.page
+    - paragraphs.paragraphs_type.call_to_action
+    - paragraphs.paragraphs_type.grey_lists_pair
+    - paragraphs.paragraphs_type.info
+    - paragraphs.paragraphs_type.info_no_background
+    - paragraphs.paragraphs_type.two_panel_info
+  module:
+    - entity_reference_revisions
+id: node.page.field_fourth_content_area_items
+field_name: field_fourth_content_area_items
+entity_type: node
+bundle: page
+label: 'Fourth Content area items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      call_to_action: call_to_action
+      info: info
+      grey_lists_pair: grey_lists_pair
+      two_panel_info: two_panel_info
+      info_no_background: info_no_background
+    negate: 0
+    target_bundles_drag_drop:
+      banner:
+        weight: 8
+        enabled: false
+      call_to_action:
+        weight: 9
+        enabled: true
+      checklist:
+        weight: 14
+        enabled: false
+      dark_blue_banner_text:
+        weight: 10
+        enabled: false
+      feature_with_video:
+        weight: 12
+        enabled: false
+      feature_without_video:
+        weight: 11
+        enabled: false
+      grey_boxes:
+        weight: 18
+        enabled: false
+      grey_lists_pair:
+        weight: 21
+        enabled: true
+      info:
+        weight: 20
+        enabled: true
+      info_no_background:
+        weight: 24
+        enabled: true
+      large_video_in_content_area_of_p:
+        weight: 13
+        enabled: false
+      text_only_feature_banner:
+        weight: 14
+        enabled: false
+      two_panel_info:
+        weight: 21
+        enabled: true
+      video_:
+        weight: 22
+        enabled: false
+field_type: entity_reference_revisions

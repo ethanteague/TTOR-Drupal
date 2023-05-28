@@ -1,0 +1,23 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% block paragraph %}
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          <h2>{{paragraph.field_feature_title.value}}</h2>
+{{paragraph.field_text.processed}}
+
+          <div
+            class="field--name-field-button">
+            <a
+              href="{{paragraph.field_button.get(0).getUrl().toString()}}">{{paragraph.field_button.title}}</a>
+          </div>
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}

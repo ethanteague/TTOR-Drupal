@@ -1,0 +1,5 @@
+ttor_custom:
+  js:
+    js/ttor-custom.js: {}
+  dependencies:
+    - core/drupal

@@ -1,0 +1,39 @@
+uuid: bec931bf-dbe2-40cc-b1c9-f24e44822859
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.two_panel_info.field_byline
+    - field.field.paragraph.two_panel_info.field_feature_title
+    - field.field.paragraph.two_panel_info.field_text
+    - paragraphs.paragraphs_type.two_panel_info
+  module:
+    - text
+id: paragraph.two_panel_info.default
+targetEntityType: paragraph
+bundle: two_panel_info
+mode: default
+content:
+  field_byline:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_feature_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_text:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

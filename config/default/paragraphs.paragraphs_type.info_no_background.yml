@@ -1,0 +1,10 @@
+uuid: eaf9511d-f359-46af-95f2-7999c4f07953
+langcode: en
+status: true
+dependencies: {  }
+id: info_no_background
+label: 'Info no background'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

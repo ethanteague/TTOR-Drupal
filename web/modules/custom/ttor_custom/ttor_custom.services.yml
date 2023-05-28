@@ -1,0 +1,5 @@
+services:
+  tttor_custom.twig_extension:
+    class: Drupal\ttor_custom\TwigExtension\TwigUtil
+    tags:
+      - { name: twig.extension }

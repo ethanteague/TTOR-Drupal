@@ -1,0 +1,12 @@
+{%
+  set classes = [
+    'region-color' ~ current_node.field_first_content_area_bg.value,
+    'region',
+    'region-' ~ region|clean_class,
+  ]
+%}
+    {% if content %}
+      <section{{attributes.addClass(classes)}}>
+        {{ content }}
+      </section>
+    {% endif %}

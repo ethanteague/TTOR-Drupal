@@ -1,0 +1,90 @@
+body {
+  color: $dark-text;
+  font-family: $fira !important;
+  font-size: $font-size-base !important;
+  line-height: $line-height-base;
+}
+
+#toolbar-administration,
+#toolbar-administration * {
+  background-image: none;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.paragraph--type--two-panel-info {
+  a {
+    @include blue-hyperlink;
+  }
+}
+
+h1,
+h2 {
+  font-family: $adelle !important;
+  font-style: normal;
+  font-weight: $font-weight-bold;
+  line-height: 3rem;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: $fira !important;
+  font-style: normal;
+  font-weight: $font-weight-bold;
+  line-height: 3rem;
+}
+
+em.placeholder {
+  background-color: transparent;
+  vertical-align: initial;
+}
+
+h1 {
+  font-size: calc(29px + 1vw);
+}
+
+h1,
+h2 {
+  font-weight: 600 !important;
+  margin-bottom: $margin-bottom;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.caption {
+  font-style: italic;
+  font-size: 80%;
+  float: left;
+  margin-left: 30px;
+}
+
+.bg-color-,
+.bg-color-white {
+  background: $white;
+  color: $dark-text;
+}
+
+.bg-color-blue {
+  background: $primary-color;
+  color: $white;
+}
+
+.bg-color-dark {
+  background: $secondary-color;
+  color: $white;
+}
+
+.bg-color-grey {
+  background: $default-color;
+}
+
+.bg-color-both {
+  @include two-tone;
+}

@@ -1,0 +1,125 @@
+{% set img_placement = paragraph.field_image_placement.value %}
+    {% set parent = paragraph._referringItem.parent.parent.entity %}
+    {% set img_placement = paragraph.field_image_placement.value %}
+    {% set parent = paragraph._referringItem.parent.parent.entity %}
+    {%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph-img-' ~ img_placement,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+    {% block paragraph %}
+      <span
+        class="feature-title-span img-placement-{{img_placement}}">{{paragraph.field_feature_title.value}}</span>
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          {% if img_placement == 'right' %}
+
+            <div
+              class="grid-wrap-left feature-no-vid-text">
+
+              <h1
+                class="title">{{parent.title.value}}</h1>
+              {{paragraph.field_text.processed}}</div>
+
+            <div
+              class="grid-wrap-right">
+              {% for image in paragraph.field_images %}
+                {% set imagestyle = {
+  '#theme': 'image_style',
+  '#style_name': 'wide',
+  '#uri': image.entity.uri.value,
+  '#alt': image.alt,
+  '#attributes': { class: 'cta-image' },
+}
+%}
+                {{imagestyle}}
+                {% if paragraph.field_show_image_caption.value == "1" %}
+                  <span
+                    class="caption">{{image.alt}}</span>
+                {% endif %}
+
+
+              {% endfor %}
+            </div>
+
+          {% elseif img_placement == 'left' %}
+            <div
+              class="grid-wrap-left">
+              {% for image in paragraph.field_images %}
+                {% set imagestyle = {
+  '#theme': 'image_style',
+  '#style_name': 'wide',
+  '#uri': image.entity.uri.value,
+  '#alt': image.alt,
+  '#attributes': { class: 'cta-image' },
+}
+%}
+                {{imagestyle}}
+                {% if paragraph.field_show_image_caption.value == "1" %}
+
+                  <span
+                    class="caption">{{image.alt}}</span>
+                {% endif %}
+
+
+              {% endfor %}
+
+            </div>
+            <div
+              class="grid-wrap-right feature-no-vid-text">
+              <span
+                class="feature-title-span">{{paragraph.field_feature_title.value}}</span>
+
+              <h1
+                class="title">{{parent.title.value}}</h1>
+              {{paragraph.field_text.processed}}</div>
+
+          {% else %}
+            <div
+              class="grid-wrap-top feature-no-vid-text">
+              <h1
+                class="title">{{parent.title.value}}</h1>
+              {{paragraph.field_text.processed}}
+
+            </div>
+            <div
+              class="grid-wrap-bottom">
+              {% for image in paragraph.field_images %}
+                {% set imagestyle = {
+  '#theme': 'image_style',
+  '#style_name': '4_grid_panel',
+  '#uri': image.entity.uri.value,
+  '#alt': image.alt,
+  '#attributes': { class: 'cta-image' },
+}
+%}
+                {{imagestyle}}
+                {% if paragraph.field_show_image_caption.value == "1" %}
+
+                  <span
+                    class="caption">{{image.alt}}</span>
+                {% endif %}
+
+              {% endfor %}
+            </div>
+
+          {% endif %}
+
+
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}
+    {% if paragraph.field_button is not empty %}
+
+      <div
+        class="field--name-field-button">
+        <a
+          href="{{paragraph.field_button.get(0).getUrl().toString()}}">{{paragraph.field_button.title}}</a>
+      </div>
+    {% endif %}

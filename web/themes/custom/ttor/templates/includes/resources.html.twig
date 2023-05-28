@@ -1,0 +1,21 @@
+<div
+      class="paragraph-grid-wrap two-column-grid">
+      <div
+        class="grid-wrap-left">
+        {{ drupal_view('resources_list', 'block_1') }}
+      </div>
+      <div
+        class="grid-wrap-right">
+        {{ drupal_view('resources_list', 'block_2') }}
+        <div
+          class="resource-boxes-container">
+
+          {% for key, item in paragraph.field_info_grid_text_box %}
+            <div
+              class="resource-box tid-{{item.entity.field_category.target_id}}">
+              {{item.entity.field_info_grid_box.processed}}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>

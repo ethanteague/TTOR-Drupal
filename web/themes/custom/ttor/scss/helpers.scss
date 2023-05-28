@@ -1,0 +1,20 @@
+/* HELPERS */
+
+//
+// Postions
+//
+.float-left {
+  float: left;
+}
+
+.default-color {
+  background: $default-color;
+}
+
+.sm-grey {
+  color: $sm-grey;
+  font-size: 80%;
+  margin: auto;
+  max-width: 960px;
+  margin-top:25px;
+}

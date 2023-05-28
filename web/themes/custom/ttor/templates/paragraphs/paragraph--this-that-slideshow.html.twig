@@ -1,0 +1,133 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% block paragraph %}
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          <div
+            class="paragraph-grid-wrap">
+            <div
+              class="grid-wrap-left">{{paragraph.field_text.processed}}</div>
+            <div
+              class="grid-wrap-right">
+              <div
+                class="CSSgal">
+
+                <!-- Don't wrap targets in parent -->
+                <s
+                  id="s1"></s>
+                <s
+                  id="s2"></s>
+                <s
+                  id="s3"></s>
+                <s
+                  id="s4"></s>
+                <s
+                  id="s5"></s>
+                <s
+                  id="s6"></s>
+
+                <div
+                  class="slider">
+                  {% for this in paragraph.field_say_this %}
+                    <div
+                      class="chat-wrap">
+                      <div
+                        class="chat-bubble say-this">
+                        <p
+                          class="large">SAY THIS</p>
+                        <p>{{this.value}}</p>
+                      </div>
+                      <div
+                        class="chat-bubble not-that">
+                        <p
+                          class="large">NOT THAT</p>
+                        <p>{{paragraph.field_not_that[loop.index - 1].value}}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+
+                </div>
+
+                <div
+                  class="prevNext">
+                  <div>
+                    <a
+                      href="#s6">«</a>
+
+                    <a
+                      href="#s2">»</a>
+
+                  </div>
+                  <div>
+                    <a
+                      href="#s1">«</a>
+
+                    <a
+                      href="#s3">»</a>
+
+                  </div>
+                  <div>
+                    <a
+                      href="#s2">«</a>
+
+                    <a
+                      href="#s4">»</a>
+
+                  </div>
+                  <div>
+                    <a
+                      href="#s3">«</a>
+
+                    <a
+                      href="#s5">»</a>
+
+                  </div>
+                  <div>
+                    <a
+                      href="#s4">«</a>
+
+                    <a
+                      href="#s6">»</a>
+
+                  </div>
+                  <div>
+                    <a
+                      href="#s5">«</a>
+
+                    <a
+                      href="#s1">»</a>
+
+                  </div>
+                </div>
+
+                <div
+                  class="bullets">
+                  <a
+                    href="#s1">1</a>
+                  <a
+                    href="#s2">2</a>
+                  <a
+                    href="#s3">3</a>
+                  <a
+                    href="#s4">4</a>
+                  <a
+                    href="#s5">5</a>
+                  <a
+                    href="#s6">6</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}

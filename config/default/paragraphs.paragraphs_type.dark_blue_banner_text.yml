@@ -1,0 +1,10 @@
+uuid: 6bcebf02-5315-49f5-9ef5-783d30ff8b37
+langcode: en
+status: true
+dependencies: {  }
+id: dark_blue_banner_text
+label: 'Dark blue banner text'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

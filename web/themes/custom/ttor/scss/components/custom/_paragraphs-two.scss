@@ -1,0 +1,285 @@
+.paragraph--type--two-panel-info {
+  .field--type-image {
+    img {
+      margin: auto;
+    }
+  }
+
+  .panel {
+    .bullets-download {
+      margin-top: -25px;
+
+      li {
+        border-bottom: 10px solid $primary-color;
+        list-style: none;
+        padding: 25px 2px;
+
+        &:hover {
+          background-color: $primary-color;
+
+          a {
+            background-image: url(/sites/default/files/icons/box-arrow-up-right.svg);
+            color: $white;
+          }
+        }
+
+        a {
+          @include blue-hyperlink-left;
+        }
+      }
+
+      &.fentanyl {
+        margin-top: 0;
+        padding-left: 0;
+
+        li {
+          &:hover {
+            a {
+              background: url(/sites/default/files/icons/icon-download-white.svg) no-repeat 0 0;
+            }
+          }
+
+          a {
+            background: url(/sites/default/files/icons/icon-download-blue.svg) no-repeat 0 0;
+            padding-left: 25px;
+
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.paragraph--type--info-no-background {
+  padding: 5rem 0;
+}
+
+.paragraph--type--banner-with-3-videos {
+  padding: $big-region-padding;
+
+  .field--name-field-text {
+    @include max-width-960-center;
+  }
+
+  a.modal__btn {
+    background-color: red;
+  }
+
+  .field--name-field-video {
+    a:hover {
+      text-decoration: underline;
+      opacity: .8;
+    }
+
+    .field__item {
+      position: relative;
+
+      .field--name-field-media-oembed-video {
+        font-size: 80%;
+        left: 5px;
+        position: absolute;
+        top: 5px;
+
+        img {
+          max-height: 230px;
+          min-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.paragraph--type--call-to-action-blue-info-panel {
+  color: $white;
+  background-color: $primary-color;
+  padding: 55px 75px;
+  max-width: 960px;
+  margin: 120px auto;
+
+  .field--name-field-button {
+
+    a {
+      border: 3px white solid;
+      border-radius: 25px;
+
+      &:hover {
+        background: $white;
+        color: $primary-color
+      }
+    }
+  }
+
+}
+
+.paragraph--type--this-that-slideshow {
+  padding: $big-region-padding;
+}
+
+.resource-title-wrap {
+  display: none;
+  padding-bottom: 3rem;
+
+  &#wrap-tid-2,
+  &#wrap-tid-5 {
+    display: block;
+  }
+}
+
+.paragraph--type--resources-grid-boxes {
+  padding: $big-region-padding;
+
+  .resource-box {
+    display: none;
+
+    &.tid-2,
+    &.tid-5 {
+      display: grid;
+    }
+  }
+
+  .view-id-texas_takes_action_list {
+    h2 {
+      @include max-width-960-center;
+      font-size: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .resource-title-wrap {
+      padding-top: 2rem;
+    }
+
+    .views-row:nth-child(2),
+    .views-row:nth-child(3) {
+      border-top: none !important;
+    }
+  }
+
+  .view-display-id-block_1 {
+    .views-field-name {
+      .field-content {
+        div {
+          border-bottom: 10px solid $primary-color;
+          color: $sm-grey;
+          font-size: 90%;
+          font-weight: 600;
+          padding: 25px 10px;
+
+          &:hover,
+          &:focus-within {
+            cursor: pointer;
+            background-color: $primary-color;
+            color: $white;
+          }
+
+        }
+      }
+    }
+  }
+
+  .three-column-grid {
+    .view-display-id-block_1 {
+      .views-row {
+        border-top: none;
+      }
+
+      .views-field-name .field-content div {
+        border-bottom: 10px solid $extra-dark;
+        color: $extra-dark;
+        font-size: 2rem;
+        padding: 25px 5px;
+
+        &:hover,
+        &:focus {
+          border-bottom: 10px solid $primary-color;
+          color: $white;
+        }
+      }
+    }
+
+    .grid-wrap-right {
+      .resource-box {
+        @include tta-box;
+      }
+    }
+
+  }
+
+  .paragraph-grid-wrap {
+    .grid-wrap-left {
+      padding-bottom: 4rem;
+    }
+
+    .grid-wrap-right {
+      .resource-box {
+        @include resource-box;
+      }
+    }
+  }
+}
+
+.paragraph--type--feature-without-video {
+  a {
+    @include blue-hyperlink;
+    background: url(/sites/default/files/icons/box-arrow-up-right-primary.svg) no-repeat right top;
+  }
+}
+
+.ttor-breakpoint-lg,
+.ttor-breakpoint-xl,
+.ttor-breakpoint-xxl {
+  .paragraph--type--banner-with-3-videos {
+    .field--name-field-video {
+      @include grid-scheme-3;
+    }
+  }
+
+  .paragraph--type--call-to-action-blue-info-panel {
+    @include grid-scheme-2-ultra-wide-left;
+  }
+
+  .paragraph--type--this-that-slideshow {
+    .paragraph-grid-wrap {
+      @include grid-scheme-2-wide-left;
+
+      .grid-wrap-left {
+        border-right: none;
+        padding-right: 4rem;
+      }
+
+      .grid-wrap-right {
+        padding-left: 4rem;
+      }
+    }
+  }
+
+  .paragraph--type--resources-grid-boxes {
+    .paragraph-grid-wrap {
+      &.two-column-grid {
+        @include grid-scheme-2-ultra-wide-right;
+        grid-gap: 4rem;
+      }
+
+      &.three-column-grid {
+        .view-display-id-block_1 {
+          .view-content {
+            @include grid-scheme-4;
+            grid-gap: 0;
+          }
+        }
+
+        .grid-wrap-right {
+          .resource-boxes-container {
+            @include grid-scheme-3;
+          }
+        }
+      }
+
+      .grid-wrap-right {
+        .resource-boxes-container {
+          @include grid-scheme-2;
+        }
+      }
+    }
+  }
+}

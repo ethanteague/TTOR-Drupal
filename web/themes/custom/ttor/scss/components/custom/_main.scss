@@ -1,0 +1,49 @@
+  #main-wrapper {
+    padding: $big-region-padding;
+  }
+
+  .bg-color-blue {
+    #main-wrapper {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+
+  .icon {
+    padding-left: 45px;
+
+    &.tolerance-icon {
+      background: url('/sites/default/files/icons/icon-tolerance.png') no-repeat left center;
+      background-size: 35px;
+    }
+
+    &.withdrawal-icon {
+      background: url('/sites/default/files/icons/icon-withdrawal.png') no-repeat left center;
+      background-size: 35px;
+    }
+
+    &.addiction-icon {
+      background: url('/sites/default/files/icons/icon-addiction.png') no-repeat left center;
+      background-size: 35px;
+    }
+
+    &.overdose-icon {
+      background: url('/sites/default/files/icons/icon-overdose.png') no-repeat left center;
+      background-size: 35px;
+    }
+
+    &.fent-icon {
+      background: url('/sites/default/files/icons/icon-talk.png') no-repeat left center;
+      background-size: 35px;
+    }
+
+    &.prescription-icon {
+      background: url('/sites/default/files/icons/icon-prescribe.png') no-repeat left center;
+      background-size: 35px;
+    }
+
+    &.naloxone-icon {
+      background: url('/sites/default/files/icons/icon-carry.png') no-repeat left center;
+      background-size: 35px;
+    }
+  }

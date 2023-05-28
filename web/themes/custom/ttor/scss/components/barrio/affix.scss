@@ -1,0 +1,12 @@
+/**
+ * @file
+ * Styles for Bootstrap Barrio affix effect.
+ */
+
+.affix {
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1035;
+}

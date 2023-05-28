@@ -1,0 +1,76 @@
+// View Directories Styling
+.view-directories,
+.block-ttor-custom-blocks-directories {
+  margin: 0;
+  padding: 0;
+
+  div {
+    margin: 0;
+    padding: 0;
+  }
+
+  table {
+    border: 1px solid #333;
+    border-collapse: collapse;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  tr {
+    margin: 0;
+    padding: 0;
+  }
+
+  th {
+    border: 1px solid #333;
+    font-size: 8px;
+    margin: 0;
+    text-align: center;
+  }
+
+  td {
+    border: 1px solid #333;
+    font-size: 8px;
+    margin: 0;
+    overflow-wrap: anywhere;
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // Used for hiding the pagination.
+  > nav {
+    display: none;
+  }
+
+  // Offices by Division Print Styling
+  &.view-display-id-offices_by_division {
+    th:nth-child(1) {
+      width: 20%;
+    }
+
+    th:nth-child(2) {
+      width: 25%;
+    }
+
+    th:nth-child(3) {
+      width: 20%;
+    }
+
+    th:nth-child(4) {
+      width: 15%;
+    }
+
+    th:nth-child(5) {
+      width: 20%;
+    }
+  }
+}

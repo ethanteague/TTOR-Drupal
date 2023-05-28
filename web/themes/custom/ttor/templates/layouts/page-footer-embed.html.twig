@@ -1,0 +1,17 @@
+{% block footer %}
+<div class="site-footer-top">
+  <div class="{{ container }}">
+    {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
+    <div class="site-footer__top clearfix">
+      {{ page.footer_first }}
+      {{ page.footer_second }}
+      {{ page.footer_third }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{#
+This block, footer fourth, is outside, to be used with the social icons block.
+#}
+{{ page.footer_fourth }}
+{% endblock %}

@@ -1,0 +1,18 @@
+<div
+      class="paragraph-grid-wrap three-column-grid">
+      {{ drupal_view('texas_takes_action_list', 'block_1') }}
+      {{ drupal_view('texas_takes_action_list', 'block_2') }}
+
+      <div
+        class="grid-wrap-right">
+        <div
+          class="resource-boxes-container">
+          {% for key, item in paragraph.field_info_grid_text_box %}
+            <div
+              class="resource-box tid-{{item.entity.field_category.target_id}}">
+              {{item.entity.field_info_grid_box.processed}}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>

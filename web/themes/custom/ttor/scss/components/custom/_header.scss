@@ -1,0 +1,227 @@
+  .navbar .navbar-toggler {
+    display: none;
+  }
+
+  .ttor-breakpoint-lg,
+  .ttor-breakpoint-mobile {
+    .navbar .navbar-toggler {
+      display: block
+    }
+  }
+
+  .navbar {
+    box-shadow: none;
+
+    .navbar-toggler {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+    }
+
+    /* give the span element and related pseudo-elements the appearance of white lines */
+    .navbar-toggler-icon,
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+      position: absolute;
+      width: 30px;
+      height: 2px;
+      border-radius: 4px;
+      background-color: $white;
+    }
+
+    /* center the span element in the middle of its containing button */
+    .navbar-toggler-icon {
+      top: calc(50% - 2px);
+      left: calc(50% - 15px);
+    }
+
+    /* position the two pseudo-elements to the very left */
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+      content: "";
+      left: 0;
+    }
+
+    /* this is the top dash of the hamburger */
+    .navbar-toggler-icon::before {
+      bottom: 8px;
+    }
+
+    /* this is the bottom dash of the hamburger */
+    .navbar-toggler-icon::after {
+      top: 8px;
+    }
+
+    /* HOVER STYLES ON THE BUTTON */
+
+    /* rotate middle dash of hamburger */
+    .navbar-toggler:hover .navbar-toggler-icon {
+      height: 5px;
+      width: 54px;
+      left: 5px;
+      top: calc(50% - 2px);
+      transform: rotate(-45deg);
+      background-color: red;
+    }
+
+    /* rotate bottom dash of hamburger counter clockwise */
+    .navbar-toggler:hover .navbar-toggler-icon::after {
+      width: 54px;
+      height: 5px;
+      top: -1px;
+      transform: rotate(-270deg);
+      background-color: red;
+    }
+
+    /* hide the top dash by scaling it to 0 */
+    .navbar-toggler:hover .navbar-toggler-icon::before {
+      transform: scale(0);
+    }
+
+    /* TRANSITION */
+    /* adjust duration to see it happen slower */
+    .navbar-toggler-icon,
+    .navbar-toggler-icon::after {
+      transition: all 0.3s linear;
+    }
+
+  }
+
+  .bg-color-white {
+
+    .navbar-toggler-icon,
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+      background-color: $primary-color;
+    }
+  }
+
+  #block-texashhslogo {
+    img {
+      height: auto;
+      max-width: 260px;
+    }
+  }
+
+  #block-texastargetedlogo {
+    top: 10px;
+
+    img {
+      height: 61.25px;
+      width: auto;
+    }
+  }
+
+  #block-mainnavigation {
+    margin-top: 25px;
+
+    .nav-item {
+      font-weight: $font-weight-bold;
+      padding-left: 10px;
+    }
+  }
+
+  a.blue-bg,
+  a.white-bg {
+    display: none;
+  }
+
+  #header-wrap {
+    background-color: $white;
+    box-shadow: $shadow;
+    min-height: 105px;
+    opacity: .9;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+  }
+
+  .nav-item {
+    a {
+      color: $white;
+      position: relative;
+
+      &:hover {
+        color: $white;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          border-bottom: solid 2px $white;
+          animation: in .2s linear forwards;
+        }
+
+        @keyframes in {
+          0% {
+            width: 0%;
+          }
+
+          100% {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .bg-color-blue {
+    a.white-bg {
+      display: block;
+    }
+
+
+
+    #header-wrap {
+      background: $primary-color;
+      opacity: .9;
+      position: sticky;
+      top: 0;
+      z-index: 9;
+    }
+  }
+
+  .bg-color-white {
+    a.blue-bg {
+      display: block;
+    }
+
+    .nav-item {
+      a {
+        color: $primary-color;
+
+        &:hover {
+          color: $secondary-color;
+
+          &:before {
+            content: '';
+            border-bottom: solid 2px $secondary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .language-switcher {
+    position: absolute;
+    top: 45px;
+
+    .content {
+      text-align: right;
+
+      a {
+        color: $dark-text;
+        font-weight: bold;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+  }

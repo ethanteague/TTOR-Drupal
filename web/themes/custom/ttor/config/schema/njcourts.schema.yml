@@ -1,0 +1,4 @@
+# Schema for the configuration files of the New Jersey Courts theme
+ttor.settings:
+  type: theme_settings
+  label: 'New Jersey Courts theme settings'

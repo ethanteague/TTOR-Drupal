@@ -1,0 +1,43 @@
+uuid: 0bbbe679-e096-4eca-b972-1a8066d03ee7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.this_that_slideshow.field_not_that
+    - field.field.paragraph.this_that_slideshow.field_say_this
+    - field.field.paragraph.this_that_slideshow.field_text
+    - paragraphs.paragraphs_type.this_that_slideshow
+  module:
+    - text
+id: paragraph.this_that_slideshow.default
+targetEntityType: paragraph
+bundle: this_that_slideshow
+mode: default
+content:
+  field_not_that:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_say_this:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_text:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

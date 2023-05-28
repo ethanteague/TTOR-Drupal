@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for ttor_custom module.
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_page_attachments.
+ */
+function ttor_custom_page_attachments(array &$attachments) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    $nid = $node->id();
+    $attachments['#attached']['drupalSettings']['page-bg-color'] = $node->field_header_background_color->value ?? NULL;
+    $attachments['#attached']['drupalSettings']['nid'] = $nid ?? NULL;
+  }
+}
+
+/**
+ * Implements hook_views_pre_view.
+ */
+function ttor_custom_views_pre_build(ViewExecutable $view) {
+  if ($view->id() === 'field_blocks_from_node'
+  || $view->id() === 'field_blocks_from_node_content_2'
+  || $view->id() === 'field_blocks_from_node_content_3'
+  || $view->id() === 'field_blocks_from_node_content_4'
+  || $view->id() === 'field_blocks_from_node_content_5') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof NodeInterface) {
+      $nid = $node->id();
+      $args[0] = $nid;
+      $view->setArguments($args);
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_region.
+ */
+function ttor_custom_preprocess_region(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    $variables['current_node'] = $node;
+  }
+}
+
+/**
+ * Implements template_preprocess_page.
+ */
+function ttor_custom_preprocess_page(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    $variables['node_object'] = $node;
+  }
+}

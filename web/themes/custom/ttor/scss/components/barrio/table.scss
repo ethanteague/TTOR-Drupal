@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Styles for Bootstrap Barrio's tables.
+ */
+
+.sticky-header thead th {
+  border-bottom: (2 * $table-border-width) solid $table-border-color;
+  vertical-align: bottom;
+}
+
+.sticky-header th {
+  border-top: $table-border-width solid $table-border-color;
+  padding: $table-cell-padding;
+  vertical-align: top;
+}

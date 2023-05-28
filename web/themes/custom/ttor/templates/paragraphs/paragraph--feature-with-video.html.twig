@@ -1,0 +1,48 @@
+{% set vid_placement = paragraph.field_video_placement.value %}
+    {% set parent = paragraph._referringItem.parent.parent.entity %}
+
+
+    {%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph-vid-' ~ vid_placement,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% block paragraph %}
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          {% if vid_placement == 'right' %}
+
+            <div
+              class="grid-wrap-left">
+              {% if paragraph.field_feature_title.value is not empty %}
+              <span
+                class="feature-title-span">{{paragraph.field_feature_title.value}}</span>
+            {% endif %}
+
+
+            <h1
+              class="title">{{parent.title.value}}</h1>
+            {{paragraph.field_text.processed}}</div>
+
+          <div
+            class="grid-wrap-right">{{content}}</div>
+        {% else %}
+          <div
+            class="grid-wrap-left">
+            {{content}}
+          </div>
+          <div
+            class="grid-wrap-right">
+            <h1
+              class="title">{{parent.title.value}}</h1>
+            {{paragraph.field_text.processed}}</div>
+
+        {% endif %}
+      {% endblock %}
+    </div>
+  {% endblock paragraph %}

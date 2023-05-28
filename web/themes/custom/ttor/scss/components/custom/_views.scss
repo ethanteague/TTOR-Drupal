@@ -1,0 +1,26 @@
+.view-field-blocks-from-node-content-5 {
+  .view-content {
+    .views-row {
+      @include grey-box-button;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.ttor-breakpoint-lg,
+.ttor-breakpoint-xl,
+.ttor-breakpoint-xxl {
+  .view-field-blocks-from-node-content-5 {
+    .view-content {
+      @include grid-scheme-3;
+    }
+  }
+}
+
+.view-resources-list {
+  .view-content.row {
+    .views-row {
+      border-top: none;
+    }
+  }
+}

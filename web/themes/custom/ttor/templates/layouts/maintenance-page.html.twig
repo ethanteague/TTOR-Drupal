@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Bootstrap Barrio's theme implementation to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+ #}
+<div id="page-wrapper" style="border:none;width:100%">
+  <div id="page" style="margin:0;">
+    <header id="header" role="banner">
+      <nav id="navbar-main" class="navbar navbar-dark bg-light navbar-expand-lg w-100">
+          <div class="container d-flex align-items-end">
+                  <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home"><span>
+                    <img src="{{logo}}"/></span>
+                  </a>
+          </div>
+      </nav>
+    </header>
+    <div id="page-content">
+      <section id="page-title">
+        <div class="container">
+          <div class="d-flex
+          flex-wrap
+          justify-content-center
+          justify-sm-content-center
+          justify-md-content-row
+          justify-content-md-between
+          flex-column
+          flex-sm-column
+          flex-md-row">
+              <div class="align-self-center"><h1 class="mb-0 text-center text-md-start text-white">{{ title|title }}</h1></div>
+          </div>
+        </div>
+      </section>
+
+      <div id="main-wrapper" class="layout-main-wrapper clearfix">
+        <div id="main" class="container" style="margin-left:auto;margin-left:auto">
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+            <main{{ content_attributes }}>
+              <section class="section">
+                <a id="main-content" tabindex="-1"></a>
+                {{ page.content }}
+              </section>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

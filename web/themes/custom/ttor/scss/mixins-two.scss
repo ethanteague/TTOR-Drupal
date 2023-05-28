@@ -1,0 +1,90 @@
+@mixin blue-hyperlink-left {
+  color: $primary-color;
+
+  background: url(/sites/default/files/icons/box-arrow-up-right-grey.svg) no-repeat left top;
+  color: #4e5862;
+  padding-left: 20px;
+
+  &:hover {
+    background-image: url(/sites/default/files/icons/box-arrow-up-right.svg);
+    color: $white;
+    text-decoration: underline;
+  }
+}
+
+@mixin blue-hyperlink-right {
+  color: $primary-color;
+
+  background: url(/sites/default/files/icons/box-arrow-up-right-grey.svg) no-repeat right top;
+  color: #4e5862;
+  padding-right: 20px;
+
+  &:hover {
+    background: url(/sites/default/files/icons/box-arrow-up-right.svg) no-repeat right top;
+    color: $white;
+    text-decoration: underline;
+  }
+}
+
+@mixin resource-box {
+  background: $white;
+  box-shadow: 0px 0px 2px 1px $default-color;
+  padding: 40px;
+
+  &:hover,
+  &:hover p {
+    background: $primary-color;
+    color: $white;
+  }
+
+  &:hover p.link-text a {
+    color: $white;
+    background: url(/sites/default/files/icons/box-arrow-up-right.svg) no-repeat right top;
+  }
+
+  p {
+    color: $sm-grey;
+
+    &.link-text {
+      font-weight: 600;
+
+      a {
+        @include blue-hyperlink-right;
+      }
+
+      margin-bottom: 0;
+    }
+
+    &.category-text {
+      margin-top: 1rem;
+    }
+  }
+
+}
+
+@mixin tta-box {
+  background: $white;
+  box-shadow: 0px 0px 2px 1px $default-color;
+  padding: 40px;
+
+  &:hover,
+  &:hover p {
+    background: $primary-color;
+    color: $white;
+  }
+
+  &:hover a {
+    color: $white;
+    background: url(/sites/default/files/icons/box-arrow-up-right.svg) no-repeat right top;
+  }
+
+  p {
+    color: $sm-grey;
+
+    a {
+      @include blue-hyperlink-right;
+      font-weight: 600;
+    }
+  }
+
+}

@@ -1,0 +1,10 @@
+uuid: db807771-053f-46c7-9012-f674e4fbbd9e
+langcode: en
+status: true
+dependencies: {  }
+id: this_that_slideshow
+label: 'This that slideshow'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

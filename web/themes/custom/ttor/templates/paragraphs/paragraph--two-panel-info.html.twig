@@ -1,0 +1,39 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% set byline = 'empty-byline' %}
+    {% if paragraph.field_byline.value is not empty %}
+      {% set byline = 'not-empty-byline' %}
+
+    {% endif %}
+
+    {% block paragraph %}
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          {% if paragraph.field_feature_title.value is not empty %}
+            <h2
+              class="title {{byline}}">{{paragraph.field_feature_title.value}}</h2>
+          {% endif %}
+          {% if paragraph.field_byline.value is not empty %}
+            <span
+              class="byline {{byline}}">
+              {{paragraph.field_byline.value}}</span>
+          {% endif %}
+          <div
+            class="paragraph-grid-wrap">
+            <div
+              class="grid-wrap-left">
+              {{paragraph.field_text[0].processed}}</div>
+            <div
+              class="grid-wrap-right">
+              {{paragraph.field_text[1].processed}}</div>
+          </div>
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}

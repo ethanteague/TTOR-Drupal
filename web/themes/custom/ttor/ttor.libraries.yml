@@ -1,0 +1,107 @@
+global-styling:
+  version: VERSION
+  js:
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+    js/breakpoints.js: {}
+    js/global.js: {}
+    js/filters.js: {}
+    js/language-detect.js: {}
+  css:
+    component:
+      css/style.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - jquery_ui_effects/fade
+
+main-menu:
+  version: 1.x
+  js:
+    js/main-menu.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+poppins:
+  version: VERSION
+  css:
+    component:
+      fonts/poppins.css: {}
+
+scappeal:
+  version: 1.x
+  js:
+    js/scappeal.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+redirect:
+  version: 1.x
+  js:
+    js/redirect.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+video-pause:
+  version: 1.x
+  js:
+    js/video-pause.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+webcast:
+  version: 1.x
+  js:
+    js/video.min.js: {}
+    js/webcast.js: {}
+  css:
+    component:
+      css/video-js.min.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+channels:
+  version: 1.x
+  js:
+    js/video.min.js: {}
+    js/channels.js: {}
+    /libraries/datatables/media/js/jquery.dataTables.js: {}
+    /libraries/datatables/media/js/dataTables.bootstrap4.min.js: {}
+  css:
+    component:
+      /libraries/datatables/media/css/dataTables.bootstrap4.min.css: {}
+      css/video-js.min.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+toast:
+  version: VERSION
+  js:
+    js/toast.js: {}
+  dependencies:
+    - bootstrap_barrio/bootstrap_js
+
+resources:
+  version: VERSION
+  js:
+    js/resources.js: {}
+  dependencies:
+    - bootstrap_barrio/bootstrap_js
+
+tta:
+  version: VERSION
+  js:
+    js/tta.js: {}
+  dependencies:
+    - bootstrap_barrio/bootstrap_js
+
+print-styling:
+  css:
+    theme:
+      css/print-styling.min.css: {}

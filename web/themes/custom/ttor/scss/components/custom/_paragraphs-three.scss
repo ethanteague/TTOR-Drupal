@@ -1,0 +1,70 @@
+.paragraph--type--toolkit-cards-set {
+  padding-bottom: 5em;
+
+  h2 {
+    @include max-width-960-center;
+    padding: 1.5em;
+  }
+
+  .field--name-field-toolkit-cards-set {
+
+    .field__item {
+      background: $white;
+
+      .paragraph--type--toolkit-cards {
+        color: $sm-grey;
+        padding: 3rem;
+
+        &:hover {
+          background: $primary-color;
+          color: $white;
+        }
+
+        &:hover .paragraph-grid-wrap .grid-wrap-right .field--name-field-button a {
+          color: $white;
+        }
+
+        &:hover .paragraph-grid-wrap .grid-wrap-right .field--name-field-button {
+          background: url(/sites/default/files/icons/icon-download-white.svg) no-repeat right top;
+          background-size: contain;
+          color: $white;
+          display: inline;
+        }
+
+        .paragraph-grid-wrap {
+          img {
+            box-shadow: 12px 14px 12px -12px rgba(128, 117, 117, 0.75);
+          }
+          @include grid-scheme-2;
+
+          .field--name-field-button {
+            @include download-hyperlink;
+
+            a {
+              background-color: transparent;
+              color: $primary-color;
+              padding-left: 0;
+
+              &:hover {
+                color: $white;
+                text-decoration: underline;
+              }
+            }
+          }
+
+        }
+
+      }
+    }
+  }
+}
+
+.ttor-breakpoint-lg,
+.ttor-breakpoint-xl,
+.ttor-breakpoint-xxl {
+  .paragraph--type--toolkit-cards-set {
+    .field--name-field-toolkit-cards-set {
+      @include grid-scheme-2;
+    }
+  }
+}

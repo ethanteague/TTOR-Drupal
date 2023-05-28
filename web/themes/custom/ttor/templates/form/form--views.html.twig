@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+{{ attach_library('bootstrap_barrio/form') }}
+{% set modalID = 'ttor-modal-'~attributes['id'] %}
+
+<div class="d-none ttor-new-raw-form-capture"></div>
+
+<div class="ttor-form-wrapper">
+  <div class="modal fade" id="{{modalID}}" tabindex="-1" aria-labelledby="{{modalID}}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="float-end btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="ttor-original-raw-form-capture">
+            <form{{attributes.addClass('ttor-raw-form')}}>{{ children }}</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ttor-mobile-filter mx-2 my-2">
+    <button class="btn btn-sm btn-outline-primary shadow-none m-0 d-md-block" type="button" data-bs-toggle="modal" data-bs-target="#{{modalID}}" aria-controls="{{modalID}}">
+      <span class="float-start font-weight-bold">Filters</span>
+      <span class="float-end ms-1">
+        <i class="fas fa-filter"></i>
+      </span>
+    </button>
+  </div>
+</div>

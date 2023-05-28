@@ -1,0 +1,44 @@
+{% set img_placement = paragraph.field_image_placement.value %}
+    {% set parent = paragraph._referringItem.parent.parent.entity %}
+    {% set img_placement = paragraph.field_video_placement.value %}
+    {% set parent = paragraph._referringItem.parent.parent.entity %}
+    {%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph-vid-' ~ img_placement,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% block paragraph %}
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          <h2
+            class="title">{{paragraph.field_feature_title.value}}</h2>
+          <div
+            class="paragraph-grid-wrap">
+            <div
+              class="grid-wrap-left">
+              {% for image in paragraph.field_images %}
+                {% set imagestyle = {
+  '#theme': 'image_style',
+  '#style_name': 'wide',
+  '#uri': image.entity.uri.value,
+  '#alt': image.alt,
+  '#attributes': { class: 'cta-image' },
+}
+%}
+                {{imagestyle}}
+              {% endfor %}
+            </div>
+            <div
+              class="grid-wrap-right">
+
+              {{paragraph.field_text.processed}}</div>
+
+          </div>
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}

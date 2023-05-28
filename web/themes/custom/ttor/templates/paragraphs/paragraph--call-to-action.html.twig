@@ -1,0 +1,96 @@
+{% set header_tag = paragraph.field_feature_title_tag.value %}
+
+    {% set img_placement = paragraph.field_image_placement.value %}
+    {% set parent = paragraph._referringItem.parent.parent.entity %}
+    {% set imagestyle = {
+  '#theme': 'image_style',
+  '#style_name': 'rectangle',
+  '#uri': paragraph.field_images[0].entity.uri.value,
+  '#alt': paragraph.field_images[0].alt,
+  '#attributes': { class: 'cta-image' },
+}
+%}
+
+    {%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph-img-' ~ img_placement,
+    'paragraph-tag-' ~ header_tag,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% block paragraph %}
+      {% if header_tag == 'h2' %}
+        <h2
+          class="cta-center">{{paragraph.field_feature_title.value}}</h2>
+      {% endif %}
+
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          {% if img_placement == 'right' %}
+
+            <div
+              class="grid-wrap-left">
+              {% if header_tag != 'h2' %}
+                <span
+                  class="feature-title-span">{{paragraph.field_feature_title.value}}</span>
+              {% endif %}
+              {{paragraph.field_text.processed}}
+
+              {% if paragraph.field_button is not empty %}
+
+                <div
+                  class="field--name-field-button">
+                  <a
+                    href="{{paragraph.field_button.get(0).getUrl().toString()}}">{{paragraph.field_button.title}}</a>
+                </div>
+              {% endif %}
+            </div>
+            <div
+              class="grid-wrap-right">{{imagestyle}}
+              {% if paragraph.field_show_image_caption.value == "1" %}
+                <span
+                  class="caption">{{paragraph.field_images[0].alt}}</span>
+
+              {% endif %}
+
+            </div>
+
+          {% else %}
+            <div
+              class="grid-wrap-left">
+              {{imagestyle}}
+              {% if paragraph.field_show_image_caption.value == "1" %}
+                <span
+                  class="caption">{{paragraph.field_images[0].alt}}</span>
+
+              {% endif %}
+
+            </div>
+            <div
+              class="grid-wrap-right">
+              {% if header_tag != 'h2' %}
+                <span
+                  class="feature-title-span">{{paragraph.field_feature_title.value}}</span>
+              {% endif %}
+              {{paragraph.field_text.processed}}
+
+              {% if paragraph.field_button is not empty %}
+
+
+                <div
+                  class="field--name-field-button">
+                  <a
+                    href="{{paragraph.field_button.get(0).getUrl().toString()}}">{{paragraph.field_button.title}}</a>
+                </div>
+              {% endif %}
+            </div>
+
+
+          {% endif %}
+        {% endblock %}
+      </div>
+
+    {% endblock paragraph %}

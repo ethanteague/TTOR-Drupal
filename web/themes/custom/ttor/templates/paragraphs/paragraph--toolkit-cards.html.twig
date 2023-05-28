@@ -1,0 +1,45 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    {% set imagestyle = {
+  '#theme': 'image_style',
+  '#style_name': '290x225',
+  '#uri': image.entity.uri.value,
+  '#alt': image.alt,
+  '#attributes': { class: 'cta-image' },
+}
+%}
+    {% set toolkit_id = paragraph.field_media.entity.id %}
+    {% set toolkit_image = drupal_entity('media', toolkit_id, 'toolkit') %}
+
+    {% block paragraph %}
+      <div{{attributes.addClass(classes)}}>
+        {% block content %}
+          <div
+            class="paragraph-grid-wrap">
+            <div
+              class="grid-wrap-left">
+              {{ toolkit_image }}
+            </div>
+            <div
+              class="grid-wrap-right">
+              <strong>{{paragraph.field_feature_title.value}}</strong>
+              {{paragraph.field_text[0].processed}}
+              {% if paragraph.field_button is not empty %}
+                <div
+                  class="field--name-field-button">
+                  <a
+                    href="{{paragraph.field_button.get(0).getUrl().toString()}}">{{paragraph.field_button.title}}</a>
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}

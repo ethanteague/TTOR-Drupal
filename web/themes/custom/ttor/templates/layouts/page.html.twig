@@ -1,0 +1,326 @@
+{% set header_area_color = node.field_header_background_color.value %}
+    {% set first_area_color = node.field_first_content_area_bg.value %}
+
+    {% set second_area_color = node.field_second_content_area_bg.value %}
+
+    {% set third_area_color = node.field_third_content_area_bg_colo.value %}
+
+    {% set fourth_area_color = node.field_fourth_content_area_bg_col.value %}
+
+    {% set fifth_area_color = node.field_fifth_content_area_bg_colo.value %}
+
+    <div
+      id="page-wrapper"
+      class="bg-color-{{header_area_color}}">
+
+      <div
+        id="page">
+        <div
+          id="above-header-wrap"
+          class="layout-main-wrapper default-color">
+
+          <div
+            id="above-header"
+            class="container">
+            {% if page.secondary_menu or page.top_header or page.top_header_form %}
+              <div
+                class="row row-offcanvas row-offcanvas-left clearfix">
+                <nav{{navbar_top_attributes}}>
+                  {% if container_navbar %}
+                    <div
+                      class="container">
+                    {% endif %}
+                    {{ page.secondary_menu }}
+                    {{ page.top_header }}
+                    {% if page.top_header_form %}
+                      <div
+                        class="form-inline navbar-form ml-auto">
+                        {{ page.top_header_form }}
+                      </div>
+                    {% endif %}
+                    {% if container_navbar %}
+                    </div>
+                  {% endif %}
+                </nav>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div
+          id="header-wrap"
+          class="layout-main-wrapper">
+          <header
+            id="header"
+            class="header container"
+            role="banner"
+            aria-label="{{ 'Site header'|t}}">
+            {% block head %}
+              <div
+                class="row row-offcanvas row-offcanvas-left clearfix">
+                <nav{{navbar_attributes}}>
+                  {% if container_navbar %}
+                    <div
+                      class="container">
+                    {% endif %}
+                    {{ page.header }}
+                    {% if page.primary_menu or page.header_form %}
+                      <button
+                        class="navbar-toggler collapsed"
+                        type="button"
+                        data-bs-toggle="{{ navbar_collapse_btn_data }}" data-bs-target="#CollapsingNavbar"
+                        aria-controls="CollapsingNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span
+                          class="navbar-toggler-icon"></span>
+                      </button>
+                      <div
+                        class="{{ navbar_collapse_class }}" id="CollapsingNavbar">
+                        {% if navbar_offcanvas %}
+                          <div
+                            class="offcanvas-header">
+                            <button
+                              type="button"
+                              class="btn-close text-reset"
+                              data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                          </div>
+                          <div
+                            class="offcanvas-body">
+                          {% endif %}
+                          {{ page.primary_menu }}
+                          {% if page.header_form %}
+                            <div
+                              class="form-inline navbar-form justify-content-end">
+                              {{ page.header_form }}
+                            </div>
+                          {% endif %}
+                          {% if navbar_offcanvas %}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    {% if sidebar_collapse %}
+                      <button
+                        class="navbar-toggler navbar-toggler-left collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#CollapsingLeft"
+                        aria-controls="CollapsingLeft"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"></button>
+                    {% endif %}
+                    {% if container_navbar %}
+                    </div>
+                  {% endif %}
+                </nav>
+              </div>
+            {% endblock %}
+          </header>
+        </div>
+        {% if page.highlighted %}
+          <div
+            class="highlighted">
+            <aside
+              class="{{ container }} section clearfix" role="complementary">
+              {{ page.highlighted }}
+            </aside>
+          </div>
+        {% endif %}
+        {% if page.featured_top %}
+          {% block featured %}
+            <div
+              class="featured-top">
+              <aside
+                class="featured-top__inner section {{ container }} clearfix"
+                role="complementary">
+                {{ page.featured_top }}
+              </aside>
+            </div>
+          {% endblock %}
+        {% endif %}
+        {% if page.content %}
+          <div
+            id="main-wrapper"
+            class="layout-main-wrapper clearfix">
+
+            {% block content %}
+              <div
+                id="main"
+                class="{{ container }}">
+                {{ page.breadcrumb }}
+                <div
+                  class="row row-offcanvas row-offcanvas-left clearfix">
+                  <main{{content_attributes}}>
+                    <section
+                      class="section">
+                      <a
+                        id="main-content"
+                        tabindex="-1"></a>
+                      {{ page.content }}
+                    </section>
+                  </main>
+                  {% if page.sidebar_first %}
+                    <div{{sidebar_first_attributes}}>
+                      <aside
+                        class="section"
+                        role="complementary">
+                        {{ page.sidebar_first }}
+                      </aside>
+                    </div>
+                  {% endif %}
+                  {% if page.sidebar_second %}
+                    <div{{sidebar_second_attributes}}>
+                      <aside
+                        class="section"
+                        role="complementary">
+                        {{ page.sidebar_second }}
+                      </aside>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+        {% if page.content_two %}
+          <div
+            class="layout-main-wrapper page-content-two clearfix bg-color-{{first_area_color}}">
+            {% block content_two %}
+              <div
+                class="{{ container }}">
+                <div
+                  class="row row-offcanvas row-offcanvas-left clearfix">
+                  <div{{content_attributes}}>
+                    <section
+                      class="section">
+                      {{ page.content_two }}
+                    </section>
+                  </div>
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+        {% if page.content_three %}
+          <div
+            class="layout-main-wrapper page-content-three clearfix bg-color-{{second_area_color}}">
+            {% block content_three %}
+              <div
+                class="{{ container }}">
+                <div
+                  class="row row-offcanvas row-offcanvas-left clearfix">
+                  <div{{content_attributes}}>
+                    <section
+                      class="section">
+                      {{ page.content_three }}
+                    </section>
+                  </div>
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+        {% if page.content_four %}
+          <div
+            class="layout-main-wrapper page-content-four clearfix bg-color-{{third_area_color}}">
+            {% block content_four %}
+              <div
+                class="{{ container }}">
+                <div
+                  class="row row-offcanvas row-offcanvas-left clearfix">
+                  <div{{content_attributes}}>
+                    <section
+                      class="section">
+                      {{ page.content_four }}
+                    </section>
+                  </div>
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+        {% if page.content_five %}
+          <div
+            class="layout-main-wrapper page-content-five clearfix bg-color-{{fourth_area_color}}">
+            {% block content_five %}
+              <div
+                class="{{ container }}">
+                <div
+                  class="row row-offcanvas row-offcanvas-left clearfix">
+                  <div{{content_attributes}}>
+                    <section
+                      class="section">
+                      {{ page.content_five }}
+                    </section>
+                  </div>
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+        {% if page.content_six %}
+          <div
+            class="layout-main-wrapper page-content-six clearfix bg-color-{{fifth_area_color}}">
+            {% block content_six %}
+              <div
+                class="{{ container }}">
+                <div
+                  class="row row-offcanvas row-offcanvas-left clearfix">
+                  <div{{content_attributes}}>
+                    <section
+                      class="section">
+                      {{ page.content_six }}
+                    </section>
+                  </div>
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+        {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
+          <div
+            class="featured-bottom">
+            <aside
+              class="{{ container }} clearfix" role="complementary">
+              {{ page.featured_bottom_first }}
+              {{ page.featured_bottom_second }}
+              {{ page.featured_bottom_third }}
+            </aside>
+          </div>
+        {% endif %}
+        <footer
+          class="site-footer">
+          {% block footer %}
+            <div
+              class="{{ container }}">
+              {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
+                <div
+                  class="site-footer__top clearfix">
+                  {{ page.footer_first }}
+                  {{ page.footer_second }}
+                  {{ page.footer_third }}
+                  {{ page.footer_fourth }}
+                </div>
+              {% endif %}
+              {% if page.footer_fifth %}
+                <div
+                  class="site-footer__bottom">
+                  {{ page.footer_fifth }}
+                </div>
+              {% endif %}
+            </div>
+          {% endblock %}
+        </footer>
+        {% if page.copyright %}
+          <div
+            class="site-copyright">
+            <div
+              class="{{ container }}">
+              {{ page.copyright }}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>

@@ -1,0 +1,23 @@
+uuid: 874280b0-8ec7-4bce-b8fe-6bc70e7c3d87
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fifth_content_area_bg_colo
+    - node.type.page
+  module:
+    - options
+id: node.page.field_fifth_content_area_bg_colo
+field_name: field_fifth_content_area_bg_colo
+entity_type: node
+bundle: page
+label: 'Fifth content area bg color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: white
+default_value_callback: ''
+settings: {  }
+field_type: list_string

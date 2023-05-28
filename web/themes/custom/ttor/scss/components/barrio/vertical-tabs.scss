@@ -1,0 +1,92 @@
+/**
+ * @file
+ * Vertical Tabs.
+ */
+
+.vertical-tabs {
+  /* LTR */
+  border: $border-width solid $border-color;
+  display: flex;
+  flex-direction: row;
+  font-size: $font-size-sm;
+  margin: 0;
+}
+
+[dir='rtl'] .vertical-tabs {
+  flex-direction: row-reverse;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.vertical-tabs__menu {
+  border-top: $border-width solid $border-color;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  /* LTR */
+  padding: 0;
+  /* LTR */
+  width: 15em;
+}
+
+[dir='rtl'] .vertical-tabs__menu {
+  margin-left: 0;
+  margin-right: -15em;
+}
+
+.vertical-tabs__pane {
+  border: 0;
+  margin: 0;
+}
+
+.vertical-tabs__pane>summary {
+  display: none;
+}
+
+
+/* Layout of each tab. */
+
+.vertical-tabs__menu-item {
+  background: #eee;
+  border: $border-width solid $border-color;
+  border-top: 0;
+}
+
+.vertical-tabs__menu-item a {
+  display: block;
+  padding: 0.5em 0.6em;
+  text-decoration: none;
+}
+
+.vertical-tabs__menu-item a:focus .vertical-tabs__menu-item-title,
+.vertical-tabs__menu-item a:active .vertical-tabs__menu-item-title,
+.vertical-tabs__menu-item a:hover .vertical-tabs__menu-item-title {
+  text-decoration: underline;
+}
+
+.vertical-tabs__menu-item a:hover {
+  outline: $border-width dotted;
+}
+
+.vertical-tabs__menu-item.is-selected {
+  /* LTR */
+  background-color: $white;
+  border-right-width: 0;
+}
+
+[dir='rtl'] .vertical-tabs__menu-item.is-selected {
+  border-left-width: 0;
+  border-right-width: $border-width;
+}
+
+.vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title {
+  color: $black;
+}
+
+.vertical-tabs__menu-item-summary {
+  display: block;
+  line-height: normal;
+  margin-bottom: 0;
+}

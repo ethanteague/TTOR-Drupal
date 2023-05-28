@@ -145,6 +145,14 @@
 .paragraph-img-right {
   .grid-wrap-right {
     text-align: right;
+
+    &.center-image {
+      margin: auto;
+      text-align: center;
+      .caption {
+        display: block;
+      }
+    }
   }
 }
 
@@ -353,6 +361,10 @@
 
   .paragraph--type--checklist,
   .paragraph--type--feature-without-video {
+    .caption {
+      display: block;
+    }
+
     .grid-wrap-bottom {
       @include grid-scheme-4;
     }

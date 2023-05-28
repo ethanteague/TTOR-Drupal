@@ -1,12 +1,14 @@
 <?php
+
 /**
  * @file
  * Platform.sh settings.
  */
 
+use Platformsh\ConfigReader\Config;
 use Drupal\Core\Installer\InstallerKernel;
 
-$platformsh = new \Platformsh\ConfigReader\Config();
+$platformsh = new Config();
 
 // Configure the database.
 if ($platformsh->hasRelationship('database')) {
@@ -18,7 +20,7 @@ if ($platformsh->hasRelationship('database')) {
     'password' => $creds['password'],
     'host' => $creds['host'],
     'port' => $creds['port'],
-    'pdo' => [PDO::MYSQL_ATTR_COMPRESS => !empty($creds['query']['compression'])]
+    'pdo' => [PDO::MYSQL_ATTR_COMPRESS => !empty($creds['query']['compression'])],
   ];
 }
 
@@ -26,13 +28,7 @@ if ($platformsh->hasRelationship('database')) {
 // You may add more debug-centric settings here if desired to have them automatically enable
 // on development but not production.
 if (isset($platformsh->branch)) {
-  // Production type environment.
-  if ($platformsh->onProduction() || $platformsh->onDedicated()) {
-    $config['system.logging']['error_level'] = 'hide';
-  } // Development type environment.
-  else {
-    $config['system.logging']['error_level'] = 'verbose';
-  }
+  $config['system.logging']['error_level'] = 'hide';
 }
 
 // Enable Redis caching.
@@ -98,7 +94,7 @@ if ($platformsh->inRuntime()) {
     $settings['file_temp_path'] = $platformsh->appDir . '/tmp';
   }
 
-// Configure the default PhpStorage and Twig template cache directories.
+  // Configure the default PhpStorage and Twig template cache directories.
   if (!isset($settings['php_storage']['default'])) {
     $settings['php_storage']['default']['directory'] = $settings['file_private_path'];
   }
@@ -126,16 +122,17 @@ $settings['trusted_host_patterns'] = ['.*'];
 // and 'drupalconfig:' into $config.
 foreach ($platformsh->variables() as $name => $value) {
   $parts = explode(':', $name);
-  list($prefix, $key) = array_pad($parts, 3, null);
+  [$prefix, $key] = array_pad($parts, 3, NULL);
   switch ($prefix) {
     // Variables that begin with `drupalsettings` or `drupal` get mapped
     // to the $settings array verbatim, even if the value is an array.
     // For example, a variable named drupalsettings:example-setting' with
-    // value 'foo' becomes $settings['example-setting'] = 'foo';
+    // value 'foo' becomes $settings['example-setting'] = 'foo';.
     case 'drupalsettings':
     case 'drupal':
       $settings[$key] = $value;
       break;
+
     // Variables that begin with `drupalconfig` get mapped to the $config
     // array.  Deeply nested variable names, with colon delimiters,
     // get mapped to deeply nested array elements. Array values

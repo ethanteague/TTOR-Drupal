@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.resources_grid_boxes.field_feature_title
     - field.field.paragraph.resources_grid_boxes.field_grid_display
     - field.field.paragraph.resources_grid_boxes.field_info_grid_text_box
+    - field.field.paragraph.resources_grid_boxes.field_spanish_slideshow
     - paragraphs.paragraphs_type.resources_grid_boxes
   module:
     - entity_reference_revisions
@@ -28,3 +29,4 @@ hidden:
   field_byline: true
   field_feature_title: true
   field_grid_display: true
+  field_spanish_slideshow: true

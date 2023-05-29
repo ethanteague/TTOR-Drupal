@@ -6,7 +6,9 @@ dependencies:
     - field.storage.paragraph.field_category
     - paragraphs.paragraphs_type.info_grid_box
     - taxonomy.vocabulary.resources
+    - taxonomy.vocabulary.resources_spanish
     - taxonomy.vocabulary.texas_takes_action
+    - taxonomy.vocabulary.texas_takes_action_spanish
 id: paragraph.info_grid_box.field_category
 field_name: field_category
 entity_type: paragraph
@@ -22,7 +24,9 @@ settings:
   handler_settings:
     target_bundles:
       resources: resources
+      resources_spanish: resources_spanish
       texas_takes_action: texas_takes_action
+      texas_takes_action_spanish: texas_takes_action_spanish
     sort:
       field: name
       direction: asc

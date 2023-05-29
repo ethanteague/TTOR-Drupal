@@ -121,7 +121,8 @@
   padding-bottom: 3rem;
 
   &#wrap-tid-2,
-  &#wrap-tid-5 {
+  &#wrap-tid-5,
+  &#wrap-tid-9 {
     display: block;
   }
 }
@@ -133,12 +134,15 @@
     display: none;
 
     &.tid-2,
-    &.tid-5 {
+    &.tid-5,
+    &.tid-9,
+    &.tid-12 {
       display: grid;
     }
   }
 
-  .view-id-texas_takes_action_list {
+  .view-id-texas_takes_action_list,
+  .view-id-texas_takes_action_list_spanish {
     h2 {
       @include max-width-960-center;
       font-size: 3rem;

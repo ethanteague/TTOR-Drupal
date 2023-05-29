@@ -92,6 +92,7 @@ resources:
   version: VERSION
   js:
     js/resources.js: {}
+    js/spanish-resources.js: {}
   dependencies:
     - bootstrap_barrio/bootstrap_js
 
@@ -99,6 +100,7 @@ tta:
   version: VERSION
   js:
     js/tta.js: {}
+    js/spanish-tta.js: {}
   dependencies:
     - bootstrap_barrio/bootstrap_js
 

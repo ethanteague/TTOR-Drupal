@@ -1,7 +1,15 @@
-{%
+{% set view = 'resources_list' %}
+    {% set view_tta = 'texas_takes_action_list' %}
+    {% if paragraph.field_spanish_slideshow.value == "1" %}
+      {% set view = 'resources_list_spanish' %}
+      {% set view_tta = 'texas_takes_action_list_spanish' %}
+    {% endif %}
+
+    {%
   set classes = [
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph-language-' ~ view,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
@@ -19,7 +27,6 @@
             {% include "@ttor/includes/resources.html.twig" %}
           {% else %}
             {% include "@ttor/includes/tta.html.twig" %}
-
 
           {% endif %}
         {% endblock %}

@@ -11,6 +11,14 @@
     .field__item {
       background: $white;
 
+      .field--name-field-media-image {
+        background: transparent;
+
+        .field__item {
+          background: transparent;
+        }
+      }
+
       .paragraph--type--toolkit-cards {
         color: $sm-grey;
         padding: 3rem;
@@ -35,6 +43,7 @@
           img {
             box-shadow: 12px 14px 12px -12px rgba(128, 117, 117, 0.75);
           }
+
           @include grid-scheme-2;
 
           .field--name-field-button {

@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.resources_grid_boxes.field_feature_title
     - field.field.paragraph.resources_grid_boxes.field_grid_display
     - field.field.paragraph.resources_grid_boxes.field_info_grid_text_box
+    - field.field.paragraph.resources_grid_boxes.field_spanish_slideshow
     - paragraphs.paragraphs_type.resources_grid_boxes
   module:
     - paragraphs
@@ -23,7 +24,7 @@ content:
     third_party_settings: {  }
   field_info_grid_text_box:
     type: paragraphs
-    weight: 1
+    weight: 2
     region: content
     settings:
       title: Paragraph
@@ -38,6 +39,13 @@ content:
       features:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
+    third_party_settings: {  }
+  field_spanish_slideshow:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   created: true

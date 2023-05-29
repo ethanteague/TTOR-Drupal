@@ -227,6 +227,21 @@
     @include blue-hyperlink;
     background: url(/sites/default/files/icons/box-arrow-up-right-primary.svg) no-repeat right top;
   }
+
+}
+
+.paragraph--type--feature-without-video {
+  .bordered-check {
+    border-bottom: 2px solid #fff;
+    border-top: 2px solid #fff;
+    margin-top: 40px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+
+    a {
+      @include white-hyperlink-no-hover;
+    }
+  }
 }
 
 .ttor-breakpoint-lg,

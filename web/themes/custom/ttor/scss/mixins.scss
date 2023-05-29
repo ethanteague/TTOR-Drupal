@@ -51,6 +51,26 @@ $value in $theme-colors {
   }
 }
 
+@mixin blue-hyperlink-no-hover {
+  background: url(/sites/default/files/icons/box-arrow-up-right-primary.svg) no-repeat right top;
+  color: $primary-color;
+  padding-right: 20px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin white-hyperlink-no-hover {
+  background: url(/sites/default/files/icons/box-arrow-up-right.svg) no-repeat right top;
+  color: $white;
+  padding-right: 20px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 @mixin download-hyperlink {
   background: url(/sites/default/files/icons/icon-download-blue.svg) no-repeat right top;
   background-size: contain;

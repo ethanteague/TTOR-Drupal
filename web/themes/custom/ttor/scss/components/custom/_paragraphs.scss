@@ -204,6 +204,9 @@
     padding-bottom: 20px;
     border-bottom: thin solid $grey;
   }
+  a {
+    @include blue-hyperlink-no-hover;
+  }
 }
 
 .title {

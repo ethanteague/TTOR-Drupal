@@ -104,6 +104,13 @@ tta:
   dependencies:
     - bootstrap_barrio/bootstrap_js
 
+tta-tooltip:
+  version: VERSION
+  js:
+    js/tta-tooltip.js: {}
+  dependencies:
+    - bootstrap_barrio/bootstrap_js
+
 print-styling:
   css:
     theme:

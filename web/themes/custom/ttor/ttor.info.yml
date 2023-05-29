@@ -9,6 +9,7 @@ libraries:
   - ttor/global-styling
   - ttor/resources
   - ttor/tta
+  - ttor/tta-tooltip
 ckeditor_stylesheets:
   - css/style.min.css
   - fonts/poppins.css

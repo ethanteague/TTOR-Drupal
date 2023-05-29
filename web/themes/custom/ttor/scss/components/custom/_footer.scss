@@ -41,26 +41,30 @@
       padding-bottom: inherit;
       vertical-align: top;
 
-      &#block-firstfooter {
+      &#block-firstfooter,
+      &#block-firstfooterspanish {
         padding-right: 10px;
         width: 45%;
       }
 
-      &#block-secondfooter {
+      &#block-secondfooter,
+      &#block-secondfooterspanish {
         border-left: 1px solid $white;
         padding-left: 20px;
         padding-right: 20px;
         width: 17%;
       }
 
-      &#block-thirdfooter {
+      &#block-thirdfooter,
+      &#block-thirdfooterspanish {
         border-left: 1px solid $white;
         padding-left: 20px;
         padding-right: 20px;
         width: 17%;
       }
 
-      &#block-fourthfooter {
+      &#block-fourthfooter,
+      &#block-fourthfooterspanish {
         border-left: 1px solid $white;
         padding-left: 20px;
         width: 17%;
@@ -98,9 +102,11 @@
 .site-copyright {
   background: $white;
 
-  #block-copyright {
+  #block-copyright,
+  #block-copyrightspanish {
     color: $secondary-color;
     font-size: 70%;
+    font-weight: 600;
 
     p {
       margin-bottom: 0;

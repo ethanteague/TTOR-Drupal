@@ -114,7 +114,8 @@
     }
   }
 
-  #block-mainnavigation {
+  #block-mainnavigation,
+  #block-spanishmainnavigation-menu {
     margin-top: 25px;
 
     .nav-item {
@@ -142,6 +143,7 @@
     a {
       color: $white;
       position: relative;
+      font-weight: 600;
 
       &:hover {
         color: $white;

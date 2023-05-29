@@ -1,0 +1,30 @@
+uuid: 496c96cb-c5fd-458c-97d4-e775a8f86643
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c8c52ffb-f342-4cec-b99e-53ec304aee54'
+  module:
+    - block_content
+    - system
+  theme:
+    - ttor
+id: firstfooterspanish
+theme: ttor
+region: footer_first
+weight: 0
+provider: null
+plugin: 'block_content:c8c52ffb-f342-4cec-b99e-53ec304aee54'
+settings:
+  id: 'block_content:c8c52ffb-f342-4cec-b99e-53ec304aee54'
+  label: 'First footer spanish'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/es\r\n/es/\r\n/es/*"

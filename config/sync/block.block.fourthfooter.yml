@@ -6,6 +6,7 @@ dependencies:
     - 'block_content:basic:683dd72b-042f-421e-8400-5e497e69b027'
   module:
     - block_content
+    - system
   theme:
     - ttor
 id: fourthfooter
@@ -22,4 +23,8 @@ settings:
   status: true
   info: ''
   view_mode: full
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/es\r\n/es/\r\nes/*"

@@ -1,22 +1,22 @@
-uuid: 97a1839e-1461-40df-bf10-3e17e1ca26a7
+uuid: 69500e68-fb34-46bf-b88c-4ee8112ae8f2
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.main
+    - system.menu.spanish-main-navigation
   module:
     - system
   theme:
     - ttor
-id: mainnavigation
+id: spanishmainnavigation
 theme: ttor
 region: primary_menu
-weight: -5
+weight: 0
 provider: null
-plugin: 'system_menu_block:main'
+plugin: 'system_menu_block:spanish-main-navigation'
 settings:
-  id: 'system_menu_block:main'
-  label: 'Main navigation'
+  id: 'system_menu_block:spanish-main-navigation'
+  label: 'Spanish Main navigation'
   label_display: '0'
   provider: system
   level: 1
@@ -25,5 +25,5 @@ settings:
 visibility:
   request_path:
     id: request_path
-    negate: true
+    negate: false
     pages: "/es\r\n/es/\r\nes/*"

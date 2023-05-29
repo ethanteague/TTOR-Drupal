@@ -1,0 +1,30 @@
+uuid: 10f0a134-90ec-4b21-ad63-14f34ef6f08e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:01443147-714f-47b5-bc20-1cdb4c9dd167'
+  module:
+    - block_content
+    - system
+  theme:
+    - ttor
+id: copyrightspanish
+theme: ttor
+region: copyright
+weight: 0
+provider: null
+plugin: 'block_content:01443147-714f-47b5-bc20-1cdb4c9dd167'
+settings:
+  id: 'block_content:01443147-714f-47b5-bc20-1cdb4c9dd167'
+  label: 'Copyright spanish'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/es\r\n/es/\r\n/es/*"

@@ -16,7 +16,7 @@ third_party_settings:
 id: siteinspanish
 theme: ttor
 region: top_header
-weight: 0
+weight: -11
 provider: null
 plugin: 'block_content:76bdf7bf-b963-4c99-9cd7-7e135c991a6a'
 settings:
@@ -31,4 +31,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: "/es\r\nes/\r\nes/*"
+    pages: "/es\r\n/es/\r\n/es/*"

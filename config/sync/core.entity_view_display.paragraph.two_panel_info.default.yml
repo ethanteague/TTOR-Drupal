@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.two_panel_info.field_additional_css_classes
     - field.field.paragraph.two_panel_info.field_byline
     - field.field.paragraph.two_panel_info.field_feature_title
     - field.field.paragraph.two_panel_info.field_text
@@ -36,4 +37,5 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-hidden: {  }
+hidden:
+  field_additional_css_classes: true

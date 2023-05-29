@@ -2,10 +2,12 @@
   set classes = [
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
+    paragraph.field_additional_css_classes.value,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
 %}
+
     {% set byline = 'empty-byline' %}
     {% if paragraph.field_byline.value is not empty %}
       {% set byline = 'not-empty-byline' %}

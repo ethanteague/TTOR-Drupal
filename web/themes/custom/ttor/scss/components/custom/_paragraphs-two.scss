@@ -236,6 +236,10 @@
 
   .paragraph--type--call-to-action-blue-info-panel {
     @include grid-scheme-2-ultra-wide-left;
+
+    &.wider-button-grid {
+      grid-template-columns: 1.5fr 1fr;
+    }
   }
 
   .paragraph--type--this-that-slideshow {

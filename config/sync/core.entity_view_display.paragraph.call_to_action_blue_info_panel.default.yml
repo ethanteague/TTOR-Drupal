@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.call_to_action_blue_info_panel.field_additional_css_classes
     - field.field.paragraph.call_to_action_blue_info_panel.field_button
     - field.field.paragraph.call_to_action_blue_info_panel.field_text
     - paragraphs.paragraphs_type.call_to_action_blue_info_panel
@@ -33,4 +34,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_additional_css_classes: true

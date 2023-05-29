@@ -1,23 +1,23 @@
-uuid: 4bb30d44-2eef-4f43-bf20-e194fecdc09d
+uuid: 456eede7-2e70-4efe-83b8-eba001be534c
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:fe69d313-db98-4e31-8c8f-7398bb31c947'
+    - 'block_content:basic:5f96a3a2-9fe1-4a46-80cf-a97a4e45475a'
   module:
     - block_content
     - system
   theme:
     - ttor
-id: texastargetedlogo
+id: texastargetedlogospanish
 theme: ttor
 region: header
-weight: -12
+weight: -13
 provider: null
-plugin: 'block_content:fe69d313-db98-4e31-8c8f-7398bb31c947'
+plugin: 'block_content:5f96a3a2-9fe1-4a46-80cf-a97a4e45475a'
 settings:
-  id: 'block_content:fe69d313-db98-4e31-8c8f-7398bb31c947'
-  label: 'Texas Targeted logo'
+  id: 'block_content:5f96a3a2-9fe1-4a46-80cf-a97a4e45475a'
+  label: 'Texas Targeted logo spanish'
   label_display: '0'
   provider: block_content
   status: true
@@ -26,5 +26,5 @@ settings:
 visibility:
   request_path:
     id: request_path
-    negate: true
+    negate: false
     pages: "/es\r\n/es/\r\n/es/*"

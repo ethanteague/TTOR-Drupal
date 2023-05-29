@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.two_panel_info.field_additional_css_classes
     - field.field.paragraph.two_panel_info.field_byline
     - field.field.paragraph.two_panel_info.field_feature_title
     - field.field.paragraph.two_panel_info.field_text
@@ -14,6 +15,14 @@ targetEntityType: paragraph
 bundle: two_panel_info
 mode: default
 content:
+  field_additional_css_classes:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_byline:
     type: string_textarea
     weight: 1

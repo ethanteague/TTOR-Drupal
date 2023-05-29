@@ -16,7 +16,7 @@ third_party_settings:
 id: siteinenglish
 theme: ttor
 region: top_header
-weight: 0
+weight: -12
 provider: null
 plugin: 'block_content:20d0540b-9752-470b-a316-58488a54551c'
 settings:
@@ -31,4 +31,4 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: "/es\r\n/es/*"
+    pages: "/es\r\n/es/\r\n/es/*"

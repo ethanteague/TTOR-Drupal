@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.this_that_slideshow.field_not_that
     - field.field.paragraph.this_that_slideshow.field_say_this
+    - field.field.paragraph.this_that_slideshow.field_spanish_slideshow
     - field.field.paragraph.this_that_slideshow.field_text
     - paragraphs.paragraphs_type.this_that_slideshow
   module:
@@ -37,4 +38,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_spanish_slideshow: true

@@ -41,13 +41,23 @@
                       <div
                         class="chat-bubble say-this">
                         <p
-                          class="large">SAY THIS</p>
+                          class="large">
+                          {% if paragraph.field_spanish_slideshow.value == "1" %}DIGA ESTO
+                            {% else %}SAY THIS
+                          {% endif %}
+                        </p>
+
                         <p>{{this.value}}</p>
                       </div>
                       <div
                         class="chat-bubble not-that">
                         <p
-                          class="large">NOT THAT</p>
+                          class="large">
+                          {% if paragraph.field_spanish_slideshow.value == "1" %}Y NO ESTO
+                            {% else %}NOT THAT
+                          {% endif %}
+                        </p>
+
                         <p>{{paragraph.field_not_that[loop.index - 1].value}}</p>
                       </div>
                     </div>

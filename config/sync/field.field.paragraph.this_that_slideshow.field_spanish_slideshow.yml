@@ -1,0 +1,23 @@
+uuid: 5f520571-f5f9-451f-a8f6-af112843c9d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_spanish_slideshow
+    - paragraphs.paragraphs_type.this_that_slideshow
+id: paragraph.this_that_slideshow.field_spanish_slideshow
+field_name: field_spanish_slideshow
+entity_type: paragraph
+bundle: this_that_slideshow
+label: 'Spanish slideshow'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

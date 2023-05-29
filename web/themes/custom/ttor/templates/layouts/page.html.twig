@@ -8,10 +8,13 @@
     {% set fourth_area_color = node.field_fourth_content_area_bg_col.value %}
 
     {% set fifth_area_color = node.field_fifth_content_area_bg_colo.value %}
-
+    {% set language = 'english' %}
+    {% if page['primary_menu']['spanishmainnavigation'] is not empty %}
+      {% set language = 'spanish' %}
+    {% endif %}
     <div
       id="page-wrapper"
-      class="bg-color-{{header_area_color}}">
+      class="{{language}} bg-color-{{header_area_color}}">
 
       <div
         id="page">

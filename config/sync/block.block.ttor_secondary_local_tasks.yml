@@ -9,7 +9,7 @@ _core:
 id: ttor_secondary_local_tasks
 theme: ttor
 region: top_header
-weight: -2
+weight: -13
 provider: null
 plugin: local_tasks_block
 settings:

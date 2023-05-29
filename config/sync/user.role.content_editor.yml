@@ -15,6 +15,7 @@ dependencies:
     - file
     - filter
     - media
+    - menu_admin_per_menu
     - node
     - path
     - same_page_preview
@@ -36,6 +37,8 @@ permissions:
   - 'access same_page_preview'
   - 'access toolbar'
   - 'access tour'
+  - 'administer main menu items'
+  - 'administer spanish-main-navigation menu items'
   - 'administer url aliases'
   - 'clone block_content entity'
   - 'clone media entity'

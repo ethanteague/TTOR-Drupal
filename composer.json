@@ -36,6 +36,7 @@
         "drupal/google_analytics": "^4.0",
         "drupal/jquery_ui_effects": "^2.0",
         "drupal/media_video_micromodal": "^1.0",
+        "drupal/menu_admin_per_menu": "^1.5",
         "drupal/mix": "^1.4",
         "drupal/oembed_lazyload": "^2.0",
         "drupal/oembed_providers": "^2.1",

@@ -1,15 +1,15 @@
-uuid: 7317b07d-3f55-43d6-a289-ae6868f9ebb5
+uuid: 6dabf6c8-9889-4fc5-b736-5a6d9c1626d1
 langcode: en
-status: false
+status: true
 dependencies:
   theme:
-    - ttor
+    - gin
 _core:
-  default_config_hash: ACjBZI5shAMiiUpsz-inLYVXDqNNXRnSzAWV3kV_8Hw
-id: ttor_primary_local_tasks
-theme: ttor
-region: highlighted
-weight: -13
+  default_config_hash: Hh01DLj9k7UnNdPpOQXHZHW7GHf2OPNDQyCJF7_R9ac
+id: gin_primary_local_tasks
+theme: gin
+region: header
+weight: 0
 provider: null
 plugin: local_tasks_block
 settings:

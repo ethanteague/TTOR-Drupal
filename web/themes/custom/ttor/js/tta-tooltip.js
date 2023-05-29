@@ -9,20 +9,13 @@
   Drupal.behaviors.ttorTTAtooltip = {
     attach: function (context, settings) {
 
-      const tabs = document.querySelectorAll(".tooltip-trigger");
-      const tooltips = document.querySelectorAll(".tooltip-div");
-
-      tabs.forEach(tab => {
-        tab.addEventListener("click", () => {
-          tooltips.forEach(tip => {
-            if (tip.classList.contains('show-tooltip')) {
-              tip.classList.remove('show-tooltip');
-            }
-            else {
-              tip.classList.add('show-tooltip');
-            }
-          })
-        })
+      const tab = document.querySelector(".tooltip-trigger");
+      const tooltip = document.querySelector(".tooltip-div");
+      tab.addEventListener("mouseenter", (e) => {
+        tooltip.classList.add('show-tooltip')
+      })
+      tab.addEventListener("mouseleave", (e) => {
+        tooltip.classList.remove('show-tooltip')
       })
     }
   };

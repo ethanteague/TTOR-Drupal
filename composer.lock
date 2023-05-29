@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afaa438feda122d04733101c6e207f35",
+    "content-hash": "c9b4834d5a98fe71190cd21bbe8ab149",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1418,6 +1418,58 @@
             "time": "2023-05-17T18:32:04+00:00"
         },
         {
+            "name": "drupal/admin_theme",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/admin_theme.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/admin_theme-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "5dafd7457840963609502567d60f7fdf0b3e81c3"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9 || ^10",
+                "php": ">=5.5.9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1681407048",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "geek-merlin",
+                    "homepage": "https://www.drupal.org/user/229048"
+                },
+                {
+                    "name": "justy",
+                    "homepage": "https://www.drupal.org/user/115811"
+                }
+            ],
+            "description": "Enable the administration theme on more paths than possible with Drupal's default administration page.",
+            "homepage": "https://www.drupal.org/project/admin_theme",
+            "keywords": [
+                "drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/admin_theme"
+            }
+        },
+        {
             "name": "drupal/admin_toolbar",
             "version": "3.4.0",
             "source": {
@@ -2437,6 +2489,257 @@
             }
         },
         {
+            "name": "drupal/gin",
+            "version": "3.0.0-rc3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/gin.git",
+                "reference": "8.x-3.0-rc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/gin-8.x-3.0-rc3.zip",
+                "reference": "8.x-3.0-rc3",
+                "shasum": "8ceb6a446b69023b8c0c86baf30a205bb8163573"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "drupal/gin_toolbar": "^1.0@beta"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.0-rc3",
+                    "datestamp": "1683018296",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "phpcs": [
+                    "phpcs -s --runtime-set ignore_warnings_on_exit 1 --runtime-set ignore_errors_on_exit 0 'web/modules/custom'"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha Eggenberger (saschaeggi)",
+                    "homepage": "https://www.drupal.org/u/saschaeggi",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "For a better Admin and Content Editor Experience.",
+            "homepage": "https://www.drupal.org/project/gin",
+            "support": {
+                "source": "https://git.drupalcode.org/project/gin",
+                "issues": "https://www.drupal.org/project/issues/gin"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/sponsors/saschaeggi"
+                },
+                {
+                    "type": "other",
+                    "url": "https://paypal.me/saschaeggi"
+                }
+            ]
+        },
+        {
+            "name": "drupal/gin_login",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/gin_login.git",
+                "reference": "2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/gin_login-2.0.2.zip",
+                "reference": "2.0.2",
+                "shasum": "de3180f6418614916e5a99ba686ba93bf8c1dadb"
+            },
+            "require": {
+                "drupal/core": "^8.9 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.2",
+                    "datestamp": "1682973994",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha Eggenberger (saschaeggi)",
+                    "homepage": "https://www.drupal.org/u/saschaeggi",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Custom Drupal Login for Gin theme",
+            "homepage": "https://www.drupal.org/project/gin_login",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/gin_login",
+                "issues": "https://www.drupal.org/project/issues/gin_login"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/sponsors/saschaeggi"
+                },
+                {
+                    "type": "other",
+                    "url": "https://paypal.me/saschaeggi"
+                }
+            ]
+        },
+        {
+            "name": "drupal/gin_toolbar",
+            "version": "1.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/gin_toolbar.git",
+                "reference": "8.x-1.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/gin_toolbar-8.x-1.0-rc1.zip",
+                "reference": "8.x-1.0-rc1",
+                "shasum": "90516f6aa22f4f60f1853bdceb757940f411ec7e"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc1",
+                    "datestamp": "1669666957",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha Eggenberger (saschaeggi)",
+                    "homepage": "https://www.drupal.org/u/saschaeggi",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Gin Toolbar for Frontend use",
+            "homepage": "https://www.drupal.org/project/gin_toolbar",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/gin_toolbar",
+                "issues": "https://www.drupal.org/project/issues/gin_toolbar"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/sponsors/saschaeggi"
+                },
+                {
+                    "type": "other",
+                    "url": "https://paypal.me/saschaeggi"
+                }
+            ]
+        },
+        {
+            "name": "drupal/google_analytics",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/google_analytics.git",
+                "reference": "4.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/google_analytics-4.0.2.zip",
+                "reference": "4.0.2",
+                "shasum": "6deec511373e4659e42ff494c8729434728e37d7"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10"
+            },
+            "require-dev": {
+                "drupal/token": "^1.7"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.0.2",
+                    "datestamp": "1662768595",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://www.drupal.org/node/49388/committers"
+                },
+                {
+                    "name": "budda",
+                    "homepage": "https://www.drupal.org/user/13164"
+                },
+                {
+                    "name": "ixismark",
+                    "homepage": "https://www.drupal.org/user/3632333"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
+                    "name": "roberto.rivera.ixis",
+                    "homepage": "https://www.drupal.org/user/3632325"
+                }
+            ],
+            "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
+            "homepage": "https://www.drupal.org/project/google_analytics",
+            "support": {
+                "source": "https://git.drupalcode.org/project/google_analytics",
+                "issues": "https://www.drupal.org/project/issues/google_analytics"
+            }
+        },
+        {
             "name": "drupal/jquery_ui",
             "version": "1.6.0",
             "source": {
@@ -2964,6 +3267,66 @@
                 "source": "https://cgit.drupalcode.org/pathauto",
                 "issues": "https://www.drupal.org/project/issues/pathauto",
                 "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
+            }
+        },
+        {
+            "name": "drupal/same_page_preview",
+            "version": "2.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/same_page_preview.git",
+                "reference": "2.0.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/same_page_preview-2.0.0-alpha3.zip",
+                "reference": "2.0.0-alpha3",
+                "shasum": "db3920f03ebc18ef8cb4e98e393a3c72aa45a26c"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0-alpha3",
+                    "datestamp": "1681768079",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Weber",
+                    "homepage": "https://www.drupal.org/u/cosmicdreams",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Brian Perry",
+                    "homepage": "https://www.drupal.org/u/brianperry",
+                    "role": "Co-Maintainer"
+                },
+                {
+                    "name": "Ofer Shaal",
+                    "homepage": "https://www.drupal.org/u/shaal",
+                    "role": "Co-Maintainer"
+                }
+            ],
+            "description": "Preview content alongside the edit form.",
+            "homepage": "https://www.drupal.org/project/same_page_preview",
+            "keywords": [
+                "Drupal",
+                "preview"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/same_page_preview",
+                "issues": "https://www.drupal.org/project/issues/same_page_preview"
             }
         },
         {
@@ -7705,7 +8068,10 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "drupal/entity_clone": 10
+        "drupal/entity_clone": 10,
+        "drupal/gin": 5,
+        "drupal/gin_toolbar": 5,
+        "drupal/same_page_preview": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,

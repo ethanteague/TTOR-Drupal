@@ -12,7 +12,7 @@ dependencies:
 id: texastargetedlogo
 theme: ttor
 region: header
-weight: -12
+weight: -13
 provider: null
 plugin: 'block_content:fe69d313-db98-4e31-8c8f-7398bb31c947'
 settings:

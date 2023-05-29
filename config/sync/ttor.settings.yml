@@ -1,13 +1,15 @@
 favicon:
-  use_default: true
+  use_default: 0
+  path: 'public://favicon-01.png'
+  mimetype: image/png
 features:
   comment_user_picture: true
   comment_user_verification: true
-  favicon: true
-  node_user_picture: true
+  favicon: 1
+  node_user_picture: 1
 logo:
   path: 'public://THHS_logo.png'
-  use_default: true
+  use_default: 1
 bootstrap_barrio_source: '0'
 bootstrap_barrio_fluid_container: 0
 bootstrap_barrio_region_clean_top_header: 0
@@ -104,3 +106,12 @@ bootstrap_barrio_region_clean_content_four: 0
 bootstrap_barrio_region_class_content_four: row
 bootstrap_barrio_region_clean_content_five: 0
 bootstrap_barrio_region_class_content_five: row
+bootstrap_barrio_container: container
+bootstrap_barrio_region_clean_content_six: 0
+bootstrap_barrio_region_class_content_six: row
+bootstrap_barrio_region_clean_copyright: 0
+bootstrap_barrio_region_class_copyright: row
+bootstrap_barrio_breadcrumb_divider: ''
+bootstrap_barrio_button_type: primary
+bootstrap_barrio_float_label: 0
+bootstrap_barrio_checkbox: ''

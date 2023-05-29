@@ -11,6 +11,8 @@ global-styling:
     component:
       css/style.css: {}
       css/eow1mls.css: {}
+      css/tpj1ync.css: {}
+      css/uob8tef.css: {}
   dependencies:
     - core/jquery
     - core/drupal

@@ -11,10 +11,6 @@ Drupal site for Texas Opioid
  - `drush uli`
 
  ## TODO
-  - [ ] Banner hover bubbles
-  - [ ] Link in how to stay safe on about opioids pages
-  - [ ] Link in headers of fent pages
-  - [ ] Google analytics integration
-  - [ ] Install https://www.drupal.org/project/same_page_preview
-  - [ ] Consider https://www.drupal.org/project/gin (issue with paragraphs overflow on node form)
+  - [ ] Add google acct id (`GTM-K75GDXG`) to `Web property ids` input, here: `admin/config/services/google-analytics`
+  - [ ] Change `editor` password from `12345`
 

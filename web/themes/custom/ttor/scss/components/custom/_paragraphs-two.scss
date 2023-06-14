@@ -230,7 +230,8 @@
 
 }
 
-.paragraph--type--feature-without-video {
+.paragraph--type--feature-without-video,
+.paragraph--type--feature-with-video {
   .bordered-check {
     border-bottom: 2px solid #fff;
     border-top: 2px solid #fff;

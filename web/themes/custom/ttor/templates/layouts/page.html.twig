@@ -8,6 +8,10 @@
     {% set fourth_area_color = node.field_fourth_content_area_bg_col.value %}
 
     {% set fifth_area_color = node.field_fifth_content_area_bg_colo.value %}
+
+    {% set sixth_area_color = node.field_sixth_content_area_bg_colo.value %}
+
+
     {% set language = 'english' %}
     {% if page['primary_menu']['spanishmainnavigation'] is not empty %}
       {% set language = 'spanish' %}
@@ -281,6 +285,27 @@
             {% endblock %}
           </div>
         {% endif %}
+        {% if page.content_seven %}
+          <div
+            class="layout-main-wrapper page-content-seven clearfix bg-color-{{sixth_area_color}}">
+            {% block content_seven %}
+              <div
+                class="{{ container }}">
+                <div
+                  class="row row-offcanvas row-offcanvas-left clearfix">
+                  <div{{content_attributes}}>
+                    <section
+                      class="section">
+                      {{ page.content_seven }}
+                    </section>
+                  </div>
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+
+
         {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
           <div
             class="featured-bottom">

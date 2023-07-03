@@ -1,23 +1,19 @@
-uuid: 0aea2ce3-51ee-4a47-befa-c6a698fad5b1
+uuid: 8250fedc-fd4b-4491-870d-1fd6da5b3c2f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_fifth_content_area_items
+    - field.storage.node.field_sixth_content_area_items
     - node.type.page
-    - paragraphs.paragraphs_type.call_to_action
-    - paragraphs.paragraphs_type.grey_lists_pair
-    - paragraphs.paragraphs_type.info
     - paragraphs.paragraphs_type.info_no_background
-    - paragraphs.paragraphs_type.large_video_in_content_area_of_p
     - paragraphs.paragraphs_type.two_panel_info
   module:
     - entity_reference_revisions
-id: node.page.field_fifth_content_area_items
-field_name: field_fifth_content_area_items
+id: node.page.field_sixth_content_area_items
+field_name: field_sixth_content_area_items
 entity_type: node
 bundle: page
-label: 'Fifth Content area items'
+label: 'Sixth Content area items'
 description: ''
 required: false
 translatable: false
@@ -27,61 +23,57 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      call_to_action: call_to_action
-      large_video_in_content_area_of_p: large_video_in_content_area_of_p
-      grey_lists_pair: grey_lists_pair
-      info: info
       info_no_background: info_no_background
       two_panel_info: two_panel_info
     negate: 0
     target_bundles_drag_drop:
       banner:
-        weight: 9
+        weight: 22
         enabled: false
       banner_with_3_videos:
         weight: 23
         enabled: false
       call_to_action:
-        weight: 10
-        enabled: true
+        weight: 24
+        enabled: false
       call_to_action_blue_info_panel:
         weight: 25
         enabled: false
       checklist:
-        weight: 17
+        weight: 26
         enabled: false
       dark_blue_banner_text:
-        weight: 11
+        weight: 27
         enabled: false
       feature_with_video:
-        weight: 13
+        weight: 29
         enabled: false
       feature_without_video:
-        weight: 12
+        weight: 28
         enabled: false
       grey_boxes:
-        weight: 14
+        weight: 30
         enabled: false
       grey_lists_pair:
-        weight: 22
-        enabled: true
+        weight: 31
+        enabled: false
       info:
-        weight: 23
-        enabled: true
+        weight: 32
+        enabled: false
       info_grid_box:
         weight: 33
         enabled: false
       info_no_background:
-        weight: 24
+        weight: 34
         enabled: true
       large_video_in_content_area_of_p:
-        weight: 15
-        enabled: true
+        weight: 35
+        enabled: false
       resources_grid_boxes:
         weight: 36
         enabled: false
       text_only_feature_banner:
-        weight: 16
+        weight: 37
         enabled: false
       this_that_slideshow:
         weight: 38
@@ -93,9 +85,9 @@ settings:
         weight: 40
         enabled: false
       two_panel_info:
-        weight: 27
+        weight: 41
         enabled: true
       video_:
-        weight: 28
+        weight: 42
         enabled: false
 field_type: entity_reference_revisions

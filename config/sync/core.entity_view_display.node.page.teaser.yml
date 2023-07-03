@@ -14,6 +14,8 @@ dependencies:
     - field.field.node.page.field_header_background_color
     - field.field.node.page.field_second_content_area_bg
     - field.field.node.page.field_second_content_area_items
+    - field.field.node.page.field_sixth_content_area_bg_colo
+    - field.field.node.page.field_sixth_content_area_items
     - field.field.node.page.field_third_content_area_bg_colo
     - field.field.node.page.field_third_content_area_items
     - node.type.page
@@ -40,5 +42,7 @@ hidden:
   field_header_background_color: true
   field_second_content_area_bg: true
   field_second_content_area_items: true
+  field_sixth_content_area_bg_colo: true
+  field_sixth_content_area_items: true
   field_third_content_area_bg_colo: true
   field_third_content_area_items: true

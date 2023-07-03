@@ -18,7 +18,6 @@ dependencies:
     - menu_admin_per_menu
     - node
     - path
-    - same_page_preview
     - system
     - taxonomy
     - toolbar
@@ -34,7 +33,6 @@ permissions:
   - 'access contextual links'
   - 'access files overview'
   - 'access media overview'
-  - 'access same_page_preview'
   - 'access toolbar'
   - 'access tour'
   - 'administer main menu items'

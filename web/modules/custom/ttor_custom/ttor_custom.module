@@ -28,7 +28,8 @@ function ttor_custom_views_pre_build(ViewExecutable $view) {
   || $view->id() === 'field_blocks_from_node_content_2'
   || $view->id() === 'field_blocks_from_node_content_3'
   || $view->id() === 'field_blocks_from_node_content_4'
-  || $view->id() === 'field_blocks_from_node_content_5') {
+  || $view->id() === 'field_blocks_from_node_content_5'
+  || $view->id() === 'field_blocks_from_node_content_6') {
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof NodeInterface) {
       $nid = $node->id();

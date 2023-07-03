@@ -29,5 +29,5 @@ settings:
       value: ''
     type:
       type: string
-      value: grey_boxes
+      value: 'large_video_in_content_area_of_p,call_to_action,grey_lists_pair,info,info_no_background,two_panel_info'
 visibility: {  }

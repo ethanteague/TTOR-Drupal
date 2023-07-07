@@ -63,6 +63,24 @@
         })
       });
 
+      window.addEventListener('load', () => {
+        tid9s.forEach(tid9 => {
+          tid9.classList.add('show-tab')
+        })
+        tid10s.forEach(tid10 => {
+          tid10.style.display = "none";
+        })
+        tid11s.forEach(tid11 => {
+          tid11.style.display = "none";
+        })
+      })
+
+      window.addEventListener('click', () => {
+        tid9s.forEach(tid9 => {
+          tid9.classList.remove('show-tab')
+        })
+      })
+
     }
   };
 

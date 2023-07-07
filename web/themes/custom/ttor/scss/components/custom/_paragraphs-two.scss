@@ -138,7 +138,7 @@
     &.tid-5,
     &.tid-9,
     &.tid-12 {
-      display: grid;
+   //   display: grid;
     }
   }
 
@@ -226,6 +226,21 @@
       .resource-box {
         @include resource-box;
 
+      }
+    }
+  }
+}
+
+.show-tab {
+  display: block !important;
+}
+
+.page-node-5,
+.page-node-14 {
+  .grid-wrap-right {
+    .resource-box {
+      &:nth-child(4) {
+        background: $default-color;
       }
     }
   }

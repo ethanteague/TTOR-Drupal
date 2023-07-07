@@ -29,7 +29,7 @@
               tid3.style.display = "none";
             })
             tid2s.forEach(tid2 => {
-              tid2.style.display = "grid";
+              tid2.style.display = "block";
             })
           }
           if (tab.classList.contains("tid-3")) {
@@ -43,7 +43,7 @@
               tid4.style.display = "none";
             })
             tid3s.forEach(tid3 => {
-              tid3.style.display = "grid";
+              tid3.style.display = "block";
             })
           }
           if (tab.classList.contains("tid-4")) {
@@ -57,11 +57,29 @@
               tid3.style.display = "none";
             })
             tid4s.forEach(tid4 => {
-              tid4.style.display = "grid";
+              tid4.style.display = "block";
             })
           }
         })
       });
+
+      window.addEventListener('load', () => {
+        tid2s.forEach(tid2 => {
+          tid2.classList.add('show-tab')
+        })
+        tid3s.forEach(tid3 => {
+          tid3.style.display = "none";
+        })
+        tid4s.forEach(tid4 => {
+          tid4.style.display = "none";
+        })
+      })
+
+      window.addEventListener('click', () => {
+        tid2s.forEach(tid2 => {
+          tid2.classList.remove('show-tab')
+        })
+      })
 
     }
   };

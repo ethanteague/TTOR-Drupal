@@ -12,7 +12,8 @@
       li {
         border-bottom: 10px solid $primary-color;
         list-style: none;
-        padding: 25px 2px;
+        padding: 25px 2px 25px 25px;
+        text-indent: -25px;
 
         &:hover {
           background-color: $primary-color;
@@ -172,13 +173,20 @@
           &:hover,
           &:focus-within {
             cursor: pointer;
-            background-color: $primary-color;
-            color: $white;
+            color: $primary-color !important;
           }
 
+          &.default-tab {
+            border-bottom: 10px solid $primary-color !important;
+            color: $primary-color !important;
+          }
         }
       }
     }
+  }
+
+  .default-tab-title {
+    display: block;
   }
 
   .three-column-grid {
@@ -217,6 +225,7 @@
     .grid-wrap-right {
       .resource-box {
         @include resource-box;
+
       }
     }
   }
@@ -245,14 +254,23 @@
   }
 }
 
+.paragraph--type--banner-with-3-videos {
+  .field--name-field-video {
+    @include grid-scheme-3;
+  }
+}
+
+.ttor-breakpoint-mobile {
+  .paragraph--type--banner-with-3-videos {
+    .field--name-field-video {
+      display: block;
+    }
+  }
+}
+
 .ttor-breakpoint-lg,
 .ttor-breakpoint-xl,
 .ttor-breakpoint-xxl {
-  .paragraph--type--banner-with-3-videos {
-    .field--name-field-video {
-      @include grid-scheme-3;
-    }
-  }
 
   .paragraph--type--call-to-action-blue-info-panel {
     @include grid-scheme-2-ultra-wide-left;

@@ -28,7 +28,11 @@
 
 @mixin resource-box {
   background: $white;
+  &:nth-child(4) {
+    background: $default-color;
+  }
   box-shadow: 0px 0px 2px 1px $default-color;
+  display: block;
   padding: 40px;
 
   &:hover,
@@ -53,6 +57,8 @@
       }
 
       margin-bottom: 0;
+      padding-bottom: 0;
+      line-height: normal;
     }
 
     &.category-text {

@@ -3,19 +3,17 @@ body:not(.page-node-3) {
     .view-content {
       .views-row {
         @include grey-box-button;
+        @include grid-scheme-3;
         margin-bottom: 2rem;
       }
     }
   }
+}
 
-
-  .ttor-breakpoint-lg,
-  .ttor-breakpoint-xl,
-  .ttor-breakpoint-xxl {
-    .view-field-blocks-from-node-content-5 {
-      .view-content {
-        @include grid-scheme-3;
-      }
+.ttor-breakpoint-mobile {
+  .view-field-blocks-from-node-content-5 {
+    .view-content {
+      display: block;
     }
   }
 }

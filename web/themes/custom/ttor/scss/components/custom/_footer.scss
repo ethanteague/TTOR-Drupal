@@ -1,5 +1,5 @@
 .site-footer {
-  @include small-white-text;
+  @include small-white-footer-text;
   background-color: $secondary-color;
   color: $white;
 
@@ -76,7 +76,7 @@
 .ttor-breakpoint-xxl {
   .site-footer {
     .block {
-      height: 175px;
+      height: 125px;
     }
   }
 }
@@ -84,7 +84,7 @@
 .ttor-breakpoint-xl {
   .site-footer {
     .block {
-      height: 185px;
+      height: 145px;
     }
   }
 }
@@ -92,7 +92,7 @@
 .ttor-breakpoint-lg {
   .site-footer {
     .block {
-      height: 195px;
+      height: 165px;
     }
   }
 }

@@ -13,7 +13,8 @@
       const tid13s = document.querySelectorAll(".resource-box.tid-13");
       const tid14s = document.querySelectorAll(".resource-box.tid-14");
       const tid15s = document.querySelectorAll(".resource-box.tid-15");
-
+      const defaultTabEs = document.querySelector(".views-field-name .tid-12");
+      const defaultTitleEs = document.getElementById("wrap-tid-12");
 
       const tid12TitleWrap = document.getElementById("wrap-tid-12");
       const tid13TitleWrap = document.getElementById("wrap-tid-13");
@@ -99,7 +100,15 @@
           }
         })
       });
+      window.addEventListener('load', () => {
+        defaultTabEs?.classList.add("default-tab");
+        defaultTitleEs?.classList.add("default-tab-title");
+      })
 
+      window.addEventListener('click', () => {
+        defaultTabEs?.classList.remove("default-tab");
+        defaultTitleEs?.classList.add("default-tab-title");
+      })
     }
   };
 

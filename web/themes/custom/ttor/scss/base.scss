@@ -17,7 +17,7 @@ img {
 
 .paragraph--type--two-panel-info {
   a {
-    @include blue-hyperlink;
+    @include blue-hyperlink-no-hover;
   }
 }
 

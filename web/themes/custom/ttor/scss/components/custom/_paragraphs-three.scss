@@ -11,6 +11,10 @@
     .field__item {
       background: $white;
 
+      &:hover {
+        background: $primary-color;
+      }
+
       .field--name-field-media-image {
         background: transparent;
 
@@ -42,6 +46,8 @@
         .paragraph-grid-wrap {
           img {
             box-shadow: 12px 14px 12px -12px rgba(128, 117, 117, 0.75);
+            height: 295px;
+            width: 225px;
           }
 
           @include grid-scheme-2;
@@ -66,6 +72,11 @@
       }
     }
   }
+}
+
+.paragraph--type--toolkit-cards-set .field--name-field-toolkit-cards-set .field__item:nth-child(5) .paragraph--type--toolkit-cards .paragraph-grid-wrap img,
+.paragraph--type--toolkit-cards-set .field--name-field-toolkit-cards-set .field__item:nth-child(6) .paragraph--type--toolkit-cards .paragraph-grid-wrap img {
+  box-shadow: none;
 }
 
 .ttor-breakpoint-lg,

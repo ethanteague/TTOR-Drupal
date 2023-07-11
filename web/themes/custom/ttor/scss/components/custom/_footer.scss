@@ -77,6 +77,13 @@
   .site-footer {
     .block {
       height: 125px;
+
+      &#block-firstfooterspanish,
+      &#block-secondfooterspanish,
+      &#block-thirdfooterspanish,
+      &#block-fourthfooterspanish {
+        height: 185px;
+      }
     }
   }
 }
@@ -85,6 +92,13 @@
   .site-footer {
     .block {
       height: 145px;
+
+      &#block-firstfooterspanish,
+      &#block-secondfooterspanish,
+      &#block-thirdfooterspanish,
+      &#block-fourthfooterspanish {
+        height: 205px;
+      }
     }
   }
 }
@@ -93,6 +107,13 @@
   .site-footer {
     .block {
       height: 165px;
+
+      &#block-firstfooterspanish,
+      &#block-secondfooterspanish,
+      &#block-thirdfooterspanish,
+      &#block-fourthfooterspanish {
+        height: 225px;
+      }
     }
   }
 }

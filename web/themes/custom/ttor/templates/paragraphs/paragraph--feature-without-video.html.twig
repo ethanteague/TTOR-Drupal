@@ -31,8 +31,7 @@
               class="grid-wrap-right center-image">
               {% for image in paragraph.field_images %}
                 {% set imagestyle = {
-  '#theme': 'image_style',
-  '#style_name': 'wide',
+  '#theme': 'image',
   '#uri': image.entity.uri.value,
   '#alt': image.alt,
   '#attributes': { class: 'cta-image' },

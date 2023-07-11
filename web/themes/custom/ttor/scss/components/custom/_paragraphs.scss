@@ -44,7 +44,8 @@
 
   .grid-wrap-right {
     img {
-      width: 100%;
+      display: inline;
+      max-width: 100%;
     }
   }
 }
@@ -374,7 +375,7 @@
 .view-field-blocks-from-node-content-2 {
   .paragraph--type--two-panel-info {
     h2 {
-      text-align: left;
+      text-align: center;
     }
   }
 }

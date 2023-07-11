@@ -1,4 +1,4 @@
-body:not(.page-node-3, .path-frontpage) {
+body:not(.page-node-3, .path-frontpage, .page-node-9) {
   .view-field-blocks-from-node-content-5 {
     .view-content {
       .views-row {
@@ -18,14 +18,35 @@ body:not(.page-node-3, .path-frontpage) {
   }
 }
 
-.path-frontpage {
+.path-frontpage,
+.page-node-9 {
   .view-field-blocks-from-node-content-5 {
     .view-content.row {
       @include grid-scheme-3;
-      margin-bottom: 2rem;
+      margin-bottom: 5rem;
 
       .views-row {
         @include grey-box-button;
+        padding-bottom: 75px;
+        position: relative;
+
+        .field--name-field-button a {
+          bottom: 15px;
+          position: absolute;
+        }
+      }
+    }
+
+  }
+
+  &.ttor-breakpoint-mobile {
+    .view-field-blocks-from-node-content-5 {
+      .view-content.row {
+        display: block;
+
+        .views-row {
+          margin-bottom: 20px;
+        }
       }
     }
   }
@@ -43,5 +64,19 @@ body:not(.page-node-3, .path-frontpage) {
     .views-row {
       border-top: none;
     }
+  }
+}
+
+.myButton {
+  margin: 20px auto;
+  max-height: 270px;
+  max-width: 100px;
+  overflow: hidden;
+
+  img {
+    margin: 20px auto;
+    max-height: 270px;
+    max-width: 100%;
+    object-fit: none;
   }
 }

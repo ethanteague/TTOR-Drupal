@@ -79,6 +79,7 @@
       .field--name-field-media-oembed-video {
         font-size: 80%;
         left: 5px;
+        max-width:300px;
         position: absolute;
         top: 5px;
 
@@ -278,7 +279,7 @@
 .ttor-breakpoint-mobile {
   .paragraph--type--banner-with-3-videos {
     .field--name-field-video {
-      display: block;
+          line-height: 1.25rem;
     }
   }
 }

@@ -20,9 +20,19 @@
       const tid6TitleWrap = document.getElementById("wrap-tid-6");
       const tid7TitleWrap = document.getElementById("wrap-tid-7");
       const tid8TitleWrap = document.getElementById("wrap-tid-8");
+      const reset = () =>{
+        document.querySelector(".views-field-name .tid-5")?.classList.remove('default-tab');
+        document.querySelector(".views-field-name .tid-6")?.classList.remove('default-tab');
+        document.querySelector(".views-field-name .tid-7")?.classList.remove('default-tab');
+        document.querySelector(".views-field-name .tid-8")?.classList.remove('default-tab');
+      }
       tabs.forEach(tab => {
-        tab.addEventListener("click", () => {
+        tab.addEventListener("click", (t) => {
+          reset();
+
           if (tab.classList.contains("tid-5")) {
+
+            defaultTab?.classList.add('default-tab');
             tid5TitleWrap.style.display = "block";
             tid6TitleWrap.style.display = "none";
             tid7TitleWrap.style.display = "none";
@@ -41,6 +51,8 @@
             })
           }
           if (tab.classList.contains("tid-6")) {
+
+            document.querySelector(".views-field-name .tid-6")?.classList.add('default-tab');
             tid5TitleWrap.style.display = "none";
             tid6TitleWrap.style.display = "block";
             tid7TitleWrap.style.display = "none";
@@ -59,6 +71,8 @@
             })
           }
           if (tab.classList.contains("tid-7")) {
+
+            document.querySelector(".views-field-name .tid-7")?.classList.add('default-tab');
             tid5TitleWrap.style.display = "none";
             tid6TitleWrap.style.display = "none";
             tid7TitleWrap.style.display = "block";
@@ -76,9 +90,9 @@
               tid7.style.display = "grid";
             })
           }
-
-
           if (tab.classList.contains("tid-8")) {
+
+            document.querySelector(".views-field-name .tid-8")?.classList.add('default-tab');
             tid5TitleWrap.style.display = "none";
             tid6TitleWrap.style.display = "none";
             tid7TitleWrap.style.display = "none";
@@ -101,10 +115,6 @@
       });
       window.addEventListener('load', () => {
         defaultTab?.classList.add("default-tab");
-      })
-
-      window.addEventListener('click', () => {
-        defaultTab?.classList.remove("default-tab");
       })
 
     }

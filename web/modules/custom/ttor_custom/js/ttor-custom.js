@@ -8,9 +8,6 @@
 
   Drupal.behaviors.ttorCustomTtorCustom = {
     attach: function (context, settings) {
-
-      console.log('It works!');
-
     }
   };
 

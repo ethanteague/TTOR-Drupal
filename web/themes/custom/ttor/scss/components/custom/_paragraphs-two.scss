@@ -296,21 +296,6 @@
     }
   }
 
-  .paragraph--type--this-that-slideshow {
-    .paragraph-grid-wrap {
-      @include grid-scheme-2-wide-left;
-
-      .grid-wrap-left {
-        border-right: none;
-        padding-right: 4rem;
-      }
-
-      .grid-wrap-right {
-        padding-left: 4rem;
-      }
-    }
-  }
-
   .paragraph--type--resources-grid-boxes {
     .paragraph-grid-wrap {
       &.two-column-grid {

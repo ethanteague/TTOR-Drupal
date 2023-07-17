@@ -115,6 +115,17 @@
       });
       window.addEventListener('load', () => {
         defaultTab?.classList.add("default-tab");
+
+        tid6s.forEach(tid6 => {
+          tid6.style.display = "none";
+        })
+        tid7s.forEach(tid7 => {
+          tid7.style.display = "none";
+        })
+        tid8s.forEach(tid8 => {
+          tid8.style.display = "none";
+        })
+
       })
 
     }

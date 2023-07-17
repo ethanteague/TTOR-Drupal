@@ -118,6 +118,16 @@
       window.addEventListener('load', () => {
         defaultTabEs?.classList.add("default-tab");
         defaultTitleEs?.classList.add("default-tab-title");
+
+        tid13s.forEach(tid13 => {
+          tid13.style.display = "none";
+        })
+        tid14s.forEach(tid14 => {
+          tid14.style.display = "none";
+        })
+        tid15s.forEach(tid15 => {
+          tid15.style.display = "none";
+        })
       })
 
     }

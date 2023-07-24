@@ -34,6 +34,7 @@
         "drupal/gin_login": "^2.0",
         "drupal/gin_toolbar": "^1.0@rc",
         "drupal/google_analytics": "^4.0",
+        "drupal/gtm": "^1.8",
         "drupal/jquery_ui_effects": "^2.0",
         "drupal/media_video_micromodal": "^1.0",
         "drupal/menu_admin_per_menu": "^1.5",

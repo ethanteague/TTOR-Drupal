@@ -32,6 +32,7 @@ module:
   gin_login: 0
   gin_toolbar: 0
   google_analytics: 0
+  gtm: 0
   help: 0
   history: 0
   image: 0

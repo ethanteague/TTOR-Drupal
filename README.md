@@ -10,7 +10,3 @@ Drupal site for Texas Opioid
  - `platform ssh`
  - `drush uli`
 
- ## TODO
-  - [ ] Add google acct id (`GTM-K75GDXG`) to `Web property ids` input, here: `admin/config/services/google-analytics`
-  - [ ] Change `editor` password from `12345`
-

@@ -5,7 +5,7 @@ vendor
 /web/profiles/contrib
 /web/themes/contrib
 /web/sites/*/files
-web/sites/example.settings.local.php
+web/sites/default/settings.php
 /web/sites/example.settings.local.php
 /drush/Commands
 /.editorconfig

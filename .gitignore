@@ -12,6 +12,7 @@ web/sites/default/settings.php
 .gitattributes
 web.config
 acert
+secrets
 
 # Ignore configuration files that may contain sensitive information.
 local.settings.php

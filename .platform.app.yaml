@@ -18,7 +18,6 @@ runtime:
     extensions:
         - sodium
         - apcu
-        - blackfire
 
 # The relationships of the application with services or other applications.
 #
@@ -27,7 +26,6 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: 'db:mysql'
-    redis: 'cache:redis'
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048

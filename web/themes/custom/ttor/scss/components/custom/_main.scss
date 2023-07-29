@@ -2,6 +2,13 @@
     padding: $big-region-padding;
   }
 
+  #block-texashhslogo {
+    a {
+      position: relative;
+      z-index: 9;
+    }
+  }
+
   .bg-color-blue {
     #main-wrapper {
       background-color: $primary-color;
@@ -42,8 +49,41 @@
       background-size: 35px;
     }
 
+    &.to-help-icon {
+      background: url('/sites/default/files/icons/to-help.png') no-repeat left 5px;
+      background-size: 35px;
+      font-weight: bold;
+      margin-top: 90px;
+    }
+
     &.naloxone-icon {
       background: url('/sites/default/files/icons/icon-carry.png') no-repeat left center;
       background-size: 35px;
+    }
+  }
+
+  .scroll-page-button {
+    display: none;
+
+    &.show-button {
+      display: block;
+    }
+
+    cursor: pointer;
+    opacity: .7;
+    position: fixed;
+    right: 0;
+    z-index: 999;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &#scroll-down-js {
+      top: 30%;
+    }
+
+    &#scroll-up-js {
+      top: 70%;
     }
   }

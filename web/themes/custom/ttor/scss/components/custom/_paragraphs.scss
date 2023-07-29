@@ -106,9 +106,28 @@
   }
 }
 
+.view-field-blocks-from-node-content-sub-feature .paragraph--type--dark-blue-banner-text,
 .paragraph--type--banner {
   padding: $banner-padding;
   text-align: center;
+
+  a {
+    color: $white;
+    text-decoration: underline;
+
+    &:hover {
+      color: #e4dfdf;
+    }
+
+    &::after {
+      content: "";
+      background: url(/sites/default/files/icons/box-arrow-up-right.svg) no-repeat 0 14px;
+      position: relative;
+      padding: 2px 10px;
+      margin-left: 5px;
+    }
+
+  }
 }
 
 .field--name-field-button {
@@ -153,6 +172,10 @@
   &.img-placement-bottom {
     text-align: center;
   }
+}
+
+.page-node-1 .region-content-five .views-row:nth-child(1) {
+  border-top: thin solid $light-grey;
 }
 
 .region-content-two,

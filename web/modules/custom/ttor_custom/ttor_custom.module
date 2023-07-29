@@ -25,6 +25,7 @@ function ttor_custom_page_attachments(array &$attachments) {
  */
 function ttor_custom_views_pre_build(ViewExecutable $view) {
   if ($view->id() === 'field_blocks_from_node'
+  || $view->id() === 'field_blocks_from_node_content_sub_feature'
   || $view->id() === 'field_blocks_from_node_content_2'
   || $view->id() === 'field_blocks_from_node_content_3'
   || $view->id() === 'field_blocks_from_node_content_4'

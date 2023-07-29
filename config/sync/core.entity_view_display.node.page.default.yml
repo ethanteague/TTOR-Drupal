@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.field_con
+    - field.field.node.page.field_content_sub_feature_items
     - field.field.node.page.field_fifth_content_area_bg_colo
     - field.field.node.page.field_fifth_content_area_items
     - field.field.node.page.field_first_content_area_bg
@@ -39,6 +40,7 @@ content:
     region: content
 hidden:
   field_con: true
+  field_content_sub_feature_items: true
   field_fifth_content_area_bg_colo: true
   field_fifth_content_area_items: true
   field_first_content_area_bg: true

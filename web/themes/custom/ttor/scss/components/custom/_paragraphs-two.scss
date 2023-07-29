@@ -7,6 +7,7 @@
       li {
         border-bottom: 10px solid $primary-color;
         list-style: none;
+        min-height: 122px;
         padding: 25px 2px 25px 25px;
         text-indent: -25px;
 
@@ -157,24 +158,27 @@
   }
 
   .view-display-id-block_1 {
+    .view-header{
+      border-bottom: 10px solid $primary-color;
+      color: $primary-color;
+      font-weight: 600;
+    }
     .views-field-name {
       .field-content {
         div {
-          border-bottom: 10px solid $primary-color;
+          border-bottom: 10px solid $sm-grey;
           color: $sm-grey;
           font-size: 90%;
           font-weight: 600;
           padding: 25px 10px;
 
           &:hover,
-          &:focus-within {
-            cursor: pointer;
-            color: $primary-color !important;
-          }
-
+          &:focus-within,
           &.default-tab {
-            border-bottom: 10px solid $primary-color !important;
-            color: $primary-color !important;
+            background: $primary-color;
+            border-bottom: 10px solid $primary-color;
+            cursor: pointer;
+            color: $white !important;
           }
         }
       }

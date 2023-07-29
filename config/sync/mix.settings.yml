@@ -1,7 +1,7 @@
 _core:
   default_config_hash: DywtoF6nukTgzAo-iFmj_KoqSr5r2O3Hszlf5r0-iJQ
 hide_revision_field: true
-dev_mode: true
+dev_mode: false
 remove_x_generator: true
 error_page:
   mode: true

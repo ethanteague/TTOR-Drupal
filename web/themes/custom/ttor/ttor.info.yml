@@ -8,6 +8,7 @@ logo: images/logo.png
 libraries:
   - ttor/global-styling
   - ttor/resources
+  - ttor/scroll-buttons
   - ttor/tta
   - ttor/tta-tooltip
 ckeditor_stylesheets:
@@ -30,6 +31,7 @@ regions:
   breadcrumb_nav: Breadcrumb Navigation
   featured_top: 'Featured top'
   content: Content
+  content_sub_feature: Content sub feature
   content_two: Content two
   content_three: Content three
   content_four: Content four

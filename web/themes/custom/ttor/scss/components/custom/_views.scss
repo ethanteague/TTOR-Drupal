@@ -1,4 +1,4 @@
-body:not(.page-node-3, .path-frontpage, .page-node-9) {
+body:not(.page-node-2, .page-node-3, .path-frontpage, .page-node-9) {
   .view-field-blocks-from-node-content-5 {
     .view-content {
       .views-row {
@@ -66,11 +66,24 @@ body:not(.page-node-3, .path-frontpage, .page-node-9) {
   max-height: 270px;
   max-width: 100px;
   overflow: hidden;
+  position: relative;
 
   img {
     margin: 20px auto;
     max-height: 270px;
     max-width: 100%;
     object-fit: none;
+    position: relative;
+
+  }
+
+}
+
+.field--name-thumbnail a.myButton {
+  &:after {
+    content: url(/sites/default/files/icons/yt.png);
+    position: absolute;
+    left: 33%;
+    top: 40%;
   }
 }

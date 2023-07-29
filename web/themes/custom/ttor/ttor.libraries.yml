@@ -98,6 +98,11 @@ resources:
   dependencies:
     - bootstrap_barrio/bootstrap_js
 
+scroll-buttons:
+  version: VERSION
+  js:
+    js/scroll-buttons.js: {}
+
 tta:
   version: VERSION
   js:

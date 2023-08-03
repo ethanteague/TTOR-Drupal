@@ -174,8 +174,11 @@
   }
 }
 
-.page-node-1 .region-content-five .views-row:nth-child(1) {
-  border-top: thin solid $light-grey;
+.page-node-1,
+.page-node-9 {
+  .region-content-five .views-row:nth-child(1) {
+    border-top: thin solid $light-grey;
+  }
 }
 
 .region-content-two,
@@ -290,13 +293,9 @@
   }
 
   li {
-    background: url(/sites/default/files/icons/icon-checkmark.png) no-repeat left 5px;
-    background-size: 20px;
-    list-style: none;
-    padding-left: 35px;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: thin solid $grey;
+    border-bottom: thin solid #444;
   }
 
   a {

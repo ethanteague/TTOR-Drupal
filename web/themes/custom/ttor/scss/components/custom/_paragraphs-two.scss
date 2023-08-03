@@ -7,7 +7,6 @@
       li {
         border-bottom: 10px solid $primary-color;
         list-style: none;
-        min-height: 122px;
         padding: 25px 2px 25px 25px;
         text-indent: -25px;
 
@@ -75,7 +74,7 @@
       .field--name-field-media-oembed-video {
         font-size: 80%;
         left: 5px;
-        max-width:300px;
+        max-width: 300px;
         position: absolute;
         top: 5px;
 
@@ -135,7 +134,7 @@
     &.tid-5,
     &.tid-9,
     &.tid-12 {
-   //   display: grid;
+      //   display: grid;
     }
   }
 
@@ -158,11 +157,12 @@
   }
 
   .view-display-id-block_1 {
-    .view-header{
+    .view-header {
       border-bottom: 10px solid $primary-color;
       color: $primary-color;
       font-weight: 600;
     }
+
     .views-field-name {
       .field-content {
         div {
@@ -278,7 +278,7 @@
 .ttor-breakpoint-mobile {
   .paragraph--type--banner-with-3-videos {
     .field--name-field-video {
-          line-height: 1.25rem;
+      line-height: 1.25rem;
     }
   }
 }
@@ -323,5 +323,20 @@
         }
       }
     }
+  }
+}
+
+.page-node-4,
+.page-node-13 {
+  .paragraph--type--two-panel-info .panel .bullets-download li {
+    min-height: 122px;
+  }
+}
+
+.page-node-6,
+.page-node-15 {
+  .paragraph--type--resources-grid-boxes .view-display-id-block_1 .view-header {
+    border-bottom: none;
+    color: #242424;
   }
 }

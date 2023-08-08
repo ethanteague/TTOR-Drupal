@@ -217,6 +217,20 @@
 
   }
 
+  .view-texas-takes-action-list.view-display-id-block_1 {
+
+    .views-field-name .field-content div {
+
+      &:hover,
+      &:focus,
+      &.default-tab {
+        background-color: transparent;
+        border-bottom: 10px solid $primary-color;
+        color: $primary-color !important;
+      }
+    }
+  }
+
   .paragraph-grid-wrap {
     .grid-wrap-left {
       padding-bottom: 4rem;

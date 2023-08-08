@@ -94,7 +94,14 @@
       .paragraph--type--two-panel-info {
         .grid-wrap-right {
           p {
+            border-bottom: thin solid #fff;
+            margin-bottom: 35px;
             margin-left: 45px;
+            padding-bottom: 35px;
+
+            &:last-child {
+              border-bottom: none;
+            }
           }
         }
       }

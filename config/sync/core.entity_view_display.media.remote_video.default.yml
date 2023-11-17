@@ -7,6 +7,7 @@ dependencies:
     - media.type.remote_video
   module:
     - oembed_lazyload
+    - oembed_lazyload_youtube
 _core:
   default_config_hash: zQoBQ0BtnMM_rlDdgftyu6eI4AVs9mo5K8xq7NFO2Zc
 id: media.remote_video.default
@@ -18,11 +19,18 @@ content:
     type: lazyload_oembed
     label: hidden
     settings:
-      max_width: 860
-      max_height: 450
+      max_width: 0
+      max_height: 0
       strategy: intersection_observer
       intersection_observer_margin: ''
-    third_party_settings: {  }
+    third_party_settings:
+      oembed_lazyload_youtube:
+        autoplay: false
+        modestbranding: true
+        enablejsapi: true
+        origin: true
+        hideinfo: true
+        rel: true
     weight: 0
     region: content
 hidden:

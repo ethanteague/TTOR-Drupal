@@ -48,6 +48,7 @@ module:
   mysql: 0
   node: 0
   oembed_lazyload: 0
+  oembed_lazyload_youtube: 0
   oembed_providers: 0
   options: 0
   page_cache: 0

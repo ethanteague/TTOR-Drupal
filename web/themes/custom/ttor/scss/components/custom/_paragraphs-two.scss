@@ -287,12 +287,36 @@
   .field--name-field-video {
     @include grid-scheme-3;
   }
+
+  .videos-wrapper {
+    .field--name-field-video {
+      display: block !important;
+
+      iframe {
+        max-height: 270px !important;
+      }
+    }
+
+    @include grid-scheme-3-modified;
+  }
 }
 
 .ttor-breakpoint-mobile {
   .paragraph--type--banner-with-3-videos {
     .field--name-field-video {
       line-height: 1.25rem;
+    }
+
+    .videos-wrapper {
+      display: block !important;
+
+      .field--name-field-video {
+        display: block !important;
+
+        iframe {
+          max-height: 500px !important;
+        }
+      }
     }
   }
 }

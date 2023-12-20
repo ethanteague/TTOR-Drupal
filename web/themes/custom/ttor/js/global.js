@@ -222,9 +222,4 @@
       });
   }
 
-  const vids = document.querySelectorAll('iframe');
-  vids.forEach(vid => {
-    vid.setAttribute('enablejsapi', 'true');
-  });
-
 })(jQuery, Drupal);

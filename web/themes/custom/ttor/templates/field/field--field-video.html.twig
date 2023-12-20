@@ -1,0 +1,29 @@
+<div
+      class="videos-wrapper">
+      {% for item in element['#items'] %}
+        {% set last_arg = item.entity.field_media_oembed_video.value|split('/')|last %}
+
+        {% if 'watch?v=' in last_arg %}
+          {% set last_arg = last_arg|split('watch?v=')|last %}
+        {% endif %}
+        {% if '&ab_channel=' in last_arg %}
+          {% set last_arg = last_arg|split('&ab_channel=')|first %}
+        {% endif %}
+        <div
+          class="field field--name-field-video field--type-entity-reference field--label-hidden field__items">
+          <div
+            class="field field--name-field-media-oembed-video field--type-string field--label-hidden field__item">
+            <iframe
+              style="max-width:100%;"
+              class="media-oembed-content"
+              width="800"
+              height="600"
+              enablejsapi="true"
+              frameborder="0"
+              allowfullscreen
+              allowtransparency
+              title="{{item.entity.name[0]['value']}}" src="https://www.youtube.com/embed/{{ last_arg }}"></iframe>
+          </div>
+        </div>
+      {% endfor %}
+    </div>

@@ -165,6 +165,12 @@ $value in $theme-colors {
   grid-gap: 1rem;
 }
 
+@mixin grid-scheme-3-modified {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
 @mixin grid-scheme-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

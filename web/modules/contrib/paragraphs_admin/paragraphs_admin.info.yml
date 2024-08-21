@@ -1,0 +1,13 @@
+name: 'Paragraphs Admin'
+description: 'Additional admin tools to manage paragraphs.'
+type: module
+core_version_requirement: ^9.2 || ^10
+dependencies:
+  - paragraphs:paragraphs
+  - drupal:user
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2022-10-03
+version: '8.x-1.4'
+project: 'paragraphs_admin'
+datestamp: 1664790705

@@ -1,10 +1,3 @@
-vendor
-/web/core
-/web/libraries
-/web/modules/contrib
-/web/profiles/contrib
-/web/themes/contrib
-/web/sites/*/files
 web/sites/default/settings.php
 /web/sites/example.settings.local.php
 /drush/Commands
@@ -37,9 +30,6 @@ id_rsa
 /files-private
 /web/sites/*/private
 
-# Ignore custom theme build artifacts
-/web/themes/custom/*/node_modules
-/web/themes/custom/*/styleguide
 
 # Ignore build artifacts
 deployment_identifier

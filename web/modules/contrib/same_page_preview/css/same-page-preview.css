@@ -1,0 +1,42 @@
+/**
+ * Same Page Preview styles.
+ */
+.same-page-preview-dialog.ui-widget.ui-dialog.ui-dialog-off-canvas .ui-resizable-w {
+  /* background-color: #0D7DC1;
+  width: 5px; */
+}
+
+/* Preview panel form controls */
+
+#drupal-off-canvas-wrapper .same-page-preview-form-select {
+  display: flex;
+  align-items: center;
+  padding-block: 14px;
+}
+
+#drupal-off-canvas-wrapper .same-page-preview-form-select .button {
+  width: auto;
+  margin: 0 0.625rem 0 0;
+}
+
+#drupal-off-canvas-wrapper .same-page-preview-form-select .js-hide.button {
+  display: none;
+}
+
+#drupal-off-canvas-wrapper .same-page-preview-form-select .node-preview-refresh.button {
+  padding: var(--off-canvas-button-padding);
+}
+
+#drupal-off-canvas-wrapper .same-page-preview-form-select .js-form-item-view-mode {
+  padding: 0;
+  /* Alignment within parent */
+  flex-grow: 1;
+  justify-content: flex-end;
+  /* Alignment of form elements */
+  display: flex;
+  align-items: center;
+}
+
+#drupal-off-canvas-wrapper .same-page-preview-form-select .js-form-item-view-mode label {
+  margin-right: 0.625rem;
+}

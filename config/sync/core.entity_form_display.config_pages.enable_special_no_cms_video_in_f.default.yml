@@ -1,0 +1,21 @@
+uuid: f70aa89f-2461-428b-ade7-53fa7196acfa
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.enable_special_no_cms_video_in_f
+    - field.field.config_pages.enable_special_no_cms_video_in_f.field_toggle_the_spcial_video_on
+id: config_pages.enable_special_no_cms_video_in_f.default
+targetEntityType: config_pages
+bundle: enable_special_no_cms_video_in_f
+mode: default
+content:
+  field_toggle_the_spcial_video_on:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  label: true

@@ -25,12 +25,12 @@ content:
       intersection_observer_margin: ''
     third_party_settings:
       oembed_lazyload_youtube:
-        autoplay: false
-        modestbranding: false
-        enablejsapi: false
-        origin: false
+        autoplay: true
+        modestbranding: true
+        enablejsapi: true
+        origin: true
         hideinfo: false
-        rel: false
+        rel: true
     weight: 0
     region: content
 hidden:

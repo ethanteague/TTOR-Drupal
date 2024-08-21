@@ -1,17 +1,11 @@
 {% set header_area_color = node.field_header_background_color.value %}
     {% set first_area_color = node.field_first_content_area_bg.value %}
-
     {% set second_area_color = node.field_second_content_area_bg.value %}
-
     {% set third_area_color = node.field_third_content_area_bg_colo.value %}
-
     {% set fourth_area_color = node.field_fourth_content_area_bg_col.value %}
-
     {% set fifth_area_color = node.field_fifth_content_area_bg_colo.value %}
-
     {% set sixth_area_color = node.field_sixth_content_area_bg_colo.value %}
-
-
+    {% set special_video_display_status = drupal_field('field_toggle_the_spcial_video_on','config_pages',  'enable_special_no_cms_video_in_f') %}
     {% set language = 'english' %}
     {% if page['primary_menu']['spanishmainnavigation'] is not empty %}
       {% set language = 'spanish' %}
@@ -19,41 +13,87 @@
     <div
       id="page-wrapper"
       class="{{language}} bg-color-{{header_area_color}}">
-<svg
-class="scroll-page-button"
-id="scroll-down-js"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="70"
-      height="70"
-      viewbox="0 0 70 70">
-      <defs>
-        <clipPath
-          id="clip-path">
-          <rect
-            id="Rectangle_299"
-            data-name="Rectangle 299"
-            width="35"
-            height="28.395"
-            fill="#003087"/>
-        </clipPath>
-      </defs>
-      <g
-        id="Group_549"
-        data-name="Group 549"
-        transform="translate(-1778 -903)">
+      <svg
+        class="scroll-page-button"
+        id="scroll-down-js"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="70"
+        height="70"
+        viewbox="0 0 70 70">
+        <defs>
+          <clipPath
+            id="clip-path">
+            <rect
+              id="Rectangle_299"
+              data-name="Rectangle 299"
+              width="35"
+              height="28.395"
+              fill="#003087"/>
+          </clipPath>
+        </defs>
+        <g
+          id="Group_549"
+          data-name="Group 549"
+          transform="translate(-1778 -903)">
+          <circle
+            id="Ellipse_416"
+            data-name="Ellipse 416"
+            cx="35"
+            cy="35"
+            r="35"
+            transform="translate(1778 903)"
+            fill="rgba(234,234,234,0.6)"/>
+          <g
+            id="Group_547"
+            data-name="Group 547"
+            transform="translate(1795.5 925.803)">
+            <g
+              id="Group_546"
+              data-name="Group 546"
+              clip-path="url(#clip-path)">
+              <path
+                id="Path_142"
+                data-name="Path 142"
+                d="M2.128.007A1.976,1.976,0,0,0,.748,3.524L16.272,15.739h0a1.976,1.976,0,0,0,2.449,0L34.245,3.524a1.973,1.973,0,0,0-2.434-3.1L17.495,11.674,3.2.419A1.975,1.975,0,0,0,2.128.007Zm0,12.215a1.976,1.976,0,0,0-1.38,3.518L16.272,27.97h0a1.975,1.975,0,0,0,2.449,0L34.245,15.739h0a1.973,1.973,0,0,0-2.434-3.105L17.495,23.9,3.2,12.634a1.975,1.975,0,0,0-1.069-.413Z"
+                transform="translate(0 0)"
+                fill="#003087"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <svg
+        class="scroll-page-button"
+        id="scroll-up-js"
+        id="Group_552"
+        data-name="Group 552"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="70"
+        height="70"
+        viewbox="0 0 70 70">
+        <defs>
+          <clipPath
+            id="clip-path">
+            <rect
+              id="Rectangle_299"
+              data-name="Rectangle 299"
+              width="35"
+              height="28.395"
+              fill="#003087"/>
+          </clipPath>
+        </defs>
         <circle
           id="Ellipse_416"
           data-name="Ellipse 416"
           cx="35"
           cy="35"
           r="35"
-          transform="translate(1778 903)"
-          fill="rgba(234,234,234,0.6)"/>
+          fill="rgba(204,204,204,0.6)"/>
         <g
           id="Group_547"
           data-name="Group 547"
-          transform="translate(1795.5 925.803)">
+          transform="translate(17.5 18.802)">
           <g
             id="Group_546"
             data-name="Group 546"
@@ -61,67 +101,17 @@ id="scroll-down-js"
             <path
               id="Path_142"
               data-name="Path 142"
-              d="M2.128.007A1.976,1.976,0,0,0,.748,3.524L16.272,15.739h0a1.976,1.976,0,0,0,2.449,0L34.245,3.524a1.973,1.973,0,0,0-2.434-3.1L17.495,11.674,3.2.419A1.975,1.975,0,0,0,2.128.007Zm0,12.215a1.976,1.976,0,0,0-1.38,3.518L16.272,27.97h0a1.975,1.975,0,0,0,2.449,0L34.245,15.739h0a1.973,1.973,0,0,0-2.434-3.105L17.495,23.9,3.2,12.634a1.975,1.975,0,0,0-1.069-.413Z"
+              d="M2.128,28.389a1.976,1.976,0,0,1-1.38-3.518L16.272,12.656h0a1.976,1.976,0,0,1,2.449,0L34.245,24.871a1.973,1.973,0,0,1-2.434,3.1L17.495,16.721,3.2,27.976a1.975,1.975,0,0,1-1.069.413Zm0-12.215a1.976,1.976,0,0,1-1.38-3.518L16.272.425h0a1.975,1.975,0,0,1,2.449,0L34.245,12.656h0a1.973,1.973,0,0,1-2.434,3.105L17.495,4.491,3.2,15.761a1.975,1.975,0,0,1-1.069.413Z"
               transform="translate(0 0)"
               fill="#003087"/>
           </g>
         </g>
-      </g>
-    </svg>
-<svg
-class="scroll-page-button"
-id="scroll-up-js"
-      id="Group_552"
-      data-name="Group 552"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="70"
-      height="70"
-      viewbox="0 0 70 70">
-      <defs>
-        <clipPath
-          id="clip-path">
-          <rect
-            id="Rectangle_299"
-            data-name="Rectangle 299"
-            width="35"
-            height="28.395"
-            fill="#003087"/>
-        </clipPath>
-      </defs>
-      <circle
-        id="Ellipse_416"
-        data-name="Ellipse 416"
-        cx="35"
-        cy="35"
-        r="35"
-        fill="rgba(204,204,204,0.6)"/>
-      <g
-        id="Group_547"
-        data-name="Group 547"
-        transform="translate(17.5 18.802)">
-        <g
-          id="Group_546"
-          data-name="Group 546"
-          clip-path="url(#clip-path)">
-          <path
-            id="Path_142"
-            data-name="Path 142"
-            d="M2.128,28.389a1.976,1.976,0,0,1-1.38-3.518L16.272,12.656h0a1.976,1.976,0,0,1,2.449,0L34.245,24.871a1.973,1.973,0,0,1-2.434,3.1L17.495,16.721,3.2,27.976a1.975,1.975,0,0,1-1.069.413Zm0-12.215a1.976,1.976,0,0,1-1.38-3.518L16.272.425h0a1.975,1.975,0,0,1,2.449,0L34.245,12.656h0a1.973,1.973,0,0,1-2.434,3.105L17.495,4.491,3.2,15.761a1.975,1.975,0,0,1-1.069.413Z"
-            transform="translate(0 0)"
-            fill="#003087"/>
-        </g>
-      </g>
-    </svg>
-
-
-
+      </svg>
       <div
         id="page">
         <div
           id="above-header-wrap"
           class="layout-main-wrapper default-color">
-
           <div
             id="above-header"
             class="container">
@@ -289,9 +279,7 @@ id="scroll-up-js"
         {% if page.content_sub_feature %}
           <div
             class="layout-main-wrapper page-content-two clearfix bg-color-dark">
-
             {% block content_sub_feature %}
-
               <div
                 class="{{ container }}">
                 <div
@@ -300,7 +288,6 @@ id="scroll-up-js"
                     <section
                       class="section">
                       {{ page.content_sub_feature }}
-
                     </section>
                   </div>
                 </div>
@@ -422,8 +409,9 @@ id="scroll-up-js"
             {% endblock %}
           </div>
         {% endif %}
-
-
+        {% if special_video_display_status['#items'].value == 1 %}
+          {% include "@ttor/includes/special-video-no-cms.html.twig" %}
+        {% endif %}
         {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
           <div
             class="featured-bottom">

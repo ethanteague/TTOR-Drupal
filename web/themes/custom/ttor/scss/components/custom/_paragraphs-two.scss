@@ -217,14 +217,15 @@
 
   }
 
-  .view-texas-takes-action-list.view-display-id-block_1 {
+  .view-texas-takes-action-list.view-display-id-block_1,
+  .view-texas-takes-action-list-spanish.view-display-id-block_1 {
 
     .views-field-name .field-content div {
 
       &:hover,
       &:focus,
       &.default-tab {
-        background-color: transparent;
+        background-color: transparent !important;
         border-bottom: 10px solid $primary-color;
         color: $primary-color !important;
       }

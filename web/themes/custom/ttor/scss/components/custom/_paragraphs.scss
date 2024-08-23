@@ -83,8 +83,13 @@
 
   .grid-wrap-left,
   .grid-wrap-right {
+    &.skinny {
+      padding-right: 5%;
+    }
+
     width: 50%;
   }
+
 
   .grid-wrap-right {
     img {

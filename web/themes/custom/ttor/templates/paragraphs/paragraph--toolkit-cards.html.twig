@@ -15,7 +15,6 @@
 }
 %}
     {% set toolkit_id = paragraph.field_media.entity.id %}
-    {% set toolkit_image = drupal_entity('media', toolkit_id, 'toolkit') %}
     <div
       class="resource-box tid-{{paragraph.field_category.entity.id}}">
       {% block paragraph %}
@@ -25,7 +24,9 @@
               class="paragraph-grid-wrap">
               <div
                 class="grid-wrap-left">
-                {{ toolkit_image }}
+                {% if  toolkit_id is not iterable %}
+                  {{ drupal_entity('media', toolkit_id, 'toolkit') }}
+                {% endif %}
               </div>
               <div
                 class="grid-wrap-right">

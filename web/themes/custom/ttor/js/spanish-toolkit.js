@@ -6,7 +6,7 @@
 
   'use strict';
 
-  Drupal.behaviors.ttorResourcesSpanish = {
+  Drupal.behaviors.ttorToolkitSpanish = {
     attach: function (context, settings) {
       const tabs = document.querySelectorAll(".views-field .views-field-name div");
       const tid19s = document.querySelectorAll(".resource-box.tid-19");

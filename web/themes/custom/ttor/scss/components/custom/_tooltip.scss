@@ -1,39 +1,40 @@
 .field--name-field-text {
   position: relative;
 
-  .tooltip-div {
-    background-color: $white;
-    border-radius: 6px;
-    bottom: 100px;
-    color: $sm-grey;
-    display: none;
-    left: 7%;
-    line-height: 1.5rem;
-    padding: 15px 20px 15px 20px;
-    position: absolute;
-    max-width: 960px;
-    text-align: left;
-    width: 55%;
-    z-index: 1;
 
-    &.show-tooltip {
-      display: block;
-    }
-
-    &::after {
-      border-color: $white transparent transparent transparent;
-      border-style: solid;
-      border-width: 12px;
-      content: "";
-      left: 5%;
-      margin-left: -5px;
-      position: absolute;
-      top: 100%;
-    }
-  }
-
-  .tooltip-trigger {
-    cursor: pointer;
-    text-decoration: underline;
-  }
 }
+    .tooltip-div {
+      background-color: $white;
+      border-radius: 6px;
+      top: 35px;
+      color: $sm-grey;
+      display: none;
+      left: 7%;
+      line-height: 1.5rem;
+      padding: 15px 20px 15px 20px;
+      position: absolute;
+      max-width: 960px;
+      text-align: left;
+      width: 55%;
+      z-index: 1;
+
+      &.show-tooltip {
+        display: block;
+      }
+
+      &::after {
+        border-color: $white transparent transparent transparent;
+        border-style: solid;
+        border-width: 12px;
+        content: "";
+        left: 5%;
+        margin-left: -5px;
+        position: absolute;
+        top: 100%;
+      }
+    }
+
+    .tooltip-trigger {
+      cursor: pointer;
+      text-decoration: underline;
+    }

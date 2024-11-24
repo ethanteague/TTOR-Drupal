@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.toolkit_cards.field_button
+    - field.field.paragraph.toolkit_cards.field_category
     - field.field.paragraph.toolkit_cards.field_feature_title
     - field.field.paragraph.toolkit_cards.field_media
     - field.field.paragraph.toolkit_cards.field_text
@@ -24,6 +25,12 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_category:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_feature_title:
     type: string_textfield

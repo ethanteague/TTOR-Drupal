@@ -1,0 +1,31 @@
+uuid: 24292400-b8e1-4c6b-8515-e2dd94b23899
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_category
+    - paragraphs.paragraphs_type.toolkit_cards
+    - taxonomy.vocabulary.toolkit
+    - taxonomy.vocabulary.toolkit_spanish
+id: paragraph.toolkit_cards.field_category
+field_name: field_category
+entity_type: paragraph
+bundle: toolkit_cards
+label: Category
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      toolkit: toolkit
+      toolkit_spanish: toolkit_spanish
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: toolkit
+field_type: entity_reference

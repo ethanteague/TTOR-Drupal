@@ -95,6 +95,8 @@ resources:
   js:
     js/resources.js: {}
     js/spanish-resources.js: {}
+    js/spanish-toolkit.js: {}
+    js/toolkit.js: {}
   dependencies:
     - bootstrap_barrio/bootstrap_js
 

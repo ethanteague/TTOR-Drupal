@@ -16,30 +16,37 @@
 %}
     {% set toolkit_id = paragraph.field_media.entity.id %}
     {% set toolkit_image = drupal_entity('media', toolkit_id, 'toolkit') %}
-
-    {% block paragraph %}
-      <div{{attributes.addClass(classes)}}>
-        {% block content %}
-          <div
-            class="paragraph-grid-wrap">
+    <div
+      class="resource-box tid-{{paragraph.field_category.entity.id}}">
+      {% block paragraph %}
+        <div{{attributes.addClass(classes)}}>
+          {% block content %}
             <div
-              class="grid-wrap-left">
-              {{ toolkit_image }}
-            </div>
-            <div
-              class="grid-wrap-right">
-              <strong>{{paragraph.field_feature_title.value}}</strong>
-              {{paragraph.field_text[0].processed}}
-              {% if paragraph.field_button is not empty %}
-                <div
-                  class="field--name-field-button">
-                  <a
-                    target="_blank" href="{{paragraph.field_button.get(0).getUrl().toString()}}">{{paragraph.field_button.title}}</a>
-                </div>
-              {% endif %}
+              class="paragraph-grid-wrap">
+              <div
+                class="grid-wrap-left">
+                {{ toolkit_image }}
+              </div>
+              <div
+                class="grid-wrap-right">
+                <strong>
+                  {{paragraph.field_feature_title.value}}
+                </strong>
+                {{paragraph.field_text[0].processed}}
+                {% if paragraph.field_button is not empty %}
+                  <div
+                    class="field--name-field-button">
+                    <a
+                      target="_blank"
+                      href="{{paragraph.field_button.get(0).getUrl().toString()}}">
+                      {{paragraph.field_button.title}}
+                    </a>
+                  </div>
+                {% endif %}
 
+              </div>
             </div>
-          </div>
-        {% endblock %}
-      </div>
-    {% endblock paragraph %}
+          {% endblock %}
+        </div>
+      {% endblock paragraph %}
+    </div>

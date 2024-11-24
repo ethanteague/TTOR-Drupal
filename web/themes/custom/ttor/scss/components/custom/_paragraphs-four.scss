@@ -1,0 +1,108 @@
+  .ttor-breakpoint-lg,
+  .ttor-breakpoint-xl,
+  .ttor-breakpoint-xxl {
+    .paragraph--type--toolkit-cards-set-wrap {
+      .paragraph-grid-wrap {
+        &.two-column-grid {
+          @include grid-scheme-2-ultra-wide-right;
+          grid-gap: 4rem;
+        }
+
+        .grid-wrap-right {
+          .resource-boxes-container {
+            @include grid-scheme-2;
+          }
+        }
+      }
+    }
+  }
+
+  .paragraph--type--toolkit-cards-set-wrap {
+
+    padding: $big-region-padding;
+    .resource-box {
+      display: none;
+    }
+
+    h2 {
+      @include max-width-960-center;
+      font-size: 3rem;
+      padding-bottom: 3rem;
+      text-align: left;
+    }
+
+    .resource-title-wrap {
+      padding-top: 2rem;
+    }
+
+    .views-row:nth-child(2),
+    .views-row:nth-child(3) {
+      border-top: none !important;
+    }
+
+    .view-header {
+      border-bottom: 10px solid $primary-color;
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    .views-field-name {
+      .field-content {
+        div {
+          border-bottom: 10px solid $sm-grey;
+          color: $sm-grey;
+          font-size: 90%;
+          font-weight: 600;
+          padding: 25px 10px;
+
+          &:hover,
+          &:focus-within,
+          &.default-tab {
+            background: $primary-color;
+            border-bottom: 10px solid $primary-color;
+            cursor: pointer;
+            color: $white !important;
+          }
+        }
+      }
+    }
+
+
+    .default-tab-title {
+      display: block;
+    }
+
+    .paragraph-grid-wrap {
+      .grid-wrap-left {
+        padding-bottom: 4rem;
+      }
+
+      .grid-wrap-right {
+        .resource-box {
+          @include resource-box;
+          height: 100%;
+        }
+      }
+    }
+
+    .paragraph--type--toolkit-cards-set .field--name-field-toolkit-cards-set {
+      grid-gap: 0 1rem !important;
+      margin-bottom: 25px;
+
+      .field__item {
+        margin-bottom: 15px;
+
+        .paragraph--type--toolkit-cards {
+          padding: 0;
+
+          .paragraph-grid-wrap {
+            img {
+              height: 175px;
+              width: auto;
+            }
+          }
+        }
+      }
+
+    }
+  }

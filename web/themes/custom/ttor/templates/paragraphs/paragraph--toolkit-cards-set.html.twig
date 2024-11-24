@@ -1,0 +1,36 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+    <div
+      class="paragraph--type--toolkit-cards-set-wrap">
+      <div
+        class="paragraph-grid-wrap two-column-grid">
+        <div
+          class="grid-wrap-left">
+          {% if path('<current>') == "/toolkit" %}
+            {{ drupal_view('too', 'toolkit_terms') }}
+          {% else %}
+            {{ drupal_view('too', 'toolkit_terms_spanish') }}
+          {% endif %}
+        </div>
+        <div
+          class="grid-wrap-right">
+          {% block paragraph %}
+            <h2
+              id="download-h2-text">
+              {{ paragraph.field_feature_title.value }}
+            </h2>
+            <div{{attributes.addClass(classes)}}>
+              {% block content %}
+                {{ content }}
+              {% endblock %}
+            </div>
+          {% endblock paragraph %}
+        </div>
+      </div>
+    </div>

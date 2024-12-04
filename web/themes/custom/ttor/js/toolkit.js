@@ -17,38 +17,38 @@
         tab.addEventListener("click", () => {
           if (tab.classList.contains("tid-16")) {
             tid18s.forEach(tid18 => {
-              tid18.style.display = "none";
+              tid18.parentNode.style.display = "none";
             })
             blockTitle.innerHTML = "Download Toolkit Guides";
             tid17s.forEach(tid17 => {
-              tid17.style.display = "none";
+              tid17.parentNode.style.display = "none";
             })
             tid16s.forEach(tid16 => {
-              tid16.style.display = "block";
+              tid16.parentNode.style.display = "block";
             })
           }
           if (tab.classList.contains("tid-17")) {
             tid16s.forEach(tid16 => {
-              tid16.style.display = "none";
+              tid16.parentNode.style.display = "none";
             })
             blockTitle.innerHTML = "Download Powerpoints";
             tid18s.forEach(tid18 => {
-              tid18.style.display = "none";
+              tid18.parentNode.style.display = "none";
             })
             tid17s.forEach(tid17 => {
-              tid17.style.display = "block";
+              tid17.parentNode.style.display = "block";
             })
           }
           if (tab.classList.contains("tid-18")) {
             tid16s.forEach(tid16 => {
-              tid16.style.display = "none";
+              tid16.parentNode.style.display = "none";
             })
             blockTitle.innerHTML = "Download Factsheets";
             tid17s.forEach(tid17 => {
-              tid17.style.display = "none";
+              tid17.parentNode.style.display = "none";
             })
             tid18s.forEach(tid18 => {
-              tid18.style.display = "block";
+              tid18.parentNode.style.display = "block";
             })
           }
         })
@@ -56,19 +56,19 @@
 
       window.addEventListener('load', () => {
         tid16s.forEach(tid16 => {
-          tid16.classList.add('show-tab')
+          tid16.parentNode.classList.add('show-tab')
         })
         tid17s.forEach(tid17 => {
-          tid17.style.display = "none";
+          tid17.parentNode.style.display = "none";
         })
         tid18s.forEach(tid18 => {
-          tid18.style.display = "none";
+          tid18.parentNode.style.display = "none";
         })
       })
 
       window.addEventListener('click', () => {
         tid16s.forEach(tid16 => {
-          tid16.classList.remove('show-tab')
+          tid16.parentNode.classList.remove('show-tab')
         })
       })
 

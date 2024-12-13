@@ -409,7 +409,10 @@
             {% endblock %}
           </div>
         {% endif %}
-        {% if special_video_display_status['#items'].value == 1 %}
+        {% if special_video_display_status['#items'].value == 1 and path('<current>') == '/es' %}
+          {% include "@ttor/includes/special-video-no-cms-es.html.twig" %}
+        {% endif %}
+        {% if special_video_display_status['#items'].value == 1 and (path('<current>') == '/be-everyday-texas-hero-carry-naloxone-save-life' or path('<current>') == '/be-everyday-texas-hero-carry-naloxone-save-life') %}
           {% include "@ttor/includes/special-video-no-cms.html.twig" %}
         {% endif %}
         {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}

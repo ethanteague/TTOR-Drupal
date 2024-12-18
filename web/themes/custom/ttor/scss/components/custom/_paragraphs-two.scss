@@ -240,7 +240,9 @@
     .grid-wrap-right {
       .resource-box {
         @include resource-box;
-
+        p {
+          display: block;
+        }
       }
     }
   }

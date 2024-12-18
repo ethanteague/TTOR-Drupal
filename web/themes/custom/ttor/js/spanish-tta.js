@@ -48,7 +48,7 @@
               tid13.style.display = "none";
             })
             tid12s.forEach(tid12 => {
-              tid12.style.display = "grid";
+              tid12.style.display = "block";
             })
           }
           if (tab.classList.contains("tid-13")) {
@@ -68,7 +68,7 @@
               tid14.style.display = "none";
             })
             tid13s.forEach(tid13 => {
-              tid13.style.display = "grid";
+              tid13.style.display = "block";
             })
           }
           if (tab.classList.contains("tid-14")) {
@@ -88,7 +88,7 @@
               tid13.style.display = "none";
             })
             tid14s.forEach(tid14 => {
-              tid14.style.display = "grid";
+              tid14.style.display = "block";
             })
           }
 
@@ -110,7 +110,7 @@
               tid14.style.display = "none";
             })
             tid15s.forEach(tid15 => {
-              tid15.style.display = "grid";
+              tid15.style.display = "block";
             })
           }
         })

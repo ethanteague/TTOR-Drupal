@@ -20,6 +20,7 @@
   .paragraph--type--toolkit-cards-set-wrap {
 
     padding: $big-region-padding;
+
     .resource-box {
       display: none;
     }
@@ -43,6 +44,7 @@
     .view-header {
       border-bottom: 10px solid $primary-color;
       color: $primary-color;
+      cursor: pointer;
       font-weight: 600;
     }
 
@@ -90,10 +92,16 @@
       margin-bottom: 25px;
 
       .field__item {
+        display: block;
         margin-bottom: 15px;
 
         .paragraph--type--toolkit-cards {
           padding: 0;
+
+          strong {
+            display: block;
+            margin-bottom: 20px;
+          }
 
           .paragraph-grid-wrap {
             img {

@@ -83,6 +83,7 @@
 
   .grid-wrap-left,
   .grid-wrap-right {
+    position: relative;
     &.skinny {
       padding-right: 5%;
     }

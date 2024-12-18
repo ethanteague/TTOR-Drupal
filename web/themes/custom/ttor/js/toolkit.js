@@ -12,7 +12,9 @@
       const tid16s = document.querySelectorAll(".resource-box.tid-16");
       const tid17s = document.querySelectorAll(".resource-box.tid-17");
       const tid18s = document.querySelectorAll(".resource-box.tid-18");
-      const blockTitle = document.getElementById('download-h2-text');
+      const blockTitle = document.querySelector('.english #download-h2-text');
+      const header = document.querySelector('.view-too .view-header');
+
       tabs.forEach(tab => {
         tab.addEventListener("click", () => {
           if (tab.classList.contains("tid-16")) {
@@ -59,10 +61,10 @@
           tid16.parentNode.classList.add('show-tab')
         })
         tid17s.forEach(tid17 => {
-          tid17.parentNode.style.display = "none";
+          tid17.parentNode.style.display = "block";
         })
         tid18s.forEach(tid18 => {
-          tid18.parentNode.style.display = "none";
+          tid18.parentNode.style.display = "block";
         })
       })
 
@@ -70,6 +72,19 @@
         tid16s.forEach(tid16 => {
           tid16.parentNode.classList.remove('show-tab')
         })
+      })
+
+      header.addEventListener('click', () => {
+        tid16s.forEach(tid16 => {
+          tid16.parentNode.classList.add('show-tab')
+        })
+        tid17s.forEach(tid17 => {
+          tid17.parentNode.style.display = "block";
+        })
+        tid18s.forEach(tid18 => {
+          tid18.parentNode.style.display = "block";
+        })
+        blockTitle.innerHTML = "Download Materials";
       })
 
     }

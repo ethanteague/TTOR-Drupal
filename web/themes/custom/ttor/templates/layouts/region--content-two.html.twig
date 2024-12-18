@@ -1,6 +1,12 @@
-{%
+{% if current_node.field_first_content_area_bg.value is not empty %}
+      {% set color = current_node.field_first_content_area_bg.value %}
+    {% else %}
+      {% set color = 'white' %}
+    {% endif %}
+
+    {%
   set classes = [
-    'region-color' ~ current_node.field_first_content_area_bg.value,
+    'region-color' ~ color,
     'region',
     'region-' ~ region|clean_class,
   ]

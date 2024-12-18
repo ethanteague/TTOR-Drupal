@@ -5,7 +5,6 @@
     {% set fourth_area_color = node.field_fourth_content_area_bg_col.value %}
     {% set fifth_area_color = node.field_fifth_content_area_bg_colo.value %}
     {% set sixth_area_color = node.field_sixth_content_area_bg_colo.value %}
-    {% set special_video_display_status = drupal_field('field_toggle_the_spcial_video_on','config_pages',  'enable_special_no_cms_video_in_f') %}
     {% set language = 'english' %}
     {% if page['primary_menu']['spanishmainnavigation'] is not empty %}
       {% set language = 'spanish' %}
@@ -409,10 +408,10 @@
             {% endblock %}
           </div>
         {% endif %}
-        {% if special_video_display_status['#items'].value == 1 and path('<current>') == '/es' %}
+        {% if path('<current>') == '/es' %}
           {% include "@ttor/includes/special-video-no-cms-es.html.twig" %}
         {% endif %}
-        {% if special_video_display_status['#items'].value == 1 and (path('<current>') == '/be-everyday-texas-hero-carry-naloxone-save-life' or path('<current>') == '/be-everyday-texas-hero-carry-naloxone-save-life') %}
+        {% if (path('<current>') == '/be-everyday-texas-hero-carry-naloxone-save-life' or path('<current>') == '/be-everyday-texas-hero-carry-naloxone-save-life') %}
           {% include "@ttor/includes/special-video-no-cms.html.twig" %}
         {% endif %}
         {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}

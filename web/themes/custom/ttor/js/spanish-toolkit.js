@@ -12,7 +12,9 @@
       const tid19s = document.querySelectorAll(".resource-box.tid-19");
       const tid20s = document.querySelectorAll(".resource-box.tid-20");
       const tid21s = document.querySelectorAll(".resource-box.tid-21");
-      const blockTitle = document.getElementById('download-h2-text');
+      const blockTitle = document.querySelector('.spanish #download-h2-text');
+      const header = document.querySelector('.view-too .view-header');
+
       tabs.forEach(tab => {
         tab.addEventListener("click", () => {
           if (tab.classList.contains("tid-19")) {
@@ -59,10 +61,10 @@
           tid19.parentNode.classList.add('show-tab')
         })
         tid20s.forEach(tid20 => {
-          tid20.parentNode.style.display = "none";
+          tid20.parentNode.style.display = "block";
         })
         tid21s.forEach(tid21 => {
-          tid21.parentNode.style.display = "none";
+          tid21.parentNode.style.display = "block";
         })
       })
 
@@ -70,6 +72,20 @@
         tid19s.forEach(tid19 => {
           tid19.parentNode.classList.remove('show-tab')
         })
+      })
+
+
+      header.addEventListener('click', () => {
+        tid19s.forEach(tid19 => {
+          tid19.parentNode.classList.add('show-tab')
+        })
+        tid20s.forEach(tid20 => {
+          tid20.parentNode.style.display = "block";
+        })
+        tid21s.forEach(tid21 => {
+          tid21.parentNode.style.display = "block";
+        })
+        blockTitle.innerHTML = "Todos los Materiales";
       })
 
     }

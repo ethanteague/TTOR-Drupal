@@ -20,29 +20,43 @@
             <div
               class="grid-wrap-left">
               {% if paragraph.field_feature_title.value is not empty %}
-              <span
-                class="feature-title-span">{{paragraph.field_feature_title.value}}</span>
-            {% endif %}
+                <span
+                  class="feature-title-span">
+                  {{paragraph.field_feature_title.value}}
+                </span>
+              {% endif %}
 
+              <h1
+                class="title">
+                {% if path('<current>') == '/es' %}
+                  Sea un héroe en Texas.
+                  <br/>
+                  Lleve consigo naloxona para salvar una vida.
+                {% else %}
+                  {{parent.title.value}}
+                {% endif %}
+              </h1>
+              {{paragraph.field_text.processed}}
+            </div>
+            <div
+              class="grid-wrap-right">
+              {{content}}
+            </div>
+          {% else %}
+            <div
+              class="grid-wrap-left">
+              {{content}}
+            </div>
+            <div
+              class="grid-wrap-right">
+              <h1
+                class="title">
+                {{parent.title.value}}
+              </h1>
+              {{paragraph.field_text.processed}}
+            </div>
 
-            <h1
-              class="title">{{parent.title.value}}</h1>
-            {{paragraph.field_text.processed}}</div>
-
-          <div
-            class="grid-wrap-right">{{content}}</div>
-        {% else %}
-          <div
-            class="grid-wrap-left">
-            {{content}}
-          </div>
-          <div
-            class="grid-wrap-right">
-            <h1
-              class="title">{{parent.title.value}}</h1>
-            {{paragraph.field_text.processed}}</div>
-
-        {% endif %}
-      {% endblock %}
-    </div>
-  {% endblock paragraph %}
+          {% endif %}
+        {% endblock %}
+      </div>
+    {% endblock paragraph %}

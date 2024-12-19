@@ -1,5 +1,7 @@
 web/sites/default/settings.php
 /web/sites/example.settings.local.php
+web/sites/default/files/php
+/web/sites/default/files/php
 /drush/Commands
 /.editorconfig
 .gitattributes

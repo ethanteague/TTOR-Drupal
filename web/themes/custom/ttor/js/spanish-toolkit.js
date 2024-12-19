@@ -21,7 +21,7 @@
             tid21s.forEach(tid21 => {
               tid21.parentNode.style.display = "none";
             })
-            blockTitle.innerHTML = "Descargar Powerpoints";
+            blockTitle.innerHTML = "Descargar Guías del kit de herramientas";
             tid20s.forEach(tid20 => {
               tid20.parentNode.style.display = "none";
             })
@@ -33,7 +33,7 @@
             tid19s.forEach(tid19 => {
               tid19.parentNode.style.display = "none";
             })
-            blockTitle.innerHTML = "Descargar Guías del kit de herramientas";
+            blockTitle.innerHTML = "Descargar Powerpoints";
             tid21s.forEach(tid21 => {
               tid21.parentNode.style.display = "none";
             })

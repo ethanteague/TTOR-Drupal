@@ -10,8 +10,8 @@ stage:
     drush-script: /usr/local/bin/drush
 
 prod:
-  root: /home/ttorahos/stage_drupal_10/html_and_drupal/TTOR-Drupal/web
-  uri: txopioidresponse.org
+  root: /home/ttorahos/production/web
+  uri: prod.ttor.a2hosted.com
   host: ttor.a2hosted.com
   user: ttorahos
   ssh:

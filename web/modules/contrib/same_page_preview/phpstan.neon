@@ -1,0 +1,24 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+  level: 6
+  paths:
+    - src
+    - tests
+  reportUnmatchedIgnoredErrors: true
+  fileExtensions:
+    - php
+    - module
+    - theme
+    - profile
+    - install
+    - inc
+  parallel:
+    jobSize: 20
+    maximumNumberOfProcesses: 32
+    minimumNumberOfJobsPerProcess: 4
+    processTimeout: 180.0
+  ignoreErrors:
+    -
+      identifier: missingType.iterableValue

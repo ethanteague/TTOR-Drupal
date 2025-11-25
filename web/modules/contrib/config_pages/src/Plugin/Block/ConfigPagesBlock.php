@@ -4,13 +4,14 @@ namespace Drupal\config_pages\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\config_pages\Entity\ConfigPages;
 use Drupal\config_pages\Entity\ConfigPagesType;
-use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Provides a generic ConfigPages block.
@@ -126,6 +127,18 @@ class ConfigPagesBlock extends BlockBase implements BlockPluginInterface, Contai
    */
   public function getMachineNameSuggestion() {
     return 'config_pages';
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function access(AccountInterface $account, $return_as_object = FALSE) {
+    $config = $this->getConfiguration();
+    $config_page = ConfigPages::config($config['config_page_type']);
+    if ($config_page) {
+      return $config_page->access('view', $account, $return_as_object);
+    }
+    return parent::access($account, $return_as_object);
   }
 
   /**

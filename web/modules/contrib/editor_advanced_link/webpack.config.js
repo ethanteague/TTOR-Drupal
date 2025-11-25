@@ -1,8 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const { styles, builds } = require('@ckeditor/ckeditor5-dev-utils');
 const TerserPlugin = require('terser-webpack-plugin');
+const utils = require("@ckeditor/ckeditor5-dev-utils");
+const styles = utils.styles;
 
 function getDirectories(srcpath) {
   return fs
@@ -24,6 +25,9 @@ getDirectories('./js/ckeditor5_plugins').forEach((dir) => {
             format: {
               comments: false,
             },
+            compress: {
+              drop_console: true,
+            }
           },
           test: /\.js(\?.*)?$/i,
           extractComments: false,
@@ -58,7 +62,37 @@ getDirectories('./js/ckeditor5_plugins').forEach((dir) => {
       }),
     ],
     module: {
-      rules: [{ test: /\.svg$/, use: 'raw-loader' }],
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'style-loader',
+              options: {
+                injectType: 'singletonStyleTag',
+                attributes: {
+                  'data-cke': true,
+                },
+              },
+            },
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: styles.getPostCssConfig({
+                  themeImporter: {
+                    themePath: require.resolve(
+                      '@ckeditor/ckeditor5-theme-lark',
+                    ),
+                  },
+                  minify: true,
+                }),
+              },
+            },
+          ],
+        },
+        { test: /\.svg$/, use: 'raw-loader' },
+      ],
     },
   };
 

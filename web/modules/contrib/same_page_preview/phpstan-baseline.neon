@@ -1,0 +1,216 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:\\$in_preview\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Core\\\\Form\\\\FormInterface\\:\\:getEntity\\(\\)\\.$#"
+			count: 3
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_compile_preview\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_entity_type_alter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_form_alter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_form_alter\\(\\) has parameter \\$form with no type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_form_alter\\(\\) has parameter \\$form_id with no type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_type_edit_form_alter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_type_edit_form_alter\\(\\) has parameter \\$form with no type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_type_edit_form_alter\\(\\) has parameter \\$form_id with no type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_type_edit_form_submit\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_form_node_type_edit_form_submit\\(\\) has parameter \\$form with no type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_page_top\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_preprocess_html\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Function same_page_preview_preprocess_html\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between Drupal\\\\node\\\\Entity\\\\Node and null will always evaluate to false\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Ternary operator condition is always true\\.$#"
+			count: 1
+			path: same_page_preview.module
+
+		-
+			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:\\$preview_view_mode\\.$#"
+			count: 1
+			path: src/Controller/PreviewPaneController.php
+
+		-
+			message: "#^Method Drupal\\\\same_page_preview\\\\Controller\\\\PreviewPaneController\\:\\:create\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Controller/PreviewPaneController.php
+
+		-
+			message: "#^Method Drupal\\\\Core\\\\Form\\\\FormBuilderInterface\\:\\:getForm\\(\\) invoked with 2 parameters, 1 required\\.$#"
+			count: 1
+			path: src/Controller/PreviewPaneController.php
+
+		-
+			message: "#^Method Drupal\\\\same_page_preview\\\\Controller\\\\PreviewPaneController\\:\\:view\\(\\) has parameter \\$langcode with no type specified\\.$#"
+			count: 1
+			path: src/Controller/PreviewPaneController.php
+
+		-
+			message: "#^Return type \\(Drupal\\\\Core\\\\StringTranslation\\\\TranslatableMarkup\\) of method Drupal\\\\same_page_preview\\\\Controller\\\\PreviewPaneController\\:\\:title\\(\\) should be compatible with return type \\(string\\) of method Drupal\\\\node\\\\Controller\\\\NodePreviewController\\:\\:title\\(\\)$#"
+			count: 1
+			path: src/Controller/PreviewPaneController.php
+
+		-
+			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:\\$preview_view_mode\\.$#"
+			count: 1
+			path: src/Form/PreviewControlsForm.php
+
+		-
+			message: "#^Method Drupal\\\\same_page_preview\\\\Form\\\\PreviewControlsForm\\:\\:viewModeCallback\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Form/PreviewControlsForm.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Controller/PreviewPaneController.php
+
+		-
+			message: "#^Class Drupal\\\\same_page_preview\\\\Form\\\\PreviewControlsForm extends @internal class Drupal\\\\node\\\\Form\\\\NodePreviewForm\\.$#"
+			count: 1
+			path: src/Form/PreviewControlsForm.php
+
+		-
+			message: "#^Class Drupal\\\\same_page_preview\\\\Form\\\\PreviewNodeForm extends @internal class Drupal\\\\node\\\\NodeForm\\.$#"
+			count: 1
+			path: src/Form/PreviewNodeForm.php
+
+		-
+			message: "#^Parameter \\#1 \\$selector of class Drupal\\\\Core\\\\Ajax\\\\InvokeCommand constructor expects string, null given\\.$#"
+			count: 1
+			path: src/Form/PreviewControlsForm.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Core\\\\Form\\\\FormInterface\\:\\:getEntity\\(\\)\\.$#"
+			count: 1
+			path: src/Form/PreviewNodeForm.php
+
+		-
+			message: "#^Method Drupal\\\\same_page_preview\\\\Form\\\\PreviewNodeForm\\:\\:actionsElement\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Form/PreviewNodeForm.php
+
+		-
+			message: "#^Method Drupal\\\\same_page_preview\\\\Form\\\\PreviewNodeForm\\:\\:ajaxCallback\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Form/PreviewNodeForm.php
+
+		-
+			message: "#^Parameter \\#1 \\$selector of class Drupal\\\\Core\\\\Ajax\\\\InvokeCommand constructor expects string, null given\\.$#"
+			count: 1
+			path: src/Form/PreviewNodeForm.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getThirdPartySetting\\(\\)\\.$#"
+			count: 1
+			path: src/Form/SettingsForm.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:setThirdPartySetting\\(\\)\\.$#"
+			count: 1
+			path: src/Form/SettingsForm.php
+
+		-
+			message: "#^Method Drupal\\\\same_page_preview\\\\Form\\\\SettingsForm\\:\\:create\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Form/SettingsForm.php
+
+		-
+			message: "#^Method Drupal\\\\same_page_preview\\\\Form\\\\SettingsForm\\:\\:submitForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Form/SettingsForm.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Form/SettingsForm.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\same_page_preview\\\\Functional\\\\SamePagePreviewEditFormTest\\:\\:testPreviewButtonsExists\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/src/Functional/SamePagePreviewEditFormTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\same_page_preview\\\\Functional\\\\SamePagePreviewEditFormTest\\:\\:testUsingClaroAdminTheme\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/src/Functional/SamePagePreviewEditFormTest.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Tests\\\\WebAssert\\:\\:assertWaitOnAjaxRequest\\(\\)\\.$#"
+			count: 3
+			path: tests/src/FunctionalJavascript/SamePagePreviewEditFormTest.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Tests\\\\WebAssert\\:\\:waitForElementVisible\\(\\)\\.$#"
+			count: 2
+			path: tests/src/FunctionalJavascript/SamePagePreviewEditFormTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\same_page_preview\\\\FunctionalJavascript\\\\SamePagePreviewEditFormTest\\:\\:testNodePreview\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/src/FunctionalJavascript/SamePagePreviewEditFormTest.php
+
+		-
+			message: "#^PHPDoc type array of property Drupal\\\\Tests\\\\same_page_preview\\\\FunctionalJavascript\\\\SamePagePreviewEditFormTest\\:\\:\\$modules is not covariant with PHPDoc type array\\<string\\> of overridden property Drupal\\\\Tests\\\\BrowserTestBase\\:\\:\\$modules\\.$#"
+			count: 1
+			path: tests/src/FunctionalJavascript/SamePagePreviewEditFormTest.php

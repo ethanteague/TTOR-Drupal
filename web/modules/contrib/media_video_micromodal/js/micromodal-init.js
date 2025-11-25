@@ -1,27 +1,24 @@
 Drupal.behaviors.clnMicroModal = {
-
-  attach: function (context, settings) {
-
-    const mm = context.classList && context.classList.contains('modal')
-      ? [context] : context.querySelectorAll('.modal');
-
-    if (mm.length === 0) { return; }
-
-    MicroModal.init({
-      onClose: function (modal) {
-        resetIframe(modal)
-      },
-    });
-
+  attach(context, settings) {
+    const mm =
+      context.classList && context.classList.contains('modal')
+        ? [context]
+        : context.querySelectorAll('.modal');
     // Need this to stop the video on iframe close.
     function resetIframe(element) {
-      var iframe = element.querySelector('iframe');
-      if ( iframe !== null ) {
-        var iframeSrc = iframe.src;
+      let iframe = element.querySelector('iframe');
+      if (iframe !== null) {
+        let iframeSrc = iframe.src;
         iframe.src = iframeSrc;
       }
     }
-
+    if (mm.length === 0) {
+      return;
+    }
+    MicroModal.init({
+      onClose: function (modal) {
+        resetIframe(modal);
+      },
+    });
   },
-
 };

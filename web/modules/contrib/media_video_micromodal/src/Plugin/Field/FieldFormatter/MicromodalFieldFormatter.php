@@ -2,24 +2,26 @@
 
 namespace Drupal\media_video_micromodal\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Render\Renderer;
-use Drupal\Core\Utility\Token;
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\Field\Plugin\Field\FieldType\StringItem;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
-use Drupal\field\Entity\FieldConfig;
-use Drupal\Core\State\State;
-use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\media\IFrameUrlHelper;
-use Drupal\Core\Routing\RequestContext;
 use Drupal\Core\PrivateKey;
+use Drupal\Core\Render\Renderer;
+use Drupal\Core\Routing\RequestContext;
+use Drupal\Core\State\StateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Utility\Token;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\file\Entity\File;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\media\Entity\Media;
+use Drupal\media\IFrameUrlHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -47,9 +49,9 @@ class MicromodalFieldFormatter extends FormatterBase {
   /**
    * The state.
    *
-   * @var \Drupal\Core\State\State
+   * @var \Drupal\Core\State\StateInterface
    */
-  private State $state;
+  private StateInterface $state;
 
   /**
    * Token utility.
@@ -95,12 +97,12 @@ class MicromodalFieldFormatter extends FormatterBase {
    *   The module handler service.
    * @param \Drupal\Core\Utility\Token $token
    *   The token service.
-   * @param \Drupal\Core\State\State $state
+   * @param \Drupal\Core\State\StateInterface $state
    *   State.
    * @param \Drupal\Core\Render\Renderer $renderer
    *   Renderer Service.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, Token $token, State $state, Renderer $renderer) {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, Token $token, StateInterface $state, Renderer $renderer) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
     $this->entityTypeManager = $entity_type_manager;
     $this->state = $state;
@@ -247,6 +249,15 @@ class MicromodalFieldFormatter extends FormatterBase {
       $summary[] = $this->t('Image Style: @thumbnail_image_style', ['@thumbnail_image_style' => $this->getSetting('thumbnail_image_style')]);
     }
 
+    // If we have and image or media, and not image style set, warn the user.
+    $target_type = $this->getFieldSetting('target_type') ?? FALSE;
+    if (
+      in_array($target_type, ['file', 'media'])
+      && empty($this->getSetting('thumbnail_image_style'))
+    ) {
+      $summary[] = $this->t('WARNING: no image style set.<br>Nothing will display.');
+    }
+
     return $summary;
 
   }
@@ -272,7 +283,9 @@ class MicromodalFieldFormatter extends FormatterBase {
 
       // Load the media item.
       $media_id = $item->getEntity()->id();
+      /** @var \Drupal\media\MediaInterface $media */
       $media = $this->entityTypeManager->getStorage('media')->load($media_id);
+      $media = $media->hasTranslation($langcode) ? $media->getTranslation($langcode) : NULL;
 
       // If the media loaded successfully, continue with the formatting.
       if (!empty($media) && !empty($formatter_type)) {
@@ -321,14 +334,14 @@ class MicromodalFieldFormatter extends FormatterBase {
               // Load the media for the thumbnail, if it's media reference.
               else {
                 $thumbnail_media = $this->entityTypeManager->getStorage('media')->load($target_id);
-                $thumbnail_file_id = $thumbnail_media->get('thumbnail')->target_id;
+                $thumbnail_file_id = ($thumbnail_media instanceof Media) ? $thumbnail_media->get('thumbnail')->target_id : FALSE;
               }
 
               // Load the thumbnail file entity.
-              $thumbnail_file = $this->entityTypeManager->getStorage('file')->load($thumbnail_file_id);
+              $thumbnail_file = $this->entityTypeManager->getStorage('file')->load($thumbnail_file_id) ?? FALSE;
 
               // Make sure an image style has been set.
-              if (!empty($this->getSetting('thumbnail_image_style'))) {
+              if ($thumbnail_file instanceof File && !empty($this->getSetting('thumbnail_image_style'))) {
 
                 $render_thumbnail = [
                   '#theme' => 'image_style',
@@ -393,7 +406,7 @@ class MicromodalFieldFormatter extends FormatterBase {
               $render_thumbnail['#attributes'] = $attributes;
 
               // Render out the thumbnail - this is the linked item.
-              $linked_item = \Drupal::service('renderer')->render($render_thumbnail);
+              $linked_item = $this->renderer->render($render_thumbnail);
 
             }
 
@@ -435,7 +448,7 @@ class MicromodalFieldFormatter extends FormatterBase {
               $linked_item_render = [
                 '#markup' => '<span class="' . implode(' ', $additional_classes) . '">' . $label . '</span>',
               ];
-              $linked_item = \Drupal::service('renderer')->render($linked_item_render);
+              $linked_item = $this->renderer->render($linked_item_render);
             }
             else {
               $linked_item = $label;

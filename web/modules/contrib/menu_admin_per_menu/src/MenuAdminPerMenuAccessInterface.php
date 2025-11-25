@@ -2,8 +2,8 @@
 
 namespace Drupal\menu_admin_per_menu;
 
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Menu\MenuLinkInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\system\Entity\Menu;
 
@@ -52,25 +52,25 @@ interface MenuAdminPerMenuAccessInterface {
    *
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Run access checks for this account.
-   * @param \Drupal\menu_link_content\Entity\MenuLinkContent $menu_link_content
+   * @param \Drupal\menu_link_content\Entity\MenuLinkContent|null $menu_link_content
    *   Run access checks for this menu item object.
    *
    * @return \Drupal\Core\Access\AccessResult
    *   The access result.
    */
-  public function menuItemAccess(AccountInterface $account, MenuLinkContent $menu_link_content = NULL);
+  public function menuItemAccess(AccountInterface $account, ?MenuLinkContent $menu_link_content = NULL);
 
   /**
    * A custom access check for menu link page.
    *
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Run access checks for this account.
-   * @param \Drupal\Core\Menu\MenuLinkInterface $menu_link_plugin
+   * @param \Drupal\Core\Menu\MenuLinkInterface|null $menu_link_plugin
    *   Run access checks for this menu link object.
    *
    * @return \Drupal\Core\Access\AccessResult
    *   The access result.
    */
-  public function menuLinkAccess(AccountInterface $account, MenuLinkInterface $menu_link_plugin = NULL);
+  public function menuLinkAccess(AccountInterface $account, ?MenuLinkInterface $menu_link_plugin = NULL);
 
 }

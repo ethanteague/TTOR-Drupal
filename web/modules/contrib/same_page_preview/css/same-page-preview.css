@@ -1,17 +1,14 @@
 /**
  * Same Page Preview styles.
  */
-.same-page-preview-dialog.ui-widget.ui-dialog.ui-dialog-off-canvas .ui-resizable-w {
-  /* background-color: #0D7DC1;
-  width: 5px; */
-}
 
 /* Preview panel form controls */
+#drupal-off-canvas-wrapper.same-page-preview-dialog {
+  container-type: inline-size;
+}
 
-#drupal-off-canvas-wrapper .same-page-preview-form-select {
-  display: flex;
-  align-items: center;
-  padding-block: 14px;
+#drupal-off-canvas-wrapper.same-page-preview-dialog div.button-group {
+  display: inline-flex;
 }
 
 #drupal-off-canvas-wrapper .same-page-preview-form-select .button {
@@ -19,24 +16,53 @@
   margin: 0 0.625rem 0 0;
 }
 
+#drupal-off-canvas-wrapper .same-page-preview-form-select {
+  display: flex;
+  align-items: center;
+  padding-block: 14px;
+}
+
 #drupal-off-canvas-wrapper .same-page-preview-form-select .js-hide.button {
   display: none;
 }
 
-#drupal-off-canvas-wrapper .same-page-preview-form-select .node-preview-refresh.button {
-  padding: var(--off-canvas-button-padding);
-}
-
 #drupal-off-canvas-wrapper .same-page-preview-form-select .js-form-item-view-mode {
-  padding: 0;
-  /* Alignment within parent */
-  flex-grow: 1;
-  justify-content: flex-end;
   /* Alignment of form elements */
   display: flex;
+  /* Alignment within parent */
+  flex-grow: 1;
   align-items: center;
+  justify-content: flex-end;
+  padding: 0;
 }
 
 #drupal-off-canvas-wrapper .same-page-preview-form-select .js-form-item-view-mode label {
   margin-right: 0.625rem;
+}
+
+#drupal-off-canvas-wrapper.same-page-preview-dialog a {
+  color: var(--off-canvas-button-text-color);
+}
+
+#drupal-off-canvas-wrapper.same-page-preview-dialog a.spp-settings-dropdown__link {
+  color: var(--off-canvas-details-summary-background-color);
+}
+
+#drupal-off-canvas-wrapper.same-page-preview-dialog .spp-button-text {
+  display: none;
+}
+
+@container (min-width: 650px) {
+  #drupal-off-canvas-wrapper.same-page-preview-dialog .spp-button-text {
+    display: inline-flex;
+  }
+}
+
+#drupal-off-canvas-wrapper .ui-dialog-titlebar::before {
+  display: none;
+}
+
+#drupal-off-canvas-wrapper .ui-dialog-title {
+  position: relative;
+  right: 26px;
 }

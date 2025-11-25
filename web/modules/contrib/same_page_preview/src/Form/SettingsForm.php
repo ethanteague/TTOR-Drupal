@@ -4,7 +4,6 @@ namespace Drupal\same_page_preview\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -19,18 +18,18 @@ class SettingsForm extends ConfigFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  private EntityStorageInterface $entity_type_storage;
+  private EntityStorageInterface $entityTypeStorage;
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function __construct(ConfigFactoryInterface $config_factory, EntityStorageInterface $entity_type_storage) {
     parent::__construct($config_factory);
-    $this->entity_type_storage = $entity_type_storage;
+    $this->entityTypeStorage = $entity_type_storage;
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
@@ -39,19 +38,11 @@ class SettingsForm extends ConfigFormBase {
     );
   }
 
-
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
     return 'same_page_preview_settings';
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function getEditableConfigNames() {
-    return ['same_page_preview.settings'];
   }
 
   /**
@@ -65,9 +56,10 @@ class SettingsForm extends ConfigFormBase {
       '#open' => TRUE,
     ];
 
-    $form['personalization']['toggle_preview_link'] = [
+    $form['personalization']['preview_on_by_default'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('On by default'),
+      '#default_value' => $this->config('same_page_preview.settings')->get('preview_on_by_default'),
     ];
 
     $form['content_type_settings'] = [
@@ -76,7 +68,7 @@ class SettingsForm extends ConfigFormBase {
       '#open' => TRUE,
     ];
 
-    foreach ($this->entity_type_storage->loadMultiple() as $type) {
+    foreach ($this->entityTypeStorage->loadMultiple() as $type) {
       $setting = $type->getThirdPartySetting('same_page_preview', 'active', TRUE);
       $form['content_type_settings'][$type->id()] = [
         '#type' => 'checkbox',
@@ -93,11 +85,25 @@ class SettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    foreach ($this->entity_type_storage->loadMultiple() as $type) {
+    // Mixing the form with some config and some not means we need handle the
+    // saving of the intended config items ourselves.
+    $config = $this->configFactory()->getEditable('same_page_preview.settings');
+    empty($form_state->getValue('preview_on_by_default')) ?
+      $config->set('preview_on_by_default', 0) :
+      $config->set('preview_on_by_default', $form_state->getValue('preview_on_by_default'));
+    $config->save();
+
+    foreach ($this->entityTypeStorage->loadMultiple() as $type) {
       $type->setThirdPartySetting('same_page_preview', 'active', $form_state->getValue($type->id()));
       $type->save();
     }
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEditableConfigNames() {
+    return ['same_page_preview.settings'];
+  }
 
 }

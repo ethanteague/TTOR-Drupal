@@ -11,13 +11,15 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
 
 /**
  * Implements template_preprocess_html().
  */
 function same_page_preview_preprocess_html(&$variables) {
   // Remove the admin toolbar when in same page preview mode.
-  if (\Drupal::currentUser()->hasPermission('access same_page_preview') && \Drupal::request()->query->get('mode') === 'same_page_preview') {
+  if (\Drupal::currentUser()
+    ->hasPermission('access same_page_preview') && \Drupal::request()->query->get('mode') === 'same_page_preview') {
     $route_name = \Drupal::routeMatch()->getRouteName();
     if ($route_name === 'entity.node.preview') {
       unset($variables['page_top']['toolbar']);
@@ -35,11 +37,12 @@ function same_page_preview_preprocess_html(&$variables) {
  * Implements hook_page_top().
  */
 function same_page_preview_page_top(array &$page) {
-  if (\Drupal::currentUser()->hasPermission('access same_page_preview') && \Drupal::request()->query->get('mode') === 'same_page_preview') {
+  if (\Drupal::currentUser()
+    ->hasPermission('access same_page_preview') && \Drupal::request()->query->get('mode') === 'same_page_preview') {
     // Remove preview controls, so we can add them outside the iframe.
     $route_name = \Drupal::routeMatch()->getRouteName();
     if ($route_name === 'entity.node.preview') {
-      unset($page['page_top']['node_preview']['view_mode']);
+      unset($page['node_preview']['view_mode']);
     }
   }
 }
@@ -63,7 +66,8 @@ function same_page_preview_entity_type_alter(array &$entity_types) {
  * Alter the node edit form to conditionally include an iframe.
  */
 function same_page_preview_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (\Drupal::currentUser()->hasPermission('access same_page_preview') && accessContentTypePermission()) {
+  if (\Drupal::currentUser()
+    ->hasPermission('access same_page_preview') && same_page_preview_access_contenttype_permission()) {
     $node = $form_state->getFormObject()->getEntity();
     $route_parameters = [
       'node_preview' => $node->uuid(),
@@ -73,25 +77,20 @@ function same_page_preview_form_node_form_alter(&$form, FormStateInterface $form
     // Alter the top level form element's classes.
     $form["#attributes"]["class"][] = "with-preview";
 
-    compilePreview($node, $form_state);
-
-    $form['toggle_preview_checkbox'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Live preview'),
-      '#weight' => -1,
-    ];
+    same_page_preview_compile_preview($node, $form_state);
 
     $form['toggle_preview_link'] = [
       '#type' => 'link',
       '#title' => t('Launch preview'),
-      '#weight' => -1,
       '#url' => Url::fromRoute('same_page_preview.preview_pane', $route_parameters),
       '#attributes' => [
-        'class' => ['use-ajax', 'button','button--primary', 'visually-hidden'],
+        'style' => 'display: none;',
+        'class' => ['use-ajax', 'button', 'button--primary', 'visually-hidden'],
         'data-dialog-type' => 'dialog',
         'data-dialog-renderer' => 'off_canvas',
         'data-dialog-options' => Json::encode([
           'width' => '50%',
+          'resizable' => FALSE,
           'classes' => [
             // @todo figure out how to override more than just this one.
             'ui-dialog' => 'same-page-preview-dialog',
@@ -105,15 +104,20 @@ function same_page_preview_form_node_form_alter(&$form, FormStateInterface $form
       ],
     ];
 
+    $form['ssp_preview_enabled'] = [
+      '#type' => 'hidden',
+      '#value' => same_page_preview_access_contenttype_permission() ? 1 : 0,
+    ];
+
     $form['#attached']['library'][] = 'same_page_preview/same_page_preview';
-    registerFieldsAutoRefresh($form, $form_state, $node);
+    same_page_preview_register_fields_auto_refresh($form, $form_state, $node);
   }
 }
 
 /**
  * Adds classes that our javascript uses to add auto-refresh functionality.
  *
- * @param $form
+ * @param array $form
  *   The node edit form.
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The node edit form's form_state.
@@ -121,13 +125,9 @@ function same_page_preview_form_node_form_alter(&$form, FormStateInterface $form
  *   The current node being edited.
  *
  * @return void
+ *   Add the classes to targeted elements that subscribe them to auto refresh.
  */
-function registerFieldsAutoRefresh(&$form, FormStateInterface $form_state, Node $node): void {
-  if (empty($node)) {
-    // @todo: add error handling.
-    return;
-  }
-
+function same_page_preview_register_fields_auto_refresh(array &$form, FormStateInterface $form_state, Node $node): void {
   // Gather fields we want to add auto-refresh to.
   foreach ($node->getFieldDefinitions() as $key => $field_definition) {
     // Currently only the title field of a node.
@@ -136,8 +136,8 @@ function registerFieldsAutoRefresh(&$form, FormStateInterface $form_state, Node 
       $form[$field_definition->getName()]['#attributes']['class'][] = 'same-page-preview--live-refresh';
     }
     // All the other fields that need to drive the preview.
-    else if ($field_definition instanceof FieldConfig && isset($form[$field_definition->getName()])) {
-      $form[$field_definition->getName()]['#attributes']['class'][] = 'same-page-preview--blur-refresh';
+    elseif ($field_definition instanceof FieldConfig && isset($form[$field_definition->getName()])) {
+      $form[$field_definition->getName()]['#attributes']['class'][] = 'same-page-preview--force-refresh';
     }
   }
 }
@@ -169,8 +169,9 @@ function same_page_preview_form_node_type_edit_form_alter(&$form, FormStateInter
 }
 
 /**
- * Implements additional form submission logic for
- * same_page_preview_form_node_type_edit_form_alter.
+ * Same_page_preview_form_node_type_edit_form_alter.
+ *
+ * Implements additional form submission logic for hook.
  */
 function same_page_preview_form_node_type_edit_form_submit($form, FormStateInterface $form_state) {
   $node_type = $form_state->getFormObject()->getEntity();
@@ -187,7 +188,7 @@ function same_page_preview_form_node_type_edit_form_submit($form, FormStateInter
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The form state.
  */
-function compilePreview(EntityInterface $entity, FormStateInterface $form_state) {
+function same_page_preview_compile_preview(EntityInterface $entity, FormStateInterface $form_state) {
   $entity->in_preview = TRUE;
   $uuid = $entity->uuid();
 
@@ -203,13 +204,15 @@ function compilePreview(EntityInterface $entity, FormStateInterface $form_state)
  *
  * Yes, if:
  * - The user has the permission to access same page preview
- * - The node type has the same page preview toggle enabled
+ * - The node type has the same page preview toggle enabled.
+ *
  * @return bool
+ *   True if permitted to use same page preview.
  */
-function accessContentTypePermission(): bool {
+function same_page_preview_access_contenttype_permission(): bool {
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
   return $node === NULL ||
-    \Drupal\node\Entity\NodeType::load($node->getType())
-      ->getThirdPartySetting('same_page_preview', 'same_page_preview_toggle', TRUE) == TRUE;
+    NodeType::load($node->getType())
+      ->getThirdPartySetting('same_page_preview', 'active', TRUE) == TRUE;
 }

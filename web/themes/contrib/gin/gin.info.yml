@@ -1,8 +1,8 @@
 name: Gin
 type: theme
 base theme: claro
-description: 'Admin theme with a strong focus on improving the Editorial Experience'
-core_version_requirement: ^9 || ^10
+description: 'Admin theme with a strong focus on improving the Editorial Experience. Learn more about Gin’s <a href="https://www.drupal.org/docs/contributed-themes/gin-admin-theme/specific-settings-within-gin" target="_blank">Settings</a> and how to customize Gin in our <a href="https://www.drupal.org/docs/contributed-themes/gin-admin-theme/custom-theming" target="_blank">Custom theming guide</a>.'
+core_version_requirement: ^9 || ^10 || ^11 <11.2
 
 # These dependencies will not allow the installation of Gin at all if gin_toolbar is not activated.
 # A bit harsh, so we'll continue to just rely on the composer requirement for now.
@@ -16,17 +16,17 @@ libraries:
 
 libraries-override:
   # Gin overrides: replace
+  media_library/view:
+    js:
+      js/media_library.view.js: js/overrides/media_library.view.js
+
   core/drupal.tableselect:
     js:
       misc/tableselect.js: js/overrides/tableselect.js
 
-  core/drupal.tableheader:
+  core/drupal.tabledrag:
     js:
-      misc/tableheader.js: js/overrides/tableheader.js
-
-  media_library/view:
-    js:
-      js/media_library.view.js: js/overrides/media_library.view.js
+      misc/tabledrag.js: js/overrides/tabledrag.js
 
   # Gin overrides: disable
   # needed override to overcome dialog styling issues
@@ -42,11 +42,6 @@ libraries-override:
         misc/dialog/off-canvas.css: false
         misc/dialog/off-canvas.theme.css: false
 
-  paragraphs_ee/paragraphs_ee.off_canvas:
-    css:
-      theme:
-        css/paragraphs_ee.off_canvas.css: false
-
   claro/global-styling:
     css:
       layout:
@@ -54,7 +49,21 @@ libraries-override:
       theme:
         css/theme/colors.css: false
 
+  core/drupal.tableheader:
+    js:
+      misc/tableheader.js: false
+    css:
+      component:
+        css/components/sticky-header.module.css: false
+        misc/components/sticky-header.module.css: false
+
 libraries-extend:
+  core/drupal.message:
+    - gin/messages
+  core/drupal.tableselect:
+    - gin/tableselect
+  core/drupal.tableheader:
+    - gin/tableheader
   core/drupal.autocomplete:
     - gin/autocomplete
   core/ckeditor:
@@ -67,6 +76,8 @@ libraries-extend:
     - gin/dialog
   core/drupal.ajax:
     - gin/ajax
+  core/drupal.dropbutton:
+    - gin/dropbutton
   media/media_embed_ckeditor_theme:
     - gin/gin_media_embed_ckeditor_theme
   media_library/view:
@@ -103,6 +114,7 @@ libraries-extend:
     - gin/webform
   webform_ui/webform_ui:
     - gin/webform
+    - gin/webform_ui
   webform/webform.element.help:
     - gin/webform
   webform/webform.element.details.toggle:
@@ -113,15 +125,19 @@ libraries-extend:
    - gin/workbench
   paragraphs/drupal.paragraphs.widget:
     - gin/paragraphs
-  paragraphs_ee/paragraphs_ee.paragraphs:
-    - gin/paragraphs_ee
   entity_reference_layout/erl_widget:
     - gin/entity_reference_layout
     - gin/layout_paragraphs
   layout_paragraphs/layout_paragraphs_widget:
     - gin/layout_paragraphs
+  layout_paragraphs/builder:
+    - gin/layout_paragraphs2
   responsive_preview/drupal.responsive-preview:
     - gin/responsive_preview
+  workspaces/drupal.workspaces.overview:
+    - gin/workspaces
+  project_browser/project_browser:
+    - gin/project_browser
 
 ckeditor_stylesheets:
   - dist/css/theme/accent.css
@@ -144,7 +160,7 @@ regions:
 regions_hidden:
   - sidebar_first
 
-# Information added by Drupal.org packaging script on 2023-05-01
-version: '8.x-3.0-rc3'
+# Information added by Drupal.org packaging script on 2025-06-18
+version: '8.x-3.1'
 project: 'gin'
-datestamp: 1682979028
+datestamp: 1750246437

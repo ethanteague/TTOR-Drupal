@@ -2,12 +2,11 @@
 
 namespace Drupal\same_page_preview\Form;
 
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\InvokeCommand;
-
 use Drupal\node\Form\NodePreviewForm;
 
 /**
@@ -18,7 +17,7 @@ use Drupal\node\Form\NodePreviewForm;
 class PreviewControlsForm extends NodePreviewForm {
 
   /**
-   * {@inheritdoc}
+   * {@inheritDoc}
    */
   public function getFormId() {
     return 'same_page_preview_form_select';
@@ -37,58 +36,62 @@ class PreviewControlsForm extends NodePreviewForm {
    * @return array
    *   The form structure.
    */
-  public function buildForm(array $form, FormStateInterface $form_state, EntityInterface $node = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, ?EntityInterface $node = NULL): array {
     $view_mode = $node->preview_view_mode;
-
     $query_options = ['query' => ['uuid' => $node->uuid()]];
     $query = $this->getRequest()->query;
+
     if ($query->has('destination')) {
       $query_options['query']['destination'] = $query->get('destination');
     }
 
     $form['button_group'] = [
-      '#type' => 'container',
       '#attributes' => [
         'class' => [
           'button-group',
         ],
       ],
+      '#type' => 'container',
     ];
 
-    $form['button_group']['refresh'] = [
-      '#type' => 'button',
-      '#value' => $this->t('Refresh'),
-      '#ajax' => [
-        'callback' => '::refreshCallback',
-        'event' => 'click',
+    $form['button_group']['settings'] = [
+      '#component' => 'same_page_preview:settings-button',
+      '#props' => [
+        'iconType' => 'settings',
+        'label' => 'Settings',
       ],
-      '#options' => [
-        'attributes' => [
-          'class' => ['node-preview-refresh'],
-        ],
-      ] + $query_options,
-    ];
-    $form['#attached']['library'][] = 'same_page_preview/same_page_preview';
-
-    $route_parameters = [
-      'node_preview' => $node->uuid(),
-      'view_mode_id' => $view_mode,
+      '#type' => 'component',
     ];
 
     $form['button_group']['new_window'] = [
-      '#type' => 'link',
-      '#title' => $this->t('New Window'),
-      '#url' => Url::fromRoute('entity.node.preview', $route_parameters),
-      '#options' => [
-        'attributes' => [
-          'class' => ['button', 'new-window'],
-          'style' => 'width: auto; margin-right: 0.625rem',
-        ],
-      ] + $query_options,
+      '#component' => 'same_page_preview:newwindow-button',
+      '#props' => [
+        'href' => Url::fromRoute(
+          'entity.node.preview', [
+            'node_preview' => $node->uuid(),
+            'view_mode_id' => $view_mode,
+          ],
+        ),
+        'iconType' => 'new-window',
+        'label' => 'New Window',
+      ],
+      '#type' => 'component',
+    ];
+
+    $form['button_group']['full_screen'] = [
+      '#component' => 'same_page_preview:fullscreen-button',
+      '#props' => [
+        'iconType' => 'full-screen',
+        'label' => 'Full Screen',
+      ],
+      '#type' => 'component',
     ];
 
     // Always show full as an option, even if the display is not enabled.
-    $view_mode_options = ['full' => $this->t('Full')] + $this->entityDisplayRepository->getViewModeOptionsByBundle('node', $node->bundle());
+    $view_mode_options = ['full' => $this->t('Full')] + $this->entityDisplayRepository->getViewModeOptionsByBundle(
+            'node',
+            $node->bundle()
+        );
 
     // Unset view modes that are not used in the front end.
     unset($view_mode_options['default']);
@@ -101,37 +104,27 @@ class PreviewControlsForm extends NodePreviewForm {
     ];
 
     $form['view_mode'] = [
-      '#type' => 'select',
-      '#title' => $this->t('View mode'),
-      '#options' => $view_mode_options,
-      '#default_value' => $view_mode,
       '#ajax' => [
         'callback' => '::viewModeCallback',
         'event' => 'change',
       ],
+      '#default_value' => $view_mode,
+      '#options' => $view_mode_options,
+      '#title' => $this->t('View mode'),
+      '#type' => 'select',
     ];
 
     $form['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Switch'),
       '#attributes' => [
         'class' => ['js-hide'],
       ],
+      '#type' => 'submit',
+      '#value' => $this->t('Switch'),
     ];
 
-    return $form;
-  }
+    $form['#attached']['library'][] = 'same_page_preview/same_page_preview';
 
-  /**
-   * Ajax callback for preview refresh control.
-   *
-   * Triggers a preview refresh.
-   */
-  public function refreshCallback(array $form, FormStateInterface $form_state) {
-    $response = new AjaxResponse();
-    // Invoke command for a synthetic click on the preview button.
-    $response->addCommand(new InvokeCommand(NULL, 'samePagePreviewTriggerPreview'));
-    return $response;
+    return $form;
   }
 
   /**
@@ -141,10 +134,14 @@ class PreviewControlsForm extends NodePreviewForm {
    */
   public function viewModeCallback(array $form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
-    $response->addCommand(new InvokeCommand(NULL, 'samePagePreviewRenderPreview', [
-      NULL, $form_state->getValue('view_mode'),
-    ])
-    );
+    $response->addCommand(
+          new InvokeCommand(
+              NULL, 'samePagePreviewRenderPreview', [
+                $form_state->getValue('view_mode'), NULL,
+              ],
+          ),
+      );
+
     return $response;
   }
 

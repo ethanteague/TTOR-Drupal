@@ -1,0 +1,10 @@
+uuid: 69c6d8ce-9dad-45ea-bd6f-95f667d36f1b
+langcode: en
+status: true
+dependencies: {  }
+id: resources_grid_boxes
+label: 'Resources grid boxes'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

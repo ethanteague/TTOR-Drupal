@@ -1,0 +1,11 @@
+uuid: e6d214c7-9e99-406a-9999-340ffed44a04
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.modal_video
+label: 'Modal video'
+description: ''
+targetEntityType: media
+cache: true

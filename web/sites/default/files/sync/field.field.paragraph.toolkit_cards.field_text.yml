@@ -1,0 +1,21 @@
+uuid: cd185e0b-4b36-4be1-8cca-d0dc0abd3f4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.toolkit_cards
+  module:
+    - text
+id: paragraph.toolkit_cards.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: toolkit_cards
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,15 @@
+uuid: 225df03a-133a-4e3b-b6ae-c8a648d535c3
+langcode: en
+status: true
+dependencies: {  }
+name: video
+label: video
+effects:
+  de666532-9b22-4a22-b11a-bff0b3e09170:
+    uuid: de666532-9b22-4a22-b11a-bff0b3e09170
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 500
+      height: 400
+      anchor: center-center

@@ -1,0 +1,21 @@
+uuid: 5f176f1c-84ba-4801-aaf2-7b77168b6be3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_info_grid_box
+    - paragraphs.paragraphs_type.info_grid_box
+  module:
+    - text
+id: paragraph.info_grid_box.field_info_grid_box
+field_name: field_info_grid_box
+entity_type: paragraph
+bundle: info_grid_box
+label: 'Info grid box text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

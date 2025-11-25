@@ -1,0 +1,25 @@
+uuid: 5e034207-add4-49ca-8fb5-231084d2266e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:683dd72b-042f-421e-8400-5e497e69b027'
+  module:
+    - block_content
+  theme:
+    - bootstrap_barrio_subtheme
+id: bootstrap_barrio_subtheme_fourthfooter
+theme: bootstrap_barrio_subtheme
+region: footer_fourth
+weight: 0
+provider: null
+plugin: 'block_content:683dd72b-042f-421e-8400-5e497e69b027'
+settings:
+  id: 'block_content:683dd72b-042f-421e-8400-5e497e69b027'
+  label: 'Fourth footer'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

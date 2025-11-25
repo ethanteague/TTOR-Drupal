@@ -1,0 +1,29 @@
+uuid: 69500e68-fb34-46bf-b88c-4ee8112ae8f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.spanish-main-navigation
+  module:
+    - system
+  theme:
+    - ttor
+id: spanishmainnavigation
+theme: ttor
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:spanish-main-navigation'
+settings:
+  id: 'system_menu_block:spanish-main-navigation'
+  label: 'Spanish Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/es\r\n/es/\r\n/es/*"

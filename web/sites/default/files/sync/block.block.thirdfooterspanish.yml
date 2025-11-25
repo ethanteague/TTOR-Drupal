@@ -1,0 +1,30 @@
+uuid: 0a1cac22-18ef-4998-a5ef-8ef821a2d804
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:45742594-57d1-489b-a838-bd3dadd74bd0'
+  module:
+    - block_content
+    - system
+  theme:
+    - ttor
+id: thirdfooterspanish
+theme: ttor
+region: footer_third
+weight: 0
+provider: null
+plugin: 'block_content:45742594-57d1-489b-a838-bd3dadd74bd0'
+settings:
+  id: 'block_content:45742594-57d1-489b-a838-bd3dadd74bd0'
+  label: 'Third footer spanish'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/es\r\n/es/\r\n/es/*"

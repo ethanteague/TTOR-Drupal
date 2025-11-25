@@ -1,0 +1,30 @@
+uuid: 456eede7-2e70-4efe-83b8-eba001be534c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:5f96a3a2-9fe1-4a46-80cf-a97a4e45475a'
+  module:
+    - block_content
+    - system
+  theme:
+    - ttor
+id: texastargetedlogospanish
+theme: ttor
+region: header
+weight: -14
+provider: null
+plugin: 'block_content:5f96a3a2-9fe1-4a46-80cf-a97a4e45475a'
+settings:
+  id: 'block_content:5f96a3a2-9fe1-4a46-80cf-a97a4e45475a'
+  label: 'Texas Targeted logo spanish'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/es\r\n/es/\r\n/es/*"

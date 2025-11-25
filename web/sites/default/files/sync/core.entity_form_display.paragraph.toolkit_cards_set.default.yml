@@ -1,0 +1,44 @@
+uuid: 2966da63-1c47-4be9-9cdb-8c8760546a41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.toolkit_cards_set.field_feature_title
+    - field.field.paragraph.toolkit_cards_set.field_toolkit_cards_set
+    - paragraphs.paragraphs_type.toolkit_cards_set
+  module:
+    - paragraphs
+id: paragraph.toolkit_cards_set.default
+targetEntityType: paragraph
+bundle: toolkit_cards_set
+mode: default
+content:
+  field_feature_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_toolkit_cards_set:
+    type: paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

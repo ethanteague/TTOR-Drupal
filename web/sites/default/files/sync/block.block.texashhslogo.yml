@@ -1,0 +1,25 @@
+uuid: 85a0d15e-13a0-45a5-bced-be2f8c3f676f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:db0bdba9-da53-4bd2-a5b9-1e0232b712aa'
+  module:
+    - block_content
+  theme:
+    - ttor
+id: texashhslogo
+theme: ttor
+region: top_header
+weight: -14
+provider: null
+plugin: 'block_content:db0bdba9-da53-4bd2-a5b9-1e0232b712aa'
+settings:
+  id: 'block_content:db0bdba9-da53-4bd2-a5b9-1e0232b712aa'
+  label: 'Texas HHS logo'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

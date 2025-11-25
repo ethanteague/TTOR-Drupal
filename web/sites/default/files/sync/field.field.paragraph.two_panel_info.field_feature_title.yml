@@ -1,0 +1,19 @@
+uuid: cc8c4ecf-e844-452f-84ce-ca53da24e7f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_feature_title
+    - paragraphs.paragraphs_type.two_panel_info
+id: paragraph.two_panel_info.field_feature_title
+field_name: field_feature_title
+entity_type: paragraph
+bundle: two_panel_info
+label: 'Feature title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

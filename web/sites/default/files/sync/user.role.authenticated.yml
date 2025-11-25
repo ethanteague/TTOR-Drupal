@@ -1,0 +1,28 @@
+uuid: 0f7c3111-3fa1-42e3-9db9-99770b71e8df
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+  module:
+    - contact
+    - file
+    - filter
+    - google_analytics
+    - media
+    - search
+    - system
+_core:
+  default_config_hash: I44QAB4es39lNzMQWiJLq2dfjX7VRSOzT_5KzAcUq_M
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'delete own files'
+  - 'opt-in or out of google analytics tracking'
+  - 'search content'
+  - 'use text format full_html'
+  - 'view media'

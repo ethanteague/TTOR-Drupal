@@ -1,0 +1,22 @@
+uuid: e2fc076e-a600-41a2-83b2-14ce84a4b3ec
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ttor
+_core:
+  default_config_hash: a0Yyx1GeyKarZ4T_yXQBR_ZFKnXiFLtxAb6gWLd8nr0
+id: ttor_content
+theme: ttor
+region: content
+weight: -8
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

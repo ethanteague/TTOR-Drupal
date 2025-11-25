@@ -1,0 +1,43 @@
+uuid: 12f11fdf-0f8d-47b1-9d9f-158e48f42dba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.grey_lists_pair.field_byline_short
+    - field.field.paragraph.grey_lists_pair.field_feature_title
+    - field.field.paragraph.grey_lists_pair.field_text
+    - paragraphs.paragraphs_type.grey_lists_pair
+  module:
+    - text
+id: paragraph.grey_lists_pair.default
+targetEntityType: paragraph
+bundle: grey_lists_pair
+mode: default
+content:
+  field_byline_short:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_feature_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_text:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

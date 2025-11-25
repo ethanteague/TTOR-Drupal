@@ -1,0 +1,33 @@
+uuid: f3517c16-de39-4b57-858c-187672390ab1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sixth_content_area_bg_colo
+field_name: field_sixth_content_area_bg_colo
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: white
+      label: White
+    -
+      value: blue
+      label: Blue
+    -
+      value: dark
+      label: 'Dark blue'
+    -
+      value: both
+      label: 'White top blue bottom'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

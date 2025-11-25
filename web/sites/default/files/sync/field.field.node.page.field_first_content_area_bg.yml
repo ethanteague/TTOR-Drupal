@@ -1,0 +1,23 @@
+uuid: 15d53ca6-8613-4099-9155-d0c7e465baa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_first_content_area_bg
+    - node.type.page
+  module:
+    - options
+id: node.page.field_first_content_area_bg
+field_name: field_first_content_area_bg
+entity_type: node
+bundle: page
+label: 'First content area bg color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: white
+default_value_callback: ''
+settings: {  }
+field_type: list_string

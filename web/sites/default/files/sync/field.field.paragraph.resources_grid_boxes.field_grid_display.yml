@@ -1,0 +1,23 @@
+uuid: 6b86924b-6e54-436a-9acc-096bcb227f6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_grid_display
+    - paragraphs.paragraphs_type.resources_grid_boxes
+  module:
+    - options
+id: paragraph.resources_grid_boxes.field_grid_display
+field_name: field_grid_display
+entity_type: paragraph
+bundle: resources_grid_boxes
+label: 'Grid display'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: two
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,34 @@
+uuid: 6cb49dcf-768a-42ad-bb5b-6f6e0b73175b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:76bdf7bf-b963-4c99-9cd7-7e135c991a6a'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - ttor
+third_party_settings:
+  block_class:
+    classes: language-switcher
+id: siteinspanish
+theme: ttor
+region: top_header
+weight: -11
+provider: null
+plugin: 'block_content:76bdf7bf-b963-4c99-9cd7-7e135c991a6a'
+settings:
+  id: 'block_content:76bdf7bf-b963-4c99-9cd7-7e135c991a6a'
+  label: 'Site in Spanish'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/es\r\n/es/\r\n/es/*"

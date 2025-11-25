@@ -1,0 +1,10 @@
+uuid: 1a0be2a8-9666-40a2-bd1d-69a6689dba9b
+langcode: en
+status: true
+dependencies: {  }
+id: call_to_action_blue_info_panel
+label: 'Call to action blue info panel'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

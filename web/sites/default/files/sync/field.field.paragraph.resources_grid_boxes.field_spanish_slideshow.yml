@@ -1,0 +1,23 @@
+uuid: 4068b548-094a-496c-82e2-dafda24fc1f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_spanish_slideshow
+    - paragraphs.paragraphs_type.resources_grid_boxes
+id: paragraph.resources_grid_boxes.field_spanish_slideshow
+field_name: field_spanish_slideshow
+entity_type: paragraph
+bundle: resources_grid_boxes
+label: 'Spanish grid'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

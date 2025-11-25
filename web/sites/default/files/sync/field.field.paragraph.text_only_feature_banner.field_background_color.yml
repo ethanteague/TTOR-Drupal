@@ -1,0 +1,23 @@
+uuid: 111ecab6-a3ad-407b-84cf-8edca7b98d2f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_color
+    - paragraphs.paragraphs_type.text_only_feature_banner
+  module:
+    - options
+id: paragraph.text_only_feature_banner.field_background_color
+field_name: field_background_color
+entity_type: paragraph
+bundle: text_only_feature_banner
+label: 'Background color'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: blue
+default_value_callback: ''
+settings: {  }
+field_type: list_string

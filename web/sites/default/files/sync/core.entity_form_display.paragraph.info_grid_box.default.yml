@@ -1,0 +1,32 @@
+uuid: 2285a1a4-2749-4485-a0b0-bda389036c3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.info_grid_box.field_category
+    - field.field.paragraph.info_grid_box.field_info_grid_box
+    - paragraphs.paragraphs_type.info_grid_box
+  module:
+    - text
+id: paragraph.info_grid_box.default
+targetEntityType: paragraph
+bundle: info_grid_box
+mode: default
+content:
+  field_category:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_info_grid_box:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

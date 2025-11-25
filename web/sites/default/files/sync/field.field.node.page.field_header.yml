@@ -1,0 +1,39 @@
+uuid: 11be1bcf-fde8-4507-9fe0-7ae3c4a001c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_header
+    - node.type.page
+    - paragraphs.paragraphs_type.feature_with_video
+    - paragraphs.paragraphs_type.feature_without_video
+  module:
+    - entity_reference_revisions
+id: node.page.field_header
+field_name: field_header
+entity_type: node
+bundle: page
+label: Header
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      feature_without_video: feature_without_video
+      feature_with_video: feature_with_video
+    negate: 0
+    target_bundles_drag_drop:
+      feature_with_video:
+        weight: 5
+        enabled: true
+      feature_without_video:
+        weight: 4
+        enabled: true
+      video:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

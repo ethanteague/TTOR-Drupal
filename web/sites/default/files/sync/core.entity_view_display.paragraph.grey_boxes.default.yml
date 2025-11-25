@@ -1,0 +1,45 @@
+uuid: c3a2f327-46ea-4511-afba-b0a7c4e41ddb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.grey_boxes.field_button
+    - field.field.paragraph.grey_boxes.field_feature_title
+    - field.field.paragraph.grey_boxes.field_text
+    - paragraphs.paragraphs_type.grey_boxes
+  module:
+    - link
+    - text
+id: paragraph.grey_boxes.default
+targetEntityType: paragraph
+bundle: grey_boxes
+mode: default
+content:
+  field_button:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_feature_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_text:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

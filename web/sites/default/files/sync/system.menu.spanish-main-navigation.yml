@@ -1,0 +1,10 @@
+uuid: 2d22a540-0163-4c44-aa71-64eb8b7ee878
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Q2Ra3jfoIVk0f3SjxJX61byRQFVBAbpzYDQOiY-kno8
+id: spanish-main-navigation
+label: 'Spanish Main navigation'
+description: 'Site section links'
+locked: false

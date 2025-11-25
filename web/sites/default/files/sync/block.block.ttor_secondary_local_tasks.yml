@@ -1,0 +1,22 @@
+uuid: c4410c50-260f-4d10-aa51-84368a7816e3
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ttor
+_core:
+  default_config_hash: 2L0geP-ixCbCkEpW6BVF6H7vDUZN4ea07_Y9CociQm4
+id: ttor_secondary_local_tasks
+theme: ttor
+region: top_header
+weight: -13
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

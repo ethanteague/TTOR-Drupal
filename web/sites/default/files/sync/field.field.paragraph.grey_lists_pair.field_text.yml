@@ -1,0 +1,21 @@
+uuid: 72709dbb-4eac-4863-9162-fcf5992a6a31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.grey_lists_pair
+  module:
+    - text
+id: paragraph.grey_lists_pair.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: grey_lists_pair
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

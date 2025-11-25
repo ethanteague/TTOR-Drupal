@@ -1,0 +1,30 @@
+uuid: 28a9ec13-0b7c-42fe-bc02-aef74493cfc9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c89a97c1-33b6-47bf-95ab-eda40255c5a4'
+  module:
+    - block_content
+    - system
+  theme:
+    - ttor
+id: secondfooterspanish
+theme: ttor
+region: footer_second
+weight: 0
+provider: null
+plugin: 'block_content:c89a97c1-33b6-47bf-95ab-eda40255c5a4'
+settings:
+  id: 'block_content:c89a97c1-33b6-47bf-95ab-eda40255c5a4'
+  label: 'Second footer spanish'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/es\r\n/es/\r\n/es/*"

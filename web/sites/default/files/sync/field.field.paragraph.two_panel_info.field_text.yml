@@ -1,0 +1,21 @@
+uuid: 5ee6ee9d-a78a-4b09-b445-a7019328662f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.two_panel_info
+  module:
+    - text
+id: paragraph.two_panel_info.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: two_panel_info
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

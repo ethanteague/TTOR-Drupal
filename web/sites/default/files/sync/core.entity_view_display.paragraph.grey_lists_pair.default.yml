@@ -1,0 +1,49 @@
+uuid: 4c0c9d4c-374c-4f39-9ea8-2a4805e91e45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.grey_lists_pair.field_byline_short
+    - field.field.paragraph.grey_lists_pair.field_feature_title
+    - field.field.paragraph.grey_lists_pair.field_text
+    - paragraphs.paragraphs_type.grey_lists_pair
+  module:
+    - text
+    - text_field_formatter
+id: paragraph.grey_lists_pair.default
+targetEntityType: paragraph
+bundle: grey_lists_pair
+mode: default
+content:
+  field_byline_short:
+    type: text_field_formatter
+    label: hidden
+    settings:
+      wrap_tag: span
+      wrap_class: 'byline not-empty-byline'
+      wrap_attributes: ''
+      override_link_label: ''
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_feature_title:
+    type: text_field_formatter
+    label: hidden
+    settings:
+      wrap_tag: h2
+      wrap_class: 'title not-empty-byline'
+      wrap_attributes: ''
+      override_link_label: ''
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_text:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

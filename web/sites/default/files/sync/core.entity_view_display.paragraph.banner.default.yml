@@ -1,0 +1,22 @@
+uuid: b47fd87b-8d3e-4ffb-9137-d0934d4adcf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banner.field_text
+    - paragraphs.paragraphs_type.banner
+  module:
+    - text
+id: paragraph.banner.default
+targetEntityType: paragraph
+bundle: banner
+mode: default
+content:
+  field_text:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

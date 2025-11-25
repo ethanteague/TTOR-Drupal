@@ -1,0 +1,21 @@
+uuid: 2fd51f72-3c4d-4f49-857a-0c50ecbfc079
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.banner_with_3_videos
+  module:
+    - text
+id: paragraph.banner_with_3_videos.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: banner_with_3_videos
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

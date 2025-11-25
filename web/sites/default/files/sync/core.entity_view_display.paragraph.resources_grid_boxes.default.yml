@@ -1,0 +1,32 @@
+uuid: 0c253ba4-246e-4f50-a723-ff4a6138f828
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.resources_grid_boxes.field_byline
+    - field.field.paragraph.resources_grid_boxes.field_feature_title
+    - field.field.paragraph.resources_grid_boxes.field_grid_display
+    - field.field.paragraph.resources_grid_boxes.field_info_grid_text_box
+    - field.field.paragraph.resources_grid_boxes.field_spanish_slideshow
+    - paragraphs.paragraphs_type.resources_grid_boxes
+  module:
+    - entity_reference_revisions
+id: paragraph.resources_grid_boxes.default
+targetEntityType: paragraph
+bundle: resources_grid_boxes
+mode: default
+content:
+  field_info_grid_text_box:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_byline: true
+  field_feature_title: true
+  field_grid_display: true
+  field_spanish_slideshow: true

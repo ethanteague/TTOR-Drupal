@@ -1,0 +1,10 @@
+uuid: 416713f5-fe27-4055-9a65-2c7ec61f9bf9
+langcode: en
+status: true
+dependencies: {  }
+id: two_panel_info
+label: 'Two panel info'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

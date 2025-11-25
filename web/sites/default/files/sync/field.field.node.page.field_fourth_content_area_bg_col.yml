@@ -1,0 +1,23 @@
+uuid: adfc0d5e-f548-4c9b-b0d9-9f10ef8cb893
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fourth_content_area_bg_col
+    - node.type.page
+  module:
+    - options
+id: node.page.field_fourth_content_area_bg_col
+field_name: field_fourth_content_area_bg_col
+entity_type: node
+bundle: page
+label: 'Fourth content area bg color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: white
+default_value_callback: ''
+settings: {  }
+field_type: list_string

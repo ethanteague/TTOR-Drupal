@@ -1,0 +1,15 @@
+uuid: e2bcf2aa-7050-4bda-9598-43a111e3436f
+langcode: en
+status: true
+dependencies: {  }
+name: 4_grid_panel
+label: '4 grid panel'
+effects:
+  bc544652-b58e-497f-8095-224b6451cc4d:
+    uuid: bc544652-b58e-497f-8095-224b6451cc4d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 325
+      height: 420
+      anchor: center-center

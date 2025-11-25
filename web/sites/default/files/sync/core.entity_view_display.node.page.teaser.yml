@@ -1,0 +1,50 @@
+uuid: 084d7442-ee3b-4a41-ab87-8dbf05f2326a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.page.field_con
+    - field.field.node.page.field_content_sub_feature_items
+    - field.field.node.page.field_fifth_content_area_bg_colo
+    - field.field.node.page.field_fifth_content_area_items
+    - field.field.node.page.field_first_content_area_bg
+    - field.field.node.page.field_fourth_content_area_bg_col
+    - field.field.node.page.field_fourth_content_area_items
+    - field.field.node.page.field_header
+    - field.field.node.page.field_header_background_color
+    - field.field.node.page.field_second_content_area_bg
+    - field.field.node.page.field_second_content_area_items
+    - field.field.node.page.field_sixth_content_area_bg_colo
+    - field.field.node.page.field_sixth_content_area_items
+    - field.field.node.page.field_third_content_area_bg_colo
+    - field.field.node.page.field_third_content_area_items
+    - node.type.page
+  module:
+    - user
+_core:
+  default_config_hash: 8BgdRtLbtQ0F__o0FHSH0Mx5fvXOra9tfT1GmNKbRYw
+id: node.page.teaser
+targetEntityType: node
+bundle: page
+mode: teaser
+content:
+  links:
+    weight: 101
+    region: content
+hidden:
+  field_con: true
+  field_content_sub_feature_items: true
+  field_fifth_content_area_bg_colo: true
+  field_fifth_content_area_items: true
+  field_first_content_area_bg: true
+  field_fourth_content_area_bg_col: true
+  field_fourth_content_area_items: true
+  field_header: true
+  field_header_background_color: true
+  field_second_content_area_bg: true
+  field_second_content_area_items: true
+  field_sixth_content_area_bg_colo: true
+  field_sixth_content_area_items: true
+  field_third_content_area_bg_colo: true
+  field_third_content_area_items: true

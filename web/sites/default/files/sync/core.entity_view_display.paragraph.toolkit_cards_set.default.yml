@@ -1,0 +1,26 @@
+uuid: 19268afa-7f28-4d21-9de2-c803c5372d3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.toolkit_cards_set.field_feature_title
+    - field.field.paragraph.toolkit_cards_set.field_toolkit_cards_set
+    - paragraphs.paragraphs_type.toolkit_cards_set
+  module:
+    - entity_reference_revisions
+id: paragraph.toolkit_cards_set.default
+targetEntityType: paragraph
+bundle: toolkit_cards_set
+mode: default
+content:
+  field_toolkit_cards_set:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_feature_title: true

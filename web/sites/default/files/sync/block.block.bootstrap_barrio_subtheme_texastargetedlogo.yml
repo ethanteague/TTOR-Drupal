@@ -1,0 +1,25 @@
+uuid: 534bd39c-3215-4d7a-9dfe-8b1f9e51a42f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:fe69d313-db98-4e31-8c8f-7398bb31c947'
+  module:
+    - block_content
+  theme:
+    - bootstrap_barrio_subtheme
+id: bootstrap_barrio_subtheme_texastargetedlogo
+theme: bootstrap_barrio_subtheme
+region: header
+weight: -5
+provider: null
+plugin: 'block_content:fe69d313-db98-4e31-8c8f-7398bb31c947'
+settings:
+  id: 'block_content:fe69d313-db98-4e31-8c8f-7398bb31c947'
+  label: 'Texas Targeted logo'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

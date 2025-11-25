@@ -1,0 +1,19 @@
+uuid: 84bc80a9-1e7b-4c7f-b81d-31b620800996
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_additional_css_classes
+    - paragraphs.paragraphs_type.call_to_action_blue_info_panel
+id: paragraph.call_to_action_blue_info_panel.field_additional_css_classes
+field_name: field_additional_css_classes
+entity_type: paragraph
+bundle: call_to_action_blue_info_panel
+label: 'Additional css classes'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

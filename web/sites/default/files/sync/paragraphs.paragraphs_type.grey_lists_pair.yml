@@ -1,0 +1,10 @@
+uuid: 5263d5cd-20b9-41d9-8fdb-ad7085eddbab
+langcode: en
+status: true
+dependencies: {  }
+id: grey_lists_pair
+label: 'Grey lists pair'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

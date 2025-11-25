@@ -1,0 +1,9 @@
+uuid: 43e1553e-e2c0-4ee0-9123-4404a56da207
+langcode: en
+status: true
+dependencies: {  }
+name: 'Resources spanish'
+vid: resources_spanish
+description: null
+weight: 0
+new_revision: false

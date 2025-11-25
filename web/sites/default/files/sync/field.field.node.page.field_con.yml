@@ -1,0 +1,105 @@
+uuid: 8bffe009-25c3-4f11-80b6-09c16b1cfbb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_con
+    - node.type.page
+    - paragraphs.paragraphs_type.banner
+    - paragraphs.paragraphs_type.banner_with_3_videos
+    - paragraphs.paragraphs_type.call_to_action
+    - paragraphs.paragraphs_type.checklist
+    - paragraphs.paragraphs_type.dark_blue_banner_text
+    - paragraphs.paragraphs_type.resources_grid_boxes
+    - paragraphs.paragraphs_type.text_only_feature_banner
+    - paragraphs.paragraphs_type.toolkit_cards_set
+  module:
+    - entity_reference_revisions
+id: node.page.field_con
+field_name: field_con
+entity_type: node
+bundle: page
+label: 'First Content area items'
+description: 'Choose items that will appear on the page below the header. Can be arranged to determine the order in which they will appear.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      banner: banner
+      dark_blue_banner_text: dark_blue_banner_text
+      text_only_feature_banner: text_only_feature_banner
+      call_to_action: call_to_action
+      checklist: checklist
+      banner_with_3_videos: banner_with_3_videos
+      resources_grid_boxes: resources_grid_boxes
+      toolkit_cards_set: toolkit_cards_set
+    negate: 0
+    target_bundles_drag_drop:
+      banner:
+        weight: 6
+        enabled: true
+      banner_with_3_videos:
+        weight: 17
+        enabled: true
+      call_to_action:
+        weight: 11
+        enabled: true
+      call_to_action_blue_info_panel:
+        weight: 23
+        enabled: false
+      checklist:
+        weight: 12
+        enabled: true
+      dark_blue_banner_text:
+        weight: 6
+        enabled: true
+      feature_with_video:
+        weight: 6
+        enabled: false
+      feature_without_video:
+        weight: 5
+        enabled: false
+      grey_boxes:
+        weight: 16
+        enabled: false
+      grey_lists_pair:
+        weight: 24
+        enabled: false
+      info:
+        weight: 20
+        enabled: false
+      info_grid_box:
+        weight: 31
+        enabled: false
+      info_no_background:
+        weight: 26
+        enabled: false
+      large_video_in_content_area_of_p:
+        weight: 17
+        enabled: false
+      resources_grid_boxes:
+        weight: 34
+        enabled: true
+      text_only_feature_banner:
+        weight: 7
+        enabled: true
+      this_that_slideshow:
+        weight: 36
+        enabled: false
+      toolkit_cards:
+        weight: 38
+        enabled: false
+      toolkit_cards_set:
+        weight: 40
+        enabled: true
+      two_panel_info:
+        weight: 23
+        enabled: false
+      video_:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

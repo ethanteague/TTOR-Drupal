@@ -5,27 +5,56 @@
 
 // I don't love that we're using jQuery here, but Drupal's ajax system still
 // seems to be closely tied to it.
-(function ($, Drupal, once) {
+(function init($, Drupal, once) {
   // Shared application state for same page preview.
-  const samePagePreviewToggle = '#edit-toggle-preview-link',
-    samePagePreviewCheckbox = '#edit-toggle-preview-checkbox',
-    samePagePreviewLive = '.node-form .same-page-preview--live-refresh input',
-    samePagePreviewInclusionList = '.node-form .same-page-preview--blur-refresh input',
-    samePagePreviewTextEditor = '.node-form .ck-editor__editable_inline',
-    samePagePreviewCloseBtn = '.same-page-preview-dialog .ui-dialog-titlebar-close',
-    samePagePreviewPane = 'iframe.preview',
-    defaultPreviewBtn = document.querySelector('[data-drupal-selector="edit-preview"]'),
-    previewCheckbox = document.querySelector(samePagePreviewCheckbox),
-    openLink = document.querySelector(samePagePreviewToggle),
-    toggleStore = 'samePagePreview--onByDefault';
+  const samePagePreviewToggle = '#edit-toggle-preview-link';
+  const samePagePreviewLive =
+    '.node-form .same-page-preview--live-refresh input';
+  const samePagePreviewForce = '.node-form .same-page-preview--force-refresh';
+  const samePagePreviewForceElementsOnBlur =
+    'input, textarea, .ck-editor__editable_inline, .ck-editor__nested-editable';
+  const samePagePreviewForceElementsOnChange = 'select';
+  const samePagePreviewCloseBtn =
+    '.same-page-preview-dialog .ui-dialog-titlebar-close';
+  const samePagePreviewPane = 'iframe.preview';
+  const defaultPreviewBtn = document.querySelector(
+    '[data-drupal-selector="edit-preview"]',
+  );
+  const previewOnHiddenField = document.querySelector(
+    '[data-drupal-selector="edit-ssp-preview-enabled"]',
+  );
+  const openLink = document.querySelector(samePagePreviewToggle);
 
   Drupal.samePagePreview = {
-    settings: [
-      {
-        'storageName': 'onByDefault',
-        'selector': '#edit-toggle-preview-link',
+    settings: {
+      onByDefault: {
+        storageName: 'Drupal.samePagePreview.onByDefault',
+        label: 'Open preview by default',
+        selector: 'edit-toggle-preview-link',
+        default: 1,
       },
-    ],
+      toggleNewWindow: {
+        storageName: 'Drupal.samePagePreview.toggleNewWindow',
+        label: 'Show New Window button',
+        selector: 'toggle-new-window',
+        target: "[data-drupal-selector='new-window']",
+        default: 1,
+      },
+      toggleFullscreen: {
+        storageName: 'Drupal.samePagePreview.toggleFullscreen',
+        label: 'Show Full Screen button',
+        selector: 'toggle-full-screen',
+        target: "[data-drupal-selector='full-screen']",
+        default: 1,
+      },
+      toggleViewModes: {
+        storageName: 'Drupal.samePagePreview.toggleViewModes',
+        label: 'Show View Mode drop down',
+        selector: 'toggle-view-mode',
+        target: '.js-form-item-view-mode',
+        default: 1,
+      },
+    },
 
     activeState: {
       uuid: null,
@@ -35,23 +64,53 @@
       scrollPosition: 0,
     },
 
-    init: context => {
-      once('samePagePreviewInit', samePagePreviewToggle, context).forEach(element => element.addEventListener('click', () => Drupal.samePagePreview.forceRefresh()));
-      once('samePagePreviewInit', samePagePreviewCheckbox, context).forEach(element => Drupal.samePagePreview.initializeToggle(element));
-      once('samePagePreviewInit', samePagePreviewPane, context).forEach(element => element.addEventListener('load', () => Drupal.samePagePreview.paneRefresh(element)));
-      once('samePagePreviewAuto', samePagePreviewLive, context).forEach(element => element.addEventListener('keyup', () => Drupal.samePagePreview.liveRefresh(element)));
-      once('samePagePreviewAuto', samePagePreviewInclusionList, context).forEach(element => element.addEventListener('blur', () => Drupal.samePagePreview.forceRefresh()));
-      once('samePagePreviewAuto', samePagePreviewTextEditor, context).forEach(element => element.addEventListener('blur', () => Drupal.samePagePreview.forceRefresh()));
+    init: (context) => {
+      once('samePagePreviewInit', samePagePreviewToggle, context).forEach(
+        (element) => Drupal.samePagePreview.initializeToggle(element),
+      );
+      once('samePagePreviewInit', samePagePreviewPane, context).forEach(
+        (element) =>
+          element.addEventListener('load', () =>
+            Drupal.samePagePreview.paneRefresh(element),
+          ),
+      );
+      once('samePagePreviewAuto', samePagePreviewLive, context).forEach(
+        (element) =>
+          element.addEventListener('keyup', () =>
+            Drupal.samePagePreview.liveRefresh(element),
+          ),
+      );
+      once('samePagePreviewAuto', samePagePreviewForce, context).forEach(
+        (element) => {
+          element.addEventListener('change', (event) => {
+            if (event.target.matches(samePagePreviewForceElementsOnChange)) {
+              Drupal.samePagePreview.forceRefresh();
+            }
+          });
+          element.addEventListener(
+            'blur',
+            (event) => {
+              if (event.target.matches(samePagePreviewForceElementsOnBlur)) {
+                Drupal.samePagePreview.forceRefresh();
+              }
+            },
+            true,
+          );
+        },
+      );
     },
 
     // Force a refresh of the preview pane.
-    forceRefresh: async () => {
+    forceRefresh: () => {
       if (defaultPreviewBtn) {
         const iframe = document.querySelector(samePagePreviewPane);
-        const iframeWindow = iframe?.contentWindow;
-        Drupal.samePagePreview.activeState.scrollPosition = iframeWindow?.document.documentElement.scrollTop;
+        const iframeWindow = iframe ? iframe.contentWindow : undefined;
+        if (iframeWindow) {
+          Drupal.samePagePreview.activeState.scrollPosition =
+            iframeWindow.document.documentElement.scrollTop;
+        }
         const active = document.activeElement;
-        await defaultPreviewBtn.dispatchEvent(new Event("click"));
+        defaultPreviewBtn.click();
         active.focus();
       }
     },
@@ -62,7 +121,7 @@
       if (!iframe) {
         return;
       }
-      let preview = (iframe.contentWindow || iframe.contentDocument);
+      let preview = iframe.contentWindow || iframe.contentDocument;
       if (preview.document) {
         preview = preview.document;
       }
@@ -80,31 +139,27 @@
       }
     },
 
-    initializeToggle: element => {
-      element.addEventListener('change', () => Drupal.samePagePreview.toggleDialog(element));
+    initializeToggle: (element) => {
       // Check for a stored state.
-      let toggleInit = localStorage.getItem(toggleStore) === '1';
-      previewCheckbox.checked = toggleInit;
-      if (toggleInit) {
-        openLink.dispatchEvent(new Event('click'));
+      if (localStorage.getItem('Drupal.samePagePreview.onByDefault') === '1') {
+        openLink.click();
       }
+
+      element.addEventListener('click', () =>
+        Drupal.samePagePreview.forceRefresh(),
+      );
     },
 
-    toggleDialog: element => {
-      element.checked ? Drupal.samePagePreview.openDialog(element) : Drupal.samePagePreview.closeDialog(element);
-      const storeVal = element.checked ? 1 : 0;
-      localStorage.setItem(toggleStore, storeVal);
-    },
-
-    openDialog: async (element) => {
+    openDialog: () => {
       // @todo trigger the open more directly, so this will wait for dialog.
-      await openLink.dispatchEvent(new Event('click'));
-      element.focus();
+      openLink.click();
+      const active = document.activeElement;
+      active.focus();
     },
 
-    closeDialog: async (element) => {
+    closeDialog: (element) => {
       const closeBtn = document.querySelector(samePagePreviewCloseBtn);
-      await closeBtn.dispatchEvent(new Event('click'));
+      closeBtn.click();
       element.focus();
     },
 
@@ -126,11 +181,17 @@
       if (uuid) {
         Drupal.samePagePreview.activeState.uuid = uuid;
       } else if (!Drupal.samePagePreview.activeState.uuid) {
-        Drupal.samePagePreview.activeState.uuid = document.querySelector('iframe.preview').src.match(regex)[2];
+        const previewUuid = document
+          .querySelector('iframe.preview')
+          .src.match(regex)[2];
+        Drupal.samePagePreview.activeState.uuid = previewUuid;
       }
 
       // Update viewMode if it has changed.
-      if (viewMode && (Drupal.samePagePreview.activeState.viewMode !== viewMode)) {
+      if (
+        viewMode &&
+        Drupal.samePagePreview.activeState.viewMode !== viewMode
+      ) {
         Drupal.samePagePreview.activeState.viewMode = viewMode;
         Drupal.samePagePreview.activeState.scrollPosition = 0;
       }
@@ -139,15 +200,27 @@
       // using the provided uuid will allow preview to function in cases where the
       // uuid changes.
       if (!Drupal.samePagePreview.activeState.previewPaneSrc) {
-        Drupal.samePagePreview.activeState.previewPaneSrc = document.querySelector('iframe.preview').src;
+        Drupal.samePagePreview.activeState.previewPaneSrc =
+          document.querySelector(samePagePreviewPane).src;
       }
-      Drupal.samePagePreview.activeState.previewPaneSrc = Drupal.samePagePreview.activeState.previewPaneSrc.replace(regex, `$1${Drupal.samePagePreview.activeState.uuid}/${Drupal.samePagePreview.activeState.viewMode}?mode=same_page_preview`);
+      Drupal.samePagePreview.activeState.previewPaneSrc =
+        Drupal.samePagePreview.activeState.previewPaneSrc.replace(
+          regex,
+          `$1${Drupal.samePagePreview.activeState.uuid}/${Drupal.samePagePreview.activeState.viewMode}?mode=same_page_preview`,
+        );
 
       // The new window button should also be updated to point to the new uuid.
       if (!Drupal.samePagePreview.activeState.newWindowHref) {
-        Drupal.samePagePreview.activeState.newWindowHref = document.querySelector('.button.new-window').href;
+        Drupal.samePagePreview.activeState.newWindowHref =
+          document.querySelector(
+            `${Drupal.samePagePreview.settings.toggleNewWindow.target} a`,
+          ).href;
       }
-      Drupal.samePagePreview.activeState.newWindowHref = Drupal.samePagePreview.activeState.newWindowHref.replace(regex, `$1${Drupal.samePagePreview.activeState.uuid}/${Drupal.samePagePreview.activeState.viewMode}`);
+      Drupal.samePagePreview.activeState.newWindowHref =
+        Drupal.samePagePreview.activeState.newWindowHref.replace(
+          regex,
+          `$1${Drupal.samePagePreview.activeState.uuid}/${Drupal.samePagePreview.activeState.viewMode}`,
+        );
     },
 
     /**
@@ -157,19 +230,24 @@
      */
     updateDom: (previewPane, newWindowButton) => {
       // Only update form elements if the application state has changed.
-      if (Drupal.samePagePreview.activeState.newWindowHref !== newWindowButton.href) {
+      if (
+        Drupal.samePagePreview.activeState.newWindowHref !==
+        newWindowButton.href
+      ) {
         newWindowButton.href = Drupal.samePagePreview.activeState.newWindowHref;
       }
       // The preview pane src always updates so that the iframe is reloaded
       previewPane.src = Drupal.samePagePreview.activeState.previewPaneSrc;
     },
-  }
+  };
 
   Drupal.behaviors.samePagePreview = {
-    attach: context => {
-      Drupal.samePagePreview.init(context);
-    }
-  }
+    attach: (context) => {
+      if (previewOnHiddenField && previewOnHiddenField.value === '1') {
+        Drupal.samePagePreview.init(context);
+      }
+    },
+  };
 
   // Public functions.
 
@@ -179,11 +257,17 @@
    * @param {string} viewMode The view mode to be used for preview.
    */
   $.fn.samePagePreviewRenderPreview = (newUuid = null, viewMode) => {
-    const previewPane = document.querySelector('iframe.preview');
-    const newWindowButton = document.querySelector('.button.new-window');
+    const previewPane = document.querySelector(samePagePreviewPane);
+    const newWindowButton = document.querySelector(
+      Drupal.samePagePreview.settings.toggleNewWindow.target,
+    );
 
-    Drupal.samePagePreview.updateState(newUuid, viewMode);
-    Drupal.samePagePreview.updateDom(previewPane, newWindowButton);
+    if (!previewPane) {
+      defaultPreviewBtn.focus();
+      Drupal.samePagePreview.openDialog(samePagePreviewToggle);
+    } else {
+      Drupal.samePagePreview.updateState(newUuid, viewMode);
+      Drupal.samePagePreview.updateDom(previewPane, newWindowButton);
+    }
   };
 })(jQuery, Drupal, once);
-

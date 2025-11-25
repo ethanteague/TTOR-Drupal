@@ -5,8 +5,10 @@
  * gin_login.module
  */
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Url;
 use Drupal\gin\GinSettings;
+use Drupal\gin_login\Services\GinLoginRouteService;
 
 /**
  * Page_attachments_alter()
@@ -97,6 +99,16 @@ function gin_login_form_alter(&$form, $form_state, $form_id) {
   // User form (Login, Register or Forgot password)
   if (strpos($form_id, 'user_login') !== FALSE || strpos($form_id, 'user_register') !== FALSE || in_array($form_id, ['user_pass'])) {
     $form['actions']['submit']['#attributes']['class'][] = 'button--primary';
+
+    // Check if site is in maintenance mode.
+    // Display a message if true.
+    if (\Drupal::state()->get('system.maintenance_mode')) {
+      \Drupal::messenger()->addWarning(
+        new FormattableMarkup(\Drupal::config('system.maintenance')->get('message'), [
+          '@site' => \Drupal::config('system.site')->get('name'),
+        ])
+      );
+    }
   }
 
   // Adding button/links to Register and Forgot password.
@@ -153,18 +165,14 @@ function gin_login_form_alter(&$form, $form_state, $form_id) {
  */
 function gin_login_theme() {
   // Page.
-  $theme['page__user__login'] = [
-    'template' => 'page--user--login',
-    'preprocess functions' => ['gin_login_preprocess_ginlogin'],
-  ];
-  $theme['page__user__password'] = [
-    'template' => 'page--user--password',
-    'preprocess functions' => ['gin_login_preprocess_ginlogin'],
-  ];
-  $theme['page__user__register'] = [
-    'template' => 'page--user--register',
-    'preprocess functions' => ['gin_login_preprocess_ginlogin'],
-  ];
+  $route_definitions = \Drupal::classResolver(GinLoginRouteService::class)->getLoginRouteDefinitions();
+
+  foreach ($route_definitions as $route_definition) {
+    $theme[$route_definition['page']] = [
+      'template' => $route_definition['template'],
+      'preprocess functions' => $route_definition['preprocess functions'],
+    ];
+  }
 
   return $theme;
 }
@@ -178,7 +186,6 @@ function gin_login_preprocess_ginlogin(&$variables) {
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $themeIconPath = theme_get_setting('icon_path', $theme);
   $themeUseDefaultIcon = theme_get_setting('icon_default', $theme);
-  $darkmode = theme_get_setting('enable_darkmode', $theme);
   $fileUrlGenerator = \Drupal::service('file_url_generator');
 
   // #3258015: Make sure we're compatible with the new variant.
@@ -210,22 +217,62 @@ function gin_login_preprocess_ginlogin(&$variables) {
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter() for 'page'.
+ */
+function gin_login_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if (!_gin_login_gin_is_active()) {
+    return;
+  }
+
+  // Get path from Route.
+  $route = \Drupal::routeMatch()->getRouteName();
+
+  switch ($route) {
+    case 'user.login':
+      $suggestions[] = 'page__user__login';
+      break;
+
+    case 'user.pass':
+      $suggestions[] = 'page__user__password';
+      break;
+
+    case 'user.register':
+      $suggestions[] = 'page__user__register';
+      break;
+  }
+}
+
+/**
  * Helper function to check if we're on the right paths.
  */
 function _gin_login__check_path() {
   // Get path from Route.
   $route = \Drupal::routeMatch()->getRouteName();
+  $route_definitions = \Drupal::classResolver(GinLoginRouteService::class)->getLoginRouteDefinitions();
 
-  if (
-    $route == 'user.login' ||
-    $route == 'user.pass' ||
-    $route == 'user.register'
-  ) {
+  if (array_key_exists($route, $route_definitions)) {
     return TRUE;
   }
-  else {
-    return FALSE;
-  }
+  return FALSE;
+}
+
+/**
+ * Ignore gin sticky actions.
+ */
+function gin_login_gin_ignore_sticky_form_actions() {
+  // Get path from Route.
+  $route = \Drupal::routeMatch()->getRouteName();
+  $route_definitions = \Drupal::classResolver(GinLoginRouteService::class)->getLoginRouteDefinitions();
+
+  // Fallback routes.
+  $fallback_routes = [
+    'user_login_form',
+    'user_pass',
+    'user_register_form',
+  ];
+
+  // Merge route definitions with fallback routes and return them.
+  return array_unique(array_merge(array_keys($route_definitions), $fallback_routes));
 }
 
 /**
@@ -250,7 +297,7 @@ function _gin_login_gin_is_active() {
 
   // Admin theme will have no value if is set to use the default theme.
   if ($admin_theme_name) {
-    $admin_base_themes = isset($theme_handler[$admin_theme_name]->base_themes) ? $theme_handler[$admin_theme_name]->base_themes : [];
+    $admin_base_themes = $theme_handler[$admin_theme_name]->base_themes ?? [];
     $admin_base_themes[$admin_theme_name] = $admin_theme_name;
   }
   else {

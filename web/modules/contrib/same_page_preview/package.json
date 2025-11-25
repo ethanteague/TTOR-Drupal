@@ -1,0 +1,21 @@
+{
+  "name": "same_page_preview",
+  "version": "1.0.0",
+  "description": "Provide a side-by-side preview of the current page in the same window.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "eslint": "eslint . -c .eslintrc.contrib.json --no-eslintrc",
+    "eslint:fix": "eslint . -c .eslintrc.contrib.json --fix --no-eslintrc",
+    "eslint:core": "../../../core/node_modules/.bin/eslint . --no-error-on-unmatched-pattern --ignore-pattern='*.es6.js' --resolve-plugins-relative-to=../../../core --ext=.js,.yml -c ../../../core/.eslintrc.passing.json"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-drupal-contrib": "^2.0.3",
+    "prettier": "^3.2.5"
+  }
+}

@@ -14,8 +14,3 @@ admin:
   dependencies:
     - core/drupal
     - core/once
-
-new_window_preview:
-  css:
-    theme:
-      css/new-window-preview.css: {}

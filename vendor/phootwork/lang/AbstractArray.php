@@ -185,6 +185,7 @@ abstract class AbstractArray implements \Countable {
 	 * @param mixed ...$arguments
 	 *
 	 * @return bool
+	 *
 	 * @psalm-suppress MixedFunctionCall
 	 * @psalm-suppress MixedAssignment
 	 */
@@ -216,7 +217,7 @@ abstract class AbstractArray implements \Countable {
 	 *
 	 * @return $this
 	 */
-	public function sort(Comparator|callable $cmp = null): self {
+	public function sort(Comparator|callable|null $cmp = null): self {
 		$this->doSort($this->array, 'usort', 'sort', $cmp);
 
 		return $this;
@@ -230,7 +231,7 @@ abstract class AbstractArray implements \Countable {
 	 * @param callable                 $sort  the default sort function
 	 * @param Comparator|callable|null $cmp   the compare function
 	 */
-	protected function doSort(array & $array, callable $usort, callable $sort, Comparator|callable $cmp = null): void {
+	protected function doSort(array & $array, callable $usort, callable $sort, Comparator|callable|null $cmp = null): void {
 		if (is_callable($cmp)) {
 			$usort($array, $cmp);
 		} elseif ($cmp instanceof Comparator) {
@@ -277,6 +278,7 @@ abstract class AbstractArray implements \Countable {
 	 * @param callable(mixed, mixed): scalar $callback the filter function
 	 *
 	 * @return static
+	 *
 	 * @psalm-suppress UnsafeInstantiation
 	 */
 	public function filter(callable $callback): self {
@@ -289,6 +291,7 @@ abstract class AbstractArray implements \Countable {
 	 * @param callable $callback the applied callback function
 	 *
 	 * @return static
+	 *
 	 * @psalm-suppress UnsafeInstantiation
 	 */
 	public function map(callable $callback): self {

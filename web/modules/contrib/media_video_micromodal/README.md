@@ -50,17 +50,20 @@ CONFIGURATION
 * Manage the display settings for the "remote_video" media bundle.
 * Set up your desired configuration based on the use case.
 
-MVM uses display modes on the remote video media type to display the modal in a variety of ways.
+MVM uses display modes on the remote video media type to display
+the modal in a variety of ways.
 See below to find the use case that best suits your needs.
 
 ### Thumbnail - Default
 To display the video thumbnail linking to the modal:
-- Select the oembed auto generated image for the video which should be "Thumbnail".
+- Select the oembed auto generated image for the video
+  which should be "Thumbnail".
 - Set the "Format" to "Micromodal field formatter".
 - Use the settings to select the image style for the thumbnail.
 
 ### Thumbnail - Custom
-Instead of using the oembed thumbnail you can use a custom thumbnail that is set on the remote video.
+Instead of using the oembed thumbnail you can use a custom thumbnail
+that is set on the remote video.
 - This field can be type "image" or "media" reference.
 - Follow the steps for "Thumbnail - Default" to apply the formatting.
 
@@ -68,10 +71,12 @@ Instead of using the oembed thumbnail you can use a custom thumbnail that is set
 To display the media name linking to the modal:
 - Display the "Name" field.
 - Set the "Format" to "Micromodal field formatter".
-- Use the settings to add additional styles to a &lt;span&gt; tag around the name.
+- Use the settings to add additional styles to a &lt;span&gt;
+  tag around the name.
 
 ### Text - Caption (custom per media)
-You can customize the text for each individual media by using the caption field.
+You can customize the text for each individual media by using
+the caption field.
 - Follow the steps above for "Text - Media Name".
 - Check the optional "Caption Swap" setting in the formatter.
 - This will display the media caption instead of the media name.
@@ -83,7 +88,8 @@ You can also set the link text custom per display mode.
 - This custom text will be displayed for this display mode.
 
 ### WORKING WITH CKEDITOR
-It's easy to use the MVM formatter inside CKEditor, but needs some setup to accomplish this.
+It's easy to use the MVM formatter inside CKEditor,
+but needs some setup to accomplish this.
 - Ensure the Media Library module is enabled.
 - Make sure the "Embed media" filter has been checked for the text format that
 CKEditor is using.
@@ -102,7 +108,8 @@ for the content type and assigning the formatter.  Then inside the view use
 the micromodal formatter(s) set.
 
 ### About micromodal.js:
-Micromodal.js is a lightweight, configurable and a11y-enabled modal library written in pure JavaScript.
+Micromodal.js is a lightweight, configurable and a11y-enabled modal library
+written in pure JavaScript.
 https://micromodal.vercel.app
 https://github.com/Ghosh/micromodal
 License: https://github.com/ghosh/Micromodal/blob/master/LICENSE.md

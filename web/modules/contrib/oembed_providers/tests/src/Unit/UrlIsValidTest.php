@@ -29,12 +29,8 @@ class UrlIsValidTest extends UnitTestCase {
   protected function setUp(): void {
     parent::setUp();
 
-    $entity_type_manager = $this->getMockBuilder('Drupal\Core\Entity\EntityTypeManager')
-      ->disableOriginalConstructor()
-      ->getMock();
-    $messenger = $this->getMockBuilder('Drupal\Core\Messenger\Messenger')
-      ->disableOriginalConstructor()
-      ->getMock();
+    $entity_type_manager = $this->createMock('Drupal\Core\Entity\EntityTypeManager');
+    $messenger = $this->createMock('Drupal\Core\Messenger\Messenger');
     $this->formObject = new OembedProviderForm($entity_type_manager, $messenger);
   }
 
@@ -58,6 +54,7 @@ class UrlIsValidTest extends UnitTestCase {
       '127.0.0.1:8085/*',
       '[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]/path/*',
       '[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:8085/path/*',
+      'example.com/asset/*#*',
     ];
     return $this
       ->dataEnhanceWithScheme($urls);
@@ -95,6 +92,7 @@ class UrlIsValidTest extends UnitTestCase {
       'sub.*.example.com',
       '*.com',
       '*.com/path/*',
+      'user:pass@example.com/asset/*',
     ];
     return $this
       ->dataEnhanceWithScheme($data);

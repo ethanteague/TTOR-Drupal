@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Same Page Preview.
+ */
+
+use Drupal\Core\Cache\Cache;
+
+/**
+ * Implements hook_install().
+ */
+function same_page_preview_install() : void {
+  Cache::invalidateTags(['component_plugins']);
+}

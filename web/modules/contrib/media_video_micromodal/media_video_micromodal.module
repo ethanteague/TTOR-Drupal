@@ -5,8 +5,8 @@
  * Contains media_video_micromodal.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_help().

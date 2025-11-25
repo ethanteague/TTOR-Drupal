@@ -491,7 +491,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access content'
+          perm: 'administer paragraphs'
       cache:
         type: tag
         options: {  }

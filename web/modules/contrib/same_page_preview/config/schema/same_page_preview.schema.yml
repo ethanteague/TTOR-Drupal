@@ -3,6 +3,6 @@ same_page_preview.settings:
   type: config_object
   label: 'Same Page Preview settings'
   mapping:
-    example:
-      type: string
-      label: 'Example'
+    preview_on_by_default:
+      type: boolean
+      label: 'Preview On'

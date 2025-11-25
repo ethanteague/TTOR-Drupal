@@ -81,11 +81,11 @@ class ConfigPagesForm extends ContentEntityForm {
    *   The language manager.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   The messenger.
-   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface|null $entity_type_bundle_info
    *   The entity type bundle service.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
+   * @param \Drupal\Component\Datetime\TimeInterface|null $time
    *   The time service.
-   * @param \Drupal\Core\Session\AccountProxyInterface $user
+   * @param \Drupal\Core\Session\AccountProxyInterface|null $user
    *   User proxy, for checking permissions.
    */
   public function __construct(EntityRepositoryInterface $entity_repository,
@@ -94,9 +94,9 @@ class ConfigPagesForm extends ContentEntityForm {
                               EntityStorageInterface $config_pages_type_storage,
                               LanguageManagerInterface $language_manager,
                               MessengerInterface $messenger,
-                              EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
-                              TimeInterface $time = NULL,
-                              AccountProxyInterface $user = NULL
+                              ?EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
+                              ?TimeInterface $time = NULL,
+                              ?AccountProxyInterface $user = NULL
   ) {
     parent::__construct($entity_repository, $entity_type_bundle_info, $time);
     $this->configPagesStorage = $config_pages_storage;
@@ -204,7 +204,7 @@ class ConfigPagesForm extends ContentEntityForm {
     }
 
     // Add context import fieldset if any CP exists at this moment.
-    if (!$this->entity->get('context')->isEmpty()) {
+    if (!$this->entity->get('context')->isEmpty() && $this->user->hasPermission('context import config_pages entity')) {
       $options = [];
       foreach ($list as $id => $item) {
 
@@ -274,20 +274,17 @@ class ConfigPagesForm extends ContentEntityForm {
    */
   public function configPagesImportValues(array $form, FormStateInterface $form_state) {
     $entity = $this->entity;
+    $imported_entity_id = $form_state->getValue('other_context')['list'];
 
-    if ($imported_entity_id = $form_state->getValue('other_context')['list']) {
-      $entityStorage = $this->entityTypeManager->getStorage('config_pages');
-      $imported_entity = $entityStorage->load($imported_entity_id);
+    if ($imported_entity_id) {
+      // Store the imported entity ID in form state for the confirmation page.
+      $form_state->set('imported_entity_id', $imported_entity_id);
 
-      foreach ($entity as $name => &$value) {
-
-        // Process only fields added from BO.
-        if ($value->getFieldDefinition() instanceof FieldConfigInterface) {
-          $entity->set($name, $imported_entity->get($name)->getValue());
-        }
-      }
-
-      $entity->save();
+      // Redirect to confirmation page.
+      $form_state->setRedirectUrl(Url::fromRoute('entity.config_pages.import_confirmation', [
+        'config_pages' => $entity->id(),
+        'imported_entity_id' => $imported_entity_id
+      ]));
     }
   }
 
@@ -371,7 +368,7 @@ class ConfigPagesForm extends ContentEntityForm {
         '#value' => t('Clear values'),
         '#submit' => ['::configPagesClearValues'],
         '#button_type' => "submit",
-        '#access' => $this->user->hasPermission('edit ' . $entity->bundle() . ' config page entity'),
+        '#access' => $this->user->hasPermission('access config_pages clear values option'),
       ];
     }
 

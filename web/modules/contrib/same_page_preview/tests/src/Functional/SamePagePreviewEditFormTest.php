@@ -13,11 +13,6 @@ use Drupal\Tests\node\Functional\NodeTestBase;
 class SamePagePreviewEditFormTest extends NodeTestBase {
 
   /**
-   * {@inheritdoc}
-   */
-  protected $profile = 'standard';
-
-  /**
    * Modules to enable.
    *
    * @var array
@@ -25,31 +20,16 @@ class SamePagePreviewEditFormTest extends NodeTestBase {
   protected static $modules = ['same_page_preview'];
 
   /**
+   * {@inheritdoc}
+   */
+  protected $profile = 'standard';
+
+  /**
    * Theme to use for tests.
    *
    * @var string
    */
   protected $defaultTheme = 'olivero';
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-
-    // Set the administrative theme to be Claro.
-    $this->config('system.theme')->set('admin', 'claro')->save();
-    $this->config('node.settings')->set('use_admin_theme', '1')->save();
-
-    $this->adminUser = $this->drupalCreateUser([
-      'edit own page content',
-      'create page content',
-      'access same_page_preview',
-      'view the administration theme',
-    ]);
-
-    $this->drupalLogin($this->adminUser);
-  }
 
   /**
    * See if we're using Claro as an admin theme.
@@ -79,16 +59,42 @@ class SamePagePreviewEditFormTest extends NodeTestBase {
 
     // Does the page have the preview buttons?
     try {
-      $session->assert(!$this->getSession()
-        ->getPage()
-        ->hasLink('I dont exist'), "Shouldn't have dummy button.");
-      $session->assert($this->getSession()
-        ->getPage()
-        ->hasLink('Toggle Preview'), "I should have a Toggle Preview button.");
+      $session->assert(
+        !$this->getSession()
+          ->getPage()
+          ->hasLink("I don't exist"), "Shouldn't have dummy button."
+      );
+      $session->assert(
+        $this->getSession()
+          ->getPage()
+          ->hasLink('Toggle Preview'), "I should have a Toggle Preview button."
+      );
     }
     catch (ExpectationException $e) {
       $this->fail('Preview buttons not found.');
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    // Set the administrative theme to be Claro.
+    $this->config('system.theme')->set('admin', 'claro')->save();
+    $this->config('node.settings')->set('use_admin_theme', '1')->save();
+
+    $adminUser = $this->drupalCreateUser(
+      [
+        'edit own page content',
+        'create page content',
+        'access same_page_preview',
+        'view the administration theme',
+      ]
+    );
+
+    $this->drupalLogin($adminUser);
   }
 
 }

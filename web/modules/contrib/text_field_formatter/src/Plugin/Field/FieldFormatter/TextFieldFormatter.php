@@ -289,13 +289,13 @@ class TextFieldFormatter extends StringFormatter {
             }
             $temp = $this->token->replace($this->getSetting('override_link_label'), $replace_tokens, ['clear' => TRUE]);
           }
-          $elements[$delta]["#title"]["#context"]["value"] = [
+          $elements[$delta] = [
             '#type' => 'html_tag',
             '#tag' => $wrap_tag,
-            '#value' => $temp,
             '#attributes' => [
               'class' => $class,
             ] + $attributes,
+            'children' => [$elements[$delta]],
           ];
           unset($temp);
         }

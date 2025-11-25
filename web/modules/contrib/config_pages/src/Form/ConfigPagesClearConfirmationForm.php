@@ -14,6 +14,13 @@ use Drupal\field\FieldConfigInterface;
 class ConfigPagesClearConfirmationForm extends ConfirmFormBase {
 
   /**
+   * ConfigPage id.
+   *
+   * @var mixed|null
+   */
+  private mixed $id;
+
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {

@@ -4,8 +4,5 @@
   "type": "drupal-module",
   "keywords": ["drupal"],
   "homepage": "https://www.drupal.org/project/admin_theme",
-  "license": "GPL-2.0+",
-  "require": {
-    "php": ">=5.5.9"
-  }
+  "license": "GPL-2.0-or-later"
 }

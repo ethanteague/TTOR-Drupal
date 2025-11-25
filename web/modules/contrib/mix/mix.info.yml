@@ -5,7 +5,7 @@ package: Administration
 core_version_requirement: ^8.8 || ^9 || ^10
 configure: mix.settings
 
-# Information added by Drupal.org packaging script on 2023-05-26
-version: '1.4.1'
+# Information added by Drupal.org packaging script on 2024-09-27
+version: '1.10.0'
 project: 'mix'
-datestamp: 1685111077
+datestamp: 1727433428

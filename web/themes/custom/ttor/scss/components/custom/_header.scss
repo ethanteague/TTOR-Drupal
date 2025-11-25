@@ -103,15 +103,31 @@
       height: auto;
       max-width: 260px;
     }
+
+    .ttor-breakpoint-mobile & img {
+      max-width: 220px;
+    }
   }
 
   #block-texastargetedlogo,
   #block-texastargetedlogospanish {
     top: 10px;
 
+    p {
+      margin-bottom: 0;
+    }
+
     img {
       height: 61.25px;
       width: auto;
+    }
+
+    .ttor-breakpoint-xl & {
+      top: 18px;
+
+      img {
+        height: 45px;
+      }
     }
   }
 
@@ -122,6 +138,10 @@
     .nav-item {
       font-weight: $font-weight-bold;
       padding-left: 10px;
+    }
+
+    .ttor-breakpoint-xl & .nav-item {
+      padding-left: 5px;
     }
   }
 
@@ -227,4 +247,7 @@
       }
     }
 
+    .ttor-breakpoint-mobile & {
+      top: 35px;
+    }
   }

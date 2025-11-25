@@ -13,16 +13,16 @@
           class="field field--name-field-video field--type-entity-reference field--label-hidden field__items">
           <div
             class="field field--name-field-media-oembed-video field--type-string field--label-hidden field__item">
-            <iframe
-              style="max-width:100%;"
-              class="media-oembed-content"
-              width="800"
-              height="500"
-              enablejsapi="true"
-              frameborder="0"
-              allowfullscreen
-              allowtransparency
-              title="{{item.entity.name[0]['value']}}" src="https://www.youtube.com/embed/{{ last_arg }}"></iframe>
+            <div class="ratio ratio-16x9">
+              <iframe
+                class="media-oembed-content"
+                enablejsapi="true"
+                frameborder="0"
+                allowfullscreen
+                allowtransparency
+                title="{{ item.entity.name[0]['value'] }}"
+                src="https://www.youtube.com/embed/{{ last_arg }}"></iframe>
+            </div>
           </div>
         </div>
       {% endfor %}

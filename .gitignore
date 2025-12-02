@@ -126,3 +126,8 @@ yarn-error.log
 .phpunit.result.cache
 web/sites/simpletest
 web/sites/simpletest/*
+
+# Ignore uploaded files but keep config sync and .htaccess
+/web/sites/default/files/*
+!/web/sites/default/files/sync/
+!/web/sites/default/files/.htaccess

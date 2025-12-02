@@ -184,3 +184,10 @@ AddEncoding gzip svgz
   # Disable Proxy header, since it's an attack vector.
   RequestHeader unset Proxy
 </IfModule>
+
+# Redirect Spanish domain to /es/ path.
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_HOST} ^respuestaopioidestx\.org$ [OR]
+  RewriteCond %{HTTP_HOST} ^www\.respuestaopioidestx\.org$
+  RewriteRule ^/?$ "https\:\/\/txopioidresponse\.org\/es\/" [R=301,L]
+</IfModule>

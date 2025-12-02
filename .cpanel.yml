@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - /usr/local/bin/composer install --no-dev --optimize-autoloader
+    - /usr/local/bin/drush updb -y
+    - /usr/local/bin/drush cim -y
+    - /usr/local/bin/drush cr

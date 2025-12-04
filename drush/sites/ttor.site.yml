@@ -7,7 +7,7 @@ stage:
     options: '-p 7822'
     tty: false
   paths:
-    drush-script: /usr/local/bin/drush
+    drush-script: /home/ttorahos/stage_drupal_10/vendor/bin/drush
 
 prod:
   root: /home/ttorahos/production/web
@@ -18,4 +18,4 @@ prod:
     options: '-p 7822'
     tty: false
   paths:
-    drush-script: /usr/local/bin/drush
+    drush-script: /home/ttorahos/production/vendor/bin/drush

@@ -93,7 +93,8 @@
                 "web-root": "web/"
             },
             "file-mapping": {
-                "[web-root]/.htaccess": false
+                "[web-root]/.htaccess": false,
+                "[web-root]/web.config": false
             }
         },
         "installer-paths": {

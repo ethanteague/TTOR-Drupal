@@ -9,76 +9,65 @@
   Drupal.behaviors.ttorResources = {
     attach: function (context, settings) {
       const tabs = document.querySelectorAll(".views-field .views-field-name div");
-      const tid2s = document.querySelectorAll(".resource-box.tid-2");
-      const tid3s = document.querySelectorAll(".resource-box.tid-3");
-      const tid4s = document.querySelectorAll(".resource-box.tid-4");
+      const resourceBoxes = document.querySelectorAll(".resource-box");
 
-      const tid2TitleWrap = document.getElementById("wrap-tid-2");
-      const tid3TitleWrap = document.getElementById("wrap-tid-3");
-      const tid4TitleWrap = document.getElementById("wrap-tid-4");
+      // Get all unique tid classes from resource boxes.
+      const tidSet = new Set();
+      resourceBoxes.forEach(box => {
+        box.classList.forEach(cls => {
+          if (cls.startsWith('tid-')) {
+            tidSet.add(cls.replace('tid-', ''));
+          }
+        });
+      });
+      const tids = Array.from(tidSet);
+
       tabs.forEach(tab => {
         tab.addEventListener("click", () => {
-          if (tab.classList.contains("tid-2")) {
-            tid2TitleWrap.style.display = "block";
-            tid3TitleWrap.style.display = "none";
-            tid4TitleWrap.style.display = "none";
-            tid4s.forEach(tid4 => {
-              tid4.style.display = "none";
-            })
-            tid3s.forEach(tid3 => {
-              tid3.style.display = "none";
-            })
-            tid2s.forEach(tid2 => {
-              tid2.style.display = "block";
-            })
+          // Find which tid this tab represents.
+          const tabTid = tids.find(tid => tab.classList.contains('tid-' + tid));
+          if (tabTid) {
+            // Hide all title wraps and resource boxes.
+            tids.forEach(tid => {
+              const titleWrap = document.getElementById("wrap-tid-" + tid);
+              if (titleWrap) {
+                titleWrap.style.display = "none";
+              }
+              document.querySelectorAll(".resource-box.tid-" + tid).forEach(box => {
+                box.style.display = "none";
+              });
+            });
+            // Show the selected category's title wrap and resource boxes.
+            const selectedTitleWrap = document.getElementById("wrap-tid-" + tabTid);
+            if (selectedTitleWrap) {
+              selectedTitleWrap.style.display = "block";
+            }
+            document.querySelectorAll(".resource-box.tid-" + tabTid).forEach(box => {
+              box.style.display = "block";
+            });
           }
-          if (tab.classList.contains("tid-3")) {
-            tid2TitleWrap.style.display = "none";
-            tid3TitleWrap.style.display = "block";
-            tid4TitleWrap.style.display = "none";
-            tid2s.forEach(tid2 => {
-              tid2.style.display = "none";
-            })
-            tid4s.forEach(tid4 => {
-              tid4.style.display = "none";
-            })
-            tid3s.forEach(tid3 => {
-              tid3.style.display = "block";
-            })
-          }
-          if (tab.classList.contains("tid-4")) {
-            tid2TitleWrap.style.display = "none";
-            tid3TitleWrap.style.display = "none";
-            tid4TitleWrap.style.display = "block";
-            tid2s.forEach(tid2 => {
-              tid2.style.display = "none";
-            })
-            tid3s.forEach(tid3 => {
-              tid3.style.display = "none";
-            })
-            tid4s.forEach(tid4 => {
-              tid4.style.display = "block";
-            })
-          }
-        })
+        });
       });
 
       window.addEventListener('load', () => {
-        tid2s.forEach(tid2 => {
-          tid2.classList.add('show-tab')
-        })
-        tid3s.forEach(tid3 => {
-          tid3.style.display = "none";
-        })
-        tid4s.forEach(tid4 => {
-          tid4.style.display = "none";
-        })
+        // Show first category by default, hide others.
+        const firstTid = tids[0];
+        tids.forEach((tid, index) => {
+          const titleWrap = document.getElementById("wrap-tid-" + tid);
+          document.querySelectorAll(".resource-box.tid-" + tid).forEach(box => {
+            if (index === 0) {
+              box.classList.add('show-tab');
+            } else {
+              box.style.display = "none";
+            }
+          });
+        });
       })
 
       window.addEventListener('click', () => {
-        tid2s.forEach(tid2 => {
-          tid2.classList.remove('show-tab')
-        })
+        document.querySelectorAll(".resource-box").forEach(box => {
+          box.classList.remove('show-tab');
+        });
       })
 
     }

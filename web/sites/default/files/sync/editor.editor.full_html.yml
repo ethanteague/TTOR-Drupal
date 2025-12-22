@@ -42,30 +42,6 @@ settings:
         - justify
         - left
         - right
-    ckeditor5_heading:
-      enabled_headings:
-        - heading2
-        - heading3
-        - heading4
-        - heading5
-        - heading6
-    ckeditor5_list:
-      properties:
-        reversed: true
-        startIndex: true
-      multiBlock: true
-    ckeditor5_sourceEditing:
-      allowed_tags: {  }
-    editor_advanced_link_link:
-      enabled_attributes:
-        - aria-label
-        - class
-        - id
-        - rel
-        - target
-        - title
-    media_media:
-      allow_view_mode_override: false
     ckeditor5_codeBlock:
       languages:
         -
@@ -110,6 +86,30 @@ settings:
         -
           label: XML
           language: xml
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+    editor_advanced_link_link:
+      enabled_attributes:
+        - aria-label
+        - class
+        - id
+        - rel
+        - target
+        - title
+    media_media:
+      allow_view_mode_override: false
 image_upload:
   status: true
   scheme: public

@@ -4,7 +4,7 @@ stage:
   host: ttor.a2hosted.com
   user: ttorahos
   ssh:
-    options: '-p 7822'
+    options: '-p 22'
     tty: false
   paths:
     drush-script: /home/ttorahos/stage_drupal_10/vendor/bin/drush
@@ -15,7 +15,7 @@ prod:
   host: ttor.a2hosted.com
   user: ttorahos
   ssh:
-    options: '-p 7822'
+    options: '-p 22'
     tty: false
   paths:
     drush-script: /home/ttorahos/production/vendor/bin/drush

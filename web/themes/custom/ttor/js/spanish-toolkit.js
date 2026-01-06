@@ -8,6 +8,11 @@
 
   Drupal.behaviors.ttorToolkitSpanish = {
     attach: function (context, settings) {
+      // Only run on Spanish toolkit pages.
+      if (!document.querySelector('.spanish') || !document.querySelector('.view-too')) {
+        return;
+      }
+
       const tabs = document.querySelectorAll(".views-field .views-field-name div");
       const tid19s = document.querySelectorAll(".resource-box.tid-19");
       const tid20s = document.querySelectorAll(".resource-box.tid-20");
@@ -77,7 +82,7 @@
 
       header.addEventListener('click', () => {
         tid19s.forEach(tid19 => {
-          tid19.parentNode.classList.add('show-tab')
+          tid19.parentNode.style.display = "block";
         })
         tid20s.forEach(tid20 => {
           tid20.parentNode.style.display = "block";

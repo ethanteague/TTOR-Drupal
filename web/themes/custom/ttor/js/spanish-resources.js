@@ -8,6 +8,11 @@
 
   Drupal.behaviors.ttorResourcesSpanish = {
     attach: function (context, settings) {
+      // Only run on Spanish pages with resources.
+      if (!document.querySelector('.spanish') || !document.querySelector('.resource-box.tid-9')) {
+        return;
+      }
+
       const tabs = document.querySelectorAll(".views-field .views-field-name div");
       const tid9s = document.querySelectorAll(".resource-box.tid-9");
       const tid10s = document.querySelectorAll(".resource-box.tid-10");

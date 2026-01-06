@@ -8,6 +8,11 @@
 
   Drupal.behaviors.ttorResources = {
     attach: function (context, settings) {
+      // Only run on English pages with the resources list view.
+      if (!document.querySelector('.english') || !document.querySelector('.view-resources-list')) {
+        return;
+      }
+
       const tabs = document.querySelectorAll(".views-field .views-field-name div");
       const resourceBoxes = document.querySelectorAll(".resource-box");
 
@@ -50,16 +55,10 @@
       });
 
       window.addEventListener('load', () => {
-        // Show first category by default, hide others.
-        const firstTid = tids[0];
-        tids.forEach((tid, index) => {
-          const titleWrap = document.getElementById("wrap-tid-" + tid);
+        // Show all categories by default.
+        tids.forEach((tid) => {
           document.querySelectorAll(".resource-box.tid-" + tid).forEach(box => {
-            if (index === 0) {
-              box.classList.add('show-tab');
-            } else {
-              box.style.display = "none";
-            }
+            box.classList.add('show-tab');
           });
         });
       })

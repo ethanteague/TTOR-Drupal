@@ -8,6 +8,11 @@
 
   Drupal.behaviors.ttorToolkit = {
     attach: function (context, settings) {
+      // Only run on English toolkit pages.
+      if (!document.querySelector('.english') || !document.querySelector('.view-too')) {
+        return;
+      }
+
       const tabs = document.querySelectorAll(".views-field .views-field-name div");
       const tid16s = document.querySelectorAll(".resource-box.tid-16");
       const tid17s = document.querySelectorAll(".resource-box.tid-17");
@@ -76,7 +81,7 @@
 
       header.addEventListener('click', () => {
         tid16s.forEach(tid16 => {
-          tid16.parentNode.classList.add('show-tab')
+          tid16.parentNode.style.display = "block";
         })
         tid17s.forEach(tid17 => {
           tid17.parentNode.style.display = "block";

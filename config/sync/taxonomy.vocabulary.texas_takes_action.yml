@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Texas Takes Action'
 vid: texas_takes_action
-description: ''
+description: null
 weight: 0
+new_revision: false

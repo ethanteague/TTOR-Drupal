@@ -6,6 +6,7 @@
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
 %}
+{% set slide_count = paragraph.field_say_this|length %}
     {% block paragraph %}
 
       <div{{attributes.addClass(classes)}}>
@@ -19,19 +20,11 @@
               <div
                 class="CSSgal">
 
-                <!-- Don't wrap targets in parent -->
+                <!-- Slide targets -->
+                {% for i in 1..slide_count %}
                 <s
-                  id="s1"></s>
-                <s
-                  id="s2"></s>
-                <s
-                  id="s3"></s>
-                <s
-                  id="s4"></s>
-                <s
-                  id="s5"></s>
-                <s
-                  id="s6"></s>
+                  id="s{{ i }}"></s>
+                {% endfor %}
 
                 <div
                   class="slider">
@@ -67,70 +60,24 @@
 
                 <div
                   class="prevNext">
+                  {% for i in 1..slide_count %}
                   <div>
                     <a
-                      href="#s6">«</a>
+                      href="#s{{ i == 1 ? slide_count : i - 1 }}">«</a>
 
                     <a
-                      href="#s2">»</a>
+                      href="#s{{ i == slide_count ? 1 : i + 1 }}">»</a>
 
                   </div>
-                  <div>
-                    <a
-                      href="#s1">«</a>
-
-                    <a
-                      href="#s3">»</a>
-
-                  </div>
-                  <div>
-                    <a
-                      href="#s2">«</a>
-
-                    <a
-                      href="#s4">»</a>
-
-                  </div>
-                  <div>
-                    <a
-                      href="#s3">«</a>
-
-                    <a
-                      href="#s5">»</a>
-
-                  </div>
-                  <div>
-                    <a
-                      href="#s4">«</a>
-
-                    <a
-                      href="#s6">»</a>
-
-                  </div>
-                  <div>
-                    <a
-                      href="#s5">«</a>
-
-                    <a
-                      href="#s1">»</a>
-
-                  </div>
+                  {% endfor %}
                 </div>
 
                 <div
                   class="bullets">
+                  {% for i in 1..slide_count %}
                   <a
-                    href="#s1">1</a>
-                  <a
-                    href="#s2">2</a>
-                  <a
-                    href="#s3">3</a>
-                  <a
-                    href="#s4">4</a>
-                  <a
-                    href="#s5">5</a>
-                  <a
-                    href="#s6">6</a>
+                    href="#s{{ i }}">{{ i }}</a>
+                  {% endfor %}
                 </div>
 
               </div>

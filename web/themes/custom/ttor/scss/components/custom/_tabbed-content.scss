@@ -128,38 +128,15 @@ http://stackoverflow.com/a/34696029/383904
   color: $primary-color;
 }
 
-/* ACTIVE */
-#s1:target~.bullets>*:nth-child(1) {
-  background: $primary-color;
-  color: $white;
-}
+/* ACTIVE BULLET - generated for up to 15 slides */
+$max-slides: 15;
 
-#s2:target~.bullets>*:nth-child(2) {
-  background: $primary-color;
-  color: $white;
+@for $i from 1 through $max-slides {
+  #s#{$i}:target~.bullets>*:nth-child(#{$i}) {
+    background: $primary-color;
+    color: $white;
+  }
 }
-
-#s3:target~.bullets>*:nth-child(3) {
-  background: $primary-color;
-  color: $white;
-}
-
-#s4:target~.bullets>*:nth-child(4) {
-  background: $primary-color;
-  color: $white;
-}
-
-#s5:target~.bullets>*:nth-child(5) {
-  background: $primary-color;
-  color: $white;
-}
-
-#s6:target~.bullets>*:nth-child(6) {
-  background: $primary-color;
-  color: $white;
-}
-
-/* More slides? Add here more rules */
 
 /* PREV/NEXT CONTAINERS VISIBILITY */
 /* ALL: */
@@ -168,64 +145,21 @@ http://stackoverflow.com/a/34696029/383904
 }
 
 /* ACTIVE: */
-#s1:target~.prevNext>*:nth-child(1) {
-  visibility: visible;
+@for $i from 1 through $max-slides {
+  #s#{$i}:target~.prevNext>*:nth-child(#{$i}) {
+    visibility: visible;
+  }
 }
-
-#s2:target~.prevNext>*:nth-child(2) {
-  visibility: visible;
-}
-
-#s3:target~.prevNext>*:nth-child(3) {
-  visibility: visible;
-}
-
-#s4:target~.prevNext>*:nth-child(4) {
-  visibility: visible;
-}
-
-#s5:target~.prevNext>*:nth-child(5) {
-  visibility: visible;
-}
-
-#s6:target~.prevNext>*:nth-child(6) {
-  visibility: visible;
-}
-
-/* More slides? Add here more rules */
 
 /* SLIDER ANIMATION POSITIONS */
+@for $i from 1 through $max-slides {
+  $offset: ($i - 1) * -100%;
 
-#s1:target~.slider {
-  transform: translateX(0%);
-  -webkit-transform: translateX(0%);
+  #s#{$i}:target~.slider {
+    transform: translateX($offset);
+    -webkit-transform: translateX($offset);
+  }
 }
-
-#s2:target~.slider {
-  transform: translateX(-100%);
-  -webkit-transform: translateX(-100%);
-}
-
-#s3:target~.slider {
-  transform: translateX(-200%);
-  -webkit-transform: translateX(-200%);
-}
-
-#s4:target~.slider {
-  transform: translateX(-300%);
-  -webkit-transform: translateX(-300%);
-}
-
-#s5:target~.slider {
-  transform: translateX(-400%);
-  -webkit-transform: translateX(-400%);
-}
-
-#s6:target~.slider {
-  transform: translateX(-500%);
-  -webkit-transform: translateX(-500%);
-}
-
 
 .CSSgal {
   color: #fff;

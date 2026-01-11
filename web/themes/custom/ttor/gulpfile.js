@@ -83,38 +83,4 @@ gulp.task("watch", function () {
   );
 });
 
-gulp.task("build", function () {
-  return new Promise(function (resolve, reject) {
-    const buildJS = gulp
-      .src([
-        paths.js.bootstrap,
-        paths.js.jquery,
-        paths.js.popper,
-        paths.js.poppermap,
-        paths.js.videojs,
-        paths.js.toast,
-      ])
-      .pipe(gulp.dest(paths.js.dest));
-    const buildCSS = gulp
-      .src([
-        paths.scss.bootstrap,
-        paths.scss.src,
-        paths.scss.videojs,
-        paths.scss.adminimal_custom,
-        paths.scss.print_styling,
-      ])
-      .pipe(sassglob())
-      .pipe(sourcemaps.init())
-      .pipe(sass().on("error", sass.logError))
-      .pipe(postcss([autoprefixer()]))
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest(paths.scss.dest))
-      .pipe(cleanCss())
-      .pipe(rename({ suffix: ".min" }))
-      .pipe(gulp.dest(paths.scss.dest));
-
-    exports.styles = buildCSS;
-    exports.js = buildJS;
-    resolve();
-  });
-});
+gulp.task("build", gulp.parallel(styles, js));

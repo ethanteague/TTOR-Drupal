@@ -2,7 +2,7 @@
  * @file
  * ttor_custom behaviors.
  */
-(function (Drupal) {
+(function (Drupal, once) {
 
   'use strict';
 
@@ -13,12 +13,21 @@
         return;
       }
 
-      const tabs = document.querySelectorAll(".views-field .views-field-name div");
-      const resourceBoxes = document.querySelectorAll(".resource-box");
+      const tabs = once('resources-tabs', ".views-field .views-field-name div[class^='tid-']", context);
+      if (!tabs.length) {
+        return;
+      }
 
-      // Get all unique tid classes from resource boxes.
+      // Get all unique tids from both tabs and resource boxes.
       const tidSet = new Set();
-      resourceBoxes.forEach(box => {
+      tabs.forEach(tab => {
+        tab.classList.forEach(cls => {
+          if (cls.startsWith('tid-')) {
+            tidSet.add(cls.replace('tid-', ''));
+          }
+        });
+      });
+      document.querySelectorAll(".resource-box").forEach(box => {
         box.classList.forEach(cls => {
           if (cls.startsWith('tid-')) {
             tidSet.add(cls.replace('tid-', ''));
@@ -29,6 +38,10 @@
 
       tabs.forEach(tab => {
         tab.addEventListener("click", () => {
+          // Mark clicked tab as active.
+          tabs.forEach(t => t.classList.remove('default-tab'));
+          tab.classList.add('default-tab');
+
           // Find which tid this tab represents.
           const tabTid = tids.find(tid => tab.classList.contains('tid-' + tid));
           if (tabTid) {
@@ -54,22 +67,12 @@
         });
       });
 
-      window.addEventListener('load', () => {
-        // Show all categories by default.
-        tids.forEach((tid) => {
-          document.querySelectorAll(".resource-box.tid-" + tid).forEach(box => {
-            box.classList.add('show-tab');
-          });
-        });
-      })
-
-      window.addEventListener('click', () => {
-        document.querySelectorAll(".resource-box").forEach(box => {
-          box.classList.remove('show-tab');
-        });
-      })
+      // Select the first tab on load.
+      if (tabs[0]) {
+        tabs[0].click();
+      }
 
     }
   };
 
-}(Drupal));
+}(Drupal, once));

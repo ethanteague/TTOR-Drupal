@@ -190,18 +190,7 @@ display:
           path_case: none
           transform_dash: false
           break_phrase: true
-      filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
+      filters: {  }
       style:
         type: default
         options:

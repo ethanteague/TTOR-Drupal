@@ -8,18 +8,29 @@ use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests for ConfigPagesLoaderService.
  *
  * @group config_pages
  */
+#[RunTestsInSeparateProcesses]
 class ConfigPagesLoaderServiceTest extends BrowserTestBase {
 
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = ['config_pages', 'field', 'text'];
 
+  /**
+   * {@inheritdoc}
+   */
   protected $defaultTheme = 'stark';
 
+  /**
+   * The config_pages loader service.
+   */
   protected ConfigPagesLoaderServiceInterface $loaderService;
 
   /**
@@ -74,6 +85,9 @@ class ConfigPagesLoaderServiceTest extends BrowserTestBase {
       ->save();
   }
 
+  /**
+   * @covers \Drupal\config_pages\ConfigPagesLoaderService::getFieldView
+   */
   public function testGetFieldView() {
     // Create a config page with test data.
     $config_page = ConfigPages::create([

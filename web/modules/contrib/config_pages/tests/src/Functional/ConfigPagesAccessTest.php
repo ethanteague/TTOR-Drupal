@@ -3,14 +3,15 @@
 namespace Drupal\Tests\config_pages\Functional;
 
 use Drupal\config_pages\Entity\ConfigPagesType;
-use Drupal\Core\Access\AccessResult;
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests ConfigPages access control functionality.
  *
  * @group config_pages
  */
+#[RunTestsInSeparateProcesses]
 class ConfigPagesAccessTest extends BrowserTestBase {
 
   /**
@@ -79,7 +80,8 @@ class ConfigPagesAccessTest extends BrowserTestBase {
     $this->rebuildContainer();
     $this->container->get('router.builder')->rebuild();
 
-    // With the test module hook denying access, canonical route should be forbidden.
+    // With the test module hook denying access, canonical route should be
+    // forbidden.
     $this->drupalGet('admin/structure/config_pages/test_access_type/edit');
     $this->assertSession()->statusCodeEquals(403);
   }
@@ -104,7 +106,8 @@ class ConfigPagesAccessTest extends BrowserTestBase {
     $this->rebuildContainer();
     $this->container->get('router.builder')->rebuild();
 
-    // With the test module hook denying access, custom route should also be forbidden.
+    // With the test module hook denying access, custom route should also be
+    // forbidden.
     $this->drupalGet('test-custom-config-page');
     $this->assertSession()->statusCodeEquals(403);
   }

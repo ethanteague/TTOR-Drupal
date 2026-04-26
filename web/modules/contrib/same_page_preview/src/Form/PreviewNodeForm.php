@@ -87,7 +87,7 @@ class PreviewNodeForm extends NodeForm {
     // Need to pass the current uuid from form state here. Since the entity
     // doesn't exist yet, the value will change on every preview event on the
     // add form.
-    $response->addCommand(new InvokeCommand(NULL, 'samePagePreviewRenderPreview', [NULL, $entity->uuid()]));
+    $response->addCommand(new InvokeCommand(NULL, 'samePagePreviewRenderPreview', [$entity->uuid()]));
     return $response;
   }
 

@@ -116,8 +116,8 @@ class ConfigPagesLoaderService implements ConfigPagesLoaderServiceInterface {
         '#cache' => [
           'tags' => [
             'config_pages_list:' . $type,
-          ]
-        ]
+          ],
+        ],
       ];
     }
 

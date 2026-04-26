@@ -3,18 +3,18 @@
 namespace Drupal\Tests\config_pages\Functional;
 
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests that the ConfigPages UI pages are reachable.
  *
  * @group config_pages
  */
+#[RunTestsInSeparateProcesses]
 class UiPageTest extends BrowserTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   protected static $modules = ['config_pages'];
 

@@ -103,8 +103,12 @@
     // Force a refresh of the preview pane.
     forceRefresh: () => {
       if (defaultPreviewBtn) {
+        // If no preview iframe, nothing to do.
         const iframe = document.querySelector(samePagePreviewPane);
-        const iframeWindow = iframe ? iframe.contentWindow : undefined;
+        if (!iframe) {
+          return;
+        }
+        const iframeWindow = iframe.contentWindow;
         if (iframeWindow) {
           Drupal.samePagePreview.activeState.scrollPosition =
             iframeWindow.document.documentElement.scrollTop;
@@ -256,7 +260,7 @@
    * @param {string} newUuid The new uuid if the value has changed.
    * @param {string} viewMode The view mode to be used for preview.
    */
-  $.fn.samePagePreviewRenderPreview = (newUuid = null, viewMode) => {
+  $.fn.samePagePreviewRenderPreview = (viewMode, newUuid = null) => {
     const previewPane = document.querySelector(samePagePreviewPane);
     const newWindowButton = document.querySelector(
       Drupal.samePagePreview.settings.toggleNewWindow.target,

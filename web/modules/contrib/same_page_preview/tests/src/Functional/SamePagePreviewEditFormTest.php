@@ -13,9 +13,7 @@ use Drupal\Tests\node\Functional\NodeTestBase;
 class SamePagePreviewEditFormTest extends NodeTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   protected static $modules = ['same_page_preview'];
 

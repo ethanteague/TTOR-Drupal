@@ -13,7 +13,6 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Field\FieldConfigInterface;
 use Drupal\Core\Url;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
@@ -88,15 +87,16 @@ class ConfigPagesForm extends ContentEntityForm {
    * @param \Drupal\Core\Session\AccountProxyInterface|null $user
    *   User proxy, for checking permissions.
    */
-  public function __construct(EntityRepositoryInterface $entity_repository,
-                              EntityTypeManagerInterface $entity_type_manager,
-                              EntityStorageInterface $config_pages_storage,
-                              EntityStorageInterface $config_pages_type_storage,
-                              LanguageManagerInterface $language_manager,
-                              MessengerInterface $messenger,
-                              ?EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
-                              ?TimeInterface $time = NULL,
-                              ?AccountProxyInterface $user = NULL
+  public function __construct(
+    EntityRepositoryInterface $entity_repository,
+    EntityTypeManagerInterface $entity_type_manager,
+    EntityStorageInterface $config_pages_storage,
+    EntityStorageInterface $config_pages_type_storage,
+    LanguageManagerInterface $language_manager,
+    MessengerInterface $messenger,
+    ?EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
+    ?TimeInterface $time = NULL,
+    ?AccountProxyInterface $user = NULL,
   ) {
     parent::__construct($entity_repository, $entity_type_bundle_info, $time);
     $this->configPagesStorage = $config_pages_storage;
@@ -283,7 +283,7 @@ class ConfigPagesForm extends ContentEntityForm {
       // Redirect to confirmation page.
       $form_state->setRedirectUrl(Url::fromRoute('entity.config_pages.import_confirmation', [
         'config_pages' => $entity->id(),
-        'imported_entity_id' => $imported_entity_id
+        'imported_entity_id' => $imported_entity_id,
       ]));
     }
   }
@@ -328,13 +328,16 @@ class ConfigPagesForm extends ContentEntityForm {
     if ($config_pages->id()) {
       $form_state->setValue('id', $config_pages->id());
       $form_state->set('id', $config_pages->id());
+
+      return $insert ? SAVED_NEW : SAVED_UPDATED;
     }
-    else {
-      // In the unlikely case something went wrong on save, the config page
-      // will be rebuilt and config page form redisplayed.
-      $this->messenger->addError($this->t('The config page could not be saved.'));
-      $form_state->setRebuild();
-    }
+
+    // In the unlikely case something went wrong on save, the config page
+    // will be rebuilt and config page form redisplayed.
+    $this->messenger->addError($this->t('The config page could not be saved.'));
+    $form_state->setRebuild();
+
+    return $insert ? SAVED_NEW : SAVED_UPDATED;
   }
 
   /**

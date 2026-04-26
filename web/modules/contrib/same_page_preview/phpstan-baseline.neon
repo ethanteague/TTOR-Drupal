@@ -96,11 +96,6 @@ parameters:
 			path: src/Controller/PreviewPaneController.php
 
 		-
-			message: "#^Method Drupal\\\\Core\\\\Form\\\\FormBuilderInterface\\:\\:getForm\\(\\) invoked with 2 parameters, 1 required\\.$#"
-			count: 1
-			path: src/Controller/PreviewPaneController.php
-
-		-
 			message: "#^Method Drupal\\\\same_page_preview\\\\Controller\\\\PreviewPaneController\\:\\:view\\(\\) has parameter \\$langcode with no type specified\\.$#"
 			count: 1
 			path: src/Controller/PreviewPaneController.php
@@ -111,7 +106,17 @@ parameters:
 			path: src/Controller/PreviewPaneController.php
 
 		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Controller/PreviewPaneController.php
+
+		-
 			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:\\$preview_view_mode\\.$#"
+			count: 1
+			path: src/Form/PreviewControlsForm.php
+
+		-
+			message: "#^Class Drupal\\\\same_page_preview\\\\Form\\\\PreviewControlsForm extends @internal class Drupal\\\\node\\\\Form\\\\NodePreviewForm\\.$#"
 			count: 1
 			path: src/Form/PreviewControlsForm.php
 
@@ -121,27 +126,17 @@ parameters:
 			path: src/Form/PreviewControlsForm.php
 
 		-
-			message: "#^Unsafe usage of new static\\(\\)\\.$#"
-			count: 1
-			path: src/Controller/PreviewPaneController.php
-
-		-
-			message: "#^Class Drupal\\\\same_page_preview\\\\Form\\\\PreviewControlsForm extends @internal class Drupal\\\\node\\\\Form\\\\NodePreviewForm\\.$#"
-			count: 1
-			path: src/Form/PreviewControlsForm.php
-
-		-
-			message: "#^Class Drupal\\\\same_page_preview\\\\Form\\\\PreviewNodeForm extends @internal class Drupal\\\\node\\\\NodeForm\\.$#"
-			count: 1
-			path: src/Form/PreviewNodeForm.php
-
-		-
 			message: "#^Parameter \\#1 \\$selector of class Drupal\\\\Core\\\\Ajax\\\\InvokeCommand constructor expects string, null given\\.$#"
 			count: 1
 			path: src/Form/PreviewControlsForm.php
 
 		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Form\\\\FormInterface\\:\\:getEntity\\(\\)\\.$#"
+			count: 1
+			path: src/Form/PreviewNodeForm.php
+
+		-
+			message: "#^Class Drupal\\\\same_page_preview\\\\Form\\\\PreviewNodeForm extends @internal class Drupal\\\\node\\\\NodeForm\\.$#"
 			count: 1
 			path: src/Form/PreviewNodeForm.php
 
@@ -207,10 +202,5 @@ parameters:
 
 		-
 			message: "#^Method Drupal\\\\Tests\\\\same_page_preview\\\\FunctionalJavascript\\\\SamePagePreviewEditFormTest\\:\\:testNodePreview\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: tests/src/FunctionalJavascript/SamePagePreviewEditFormTest.php
-
-		-
-			message: "#^PHPDoc type array of property Drupal\\\\Tests\\\\same_page_preview\\\\FunctionalJavascript\\\\SamePagePreviewEditFormTest\\:\\:\\$modules is not covariant with PHPDoc type array\\<string\\> of overridden property Drupal\\\\Tests\\\\BrowserTestBase\\:\\:\\$modules\\.$#"
 			count: 1
 			path: tests/src/FunctionalJavascript/SamePagePreviewEditFormTest.php

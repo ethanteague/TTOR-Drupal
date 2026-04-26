@@ -4,9 +4,11 @@ namespace Drupal\config_pages\Plugin\Field\FieldFormatter;
 
 use Drupal\config_pages\ConfigPagesInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Field\Attribute\FieldFormatter;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceEntityFormatter;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Plugin implementation of the 'config page entity reference' formatter.
@@ -20,6 +22,14 @@ use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceEntityFormatter
  *   }
  * )
  */
+#[FieldFormatter(
+  id: "cp_entity_reference_label",
+  label: new TranslatableMarkup("Config Page entity"),
+  description: new TranslatableMarkup("Display the referenced config page."),
+  field_types: [
+    "entity_reference",
+  ],
+)]
 class ConfigPagesReferenceFieldFormatter extends EntityReferenceEntityFormatter {
 
   /**

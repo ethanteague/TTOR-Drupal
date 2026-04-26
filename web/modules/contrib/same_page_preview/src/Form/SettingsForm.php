@@ -3,6 +3,7 @@
 namespace Drupal\same_page_preview\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -23,8 +24,9 @@ class SettingsForm extends ConfigFormBase {
   /**
    * {@inheritDoc}
    */
-  public function __construct(ConfigFactoryInterface $config_factory, EntityStorageInterface $entity_type_storage) {
-    parent::__construct($config_factory);
+  public function __construct(ConfigFactoryInterface $config_factory, TypedConfigManagerInterface $typedConfigManager, EntityStorageInterface $entity_type_storage) {
+    parent::__construct($config_factory, $typedConfigManager);
+    $this->typedConfigManager = $typedConfigManager;
     $this->entityTypeStorage = $entity_type_storage;
   }
 
@@ -34,7 +36,8 @@ class SettingsForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('entity_type.manager')->getStorage('node_type')
+      $container->get('config.typed'),
+      $container->get('entity_type.manager')->getStorage('node_type'),
     );
   }
 
@@ -59,7 +62,8 @@ class SettingsForm extends ConfigFormBase {
     $form['personalization']['preview_on_by_default'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('On by default'),
-      '#default_value' => $this->config('same_page_preview.settings')->get('preview_on_by_default'),
+      '#default_value' => $this->config('same_page_preview.settings')
+        ->get('preview_on_by_default'),
     ];
 
     $form['content_type_settings'] = [

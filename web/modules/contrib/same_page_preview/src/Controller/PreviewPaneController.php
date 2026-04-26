@@ -74,8 +74,6 @@ class PreviewPaneController extends NodePreviewController {
   public function view(EntityInterface $node_preview, $view_mode_id = 'full', $langcode = NULL) {
     $node_preview->preview_view_mode = $view_mode_id;
 
-    $build['#attached']['library'][] = 'node/drupal.node.preview';
-
     $build['preview_pane'] = [
       '#attributes' => [
         'class' => [
@@ -104,16 +102,14 @@ class PreviewPaneController extends NodePreviewController {
     // @todo Remove in favor of Drupal 10.1.0 format as described here:
     // https://www.drupal.org/node/3264760
     $build['preview_pane']['preview'] = [
-      '#access' => $view_mode_id !== \DRUPAL_DISABLED && ($node_preview->access('create') || $node_preview->access(
-            'update',
-          )),
+      '#access' => $view_mode_id !== \DRUPAL_DISABLED && ($node_preview->access('create') || $node_preview->access('update')),
       '#attributes' => [
         'allow' => 'fullscreen',
         'class' => ['preview'],
         'loading' => 'eager',
         'name' => 'preview',
         'src' => $this->getPreviewUrl($node_preview, $view_mode_id) . '?mode=same_page_preview',
-        'style' => 'width: 100%; height: 100%;',
+        'style' => 'width: 100%; height: 100%; background-color: Canvas;',
         'title' => $this->t('Preview of @bundle : @node_title', [
           '@bundle' => $bundle,
           '@node_title' => $label,

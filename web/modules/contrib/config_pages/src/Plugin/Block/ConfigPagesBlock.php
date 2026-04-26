@@ -2,6 +2,9 @@
 
 namespace Drupal\config_pages\Plugin\Block;
 
+use Drupal\config_pages\Entity\ConfigPages;
+use Drupal\config_pages\Entity\ConfigPagesType;
+use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
@@ -9,8 +12,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\config_pages\Entity\ConfigPages;
-use Drupal\config_pages\Entity\ConfigPagesType;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -21,6 +23,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   admin_label = @Translation("ConfigPages Block"),
  * )
  */
+#[Block(
+  id: "config_pages_block",
+  admin_label: new TranslatableMarkup("ConfigPages Block"),
+)]
 class ConfigPagesBlock extends BlockBase implements BlockPluginInterface, ContainerFactoryPluginInterface {
 
   /**
@@ -45,7 +51,8 @@ class ConfigPagesBlock extends BlockBase implements BlockPluginInterface, Contai
     $plugin_id,
     $plugin_definition,
     EntityDisplayRepositoryInterface $entity_display_repository,
-    EntityTypeManagerInterface $entity_type_manager) {
+    EntityTypeManagerInterface $entity_type_manager,
+  ) {
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->setConfiguration($configuration);
@@ -76,7 +83,7 @@ class ConfigPagesBlock extends BlockBase implements BlockPluginInterface, Contai
       $config_page = ConfigPages::config($config['config_page_type']);
       return is_object($config_page)
         ? $config_page->getCacheTags()
-        : [];
+        : ['config_pages_list:' . $config['config_page_type']];
     }
     return [];
   }
@@ -134,9 +141,11 @@ class ConfigPagesBlock extends BlockBase implements BlockPluginInterface, Contai
    */
   public function access(AccountInterface $account, $return_as_object = FALSE) {
     $config = $this->getConfiguration();
-    $config_page = ConfigPages::config($config['config_page_type']);
-    if ($config_page) {
-      return $config_page->access('view', $account, $return_as_object);
+    if (!empty($config['config_page_type'])) {
+      $config_page = ConfigPages::config($config['config_page_type']);
+      if ($config_page) {
+        return $config_page->access('view', $account, $return_as_object);
+      }
     }
     return parent::access($account, $return_as_object);
   }

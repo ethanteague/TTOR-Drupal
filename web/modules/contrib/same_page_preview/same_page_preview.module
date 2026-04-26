@@ -23,6 +23,9 @@ function same_page_preview_preprocess_html(&$variables) {
     $route_name = \Drupal::routeMatch()->getRouteName();
     if ($route_name === 'entity.node.preview') {
       unset($variables['page_top']['toolbar']);
+      // Remove Navigation module toolbar (Drupal 10.3+).
+      unset($variables['page_top']['navigation']);
+      unset($variables['page_top']['top_bar']);
       // @todo Needs additional cleanup to remove toolbar related classes on body.
       // Remove contextual links.
       $variables["page"]["#attached"]["library"] = array_values(array_diff($variables["page"]["#attached"]["library"], ['contextual/drupal.contextual-links']));
@@ -57,6 +60,7 @@ function same_page_preview_page_top(array &$page) {
  */
 function same_page_preview_entity_type_alter(array &$entity_types) {
   if (isset($entity_types['node'])) {
+    $entity_types['node']->setFormClass('add', 'Drupal\same_page_preview\Form\PreviewNodeForm');
     $entity_types['node']->setFormClass('default', 'Drupal\same_page_preview\Form\PreviewNodeForm');
     $entity_types['node']->setFormClass('edit', 'Drupal\same_page_preview\Form\PreviewNodeForm');
   }

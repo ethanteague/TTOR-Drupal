@@ -15,6 +15,9 @@
 
     toggleVisibility: (selector, show) => {
       const element = document.querySelector(selector);
+      if (!element) {
+        return;
+      }
       if (show) {
         element.classList.remove('visually-hidden');
       } else {

@@ -1,7 +1,7 @@
 services:
   entity_clone.settings.manager:
     class: Drupal\entity_clone\EntityCloneSettingsManager
-    arguments: ['@entity_type.manager', '@entity_type.bundle.info', '@config.factory']
+    arguments: ['@entity_type.manager', '@entity_type.bundle.info', '@config.factory', '@module_handler']
   entity_clone.route_subscriber:
     class: Drupal\entity_clone\Routing\RouteSubscriber
     arguments: ['@entity_type.manager']

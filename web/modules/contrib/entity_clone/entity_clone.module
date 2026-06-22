@@ -181,7 +181,15 @@ function entity_clone_entity_access(EntityInterface $entity, $operation, Account
   }
 
   $handler = \Drupal::entityTypeManager()->getAccessControlHandler($entity->getEntityTypeId());
-  $access = $handler->createAccess($entity->bundle(), $account, [], TRUE);
+  // Prepare the context.
+  $context = [];
+  // Handle specific context elements.
+  if ($entity->getEntityTypeId() == 'group_content') {
+    // Group content must have a specific context item.
+    $context['group'] = $entity->getGroup();
+  }
+  // Check access.
+  $access = $handler->createAccess($entity->bundle(), $account, $context, TRUE);
   if (!$access->isAllowed()) {
     $cache->addCacheableDependency($access);
     $forbidden = AccessResult::forbidden();

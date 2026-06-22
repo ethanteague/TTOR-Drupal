@@ -207,7 +207,7 @@ class ContentEntityCloneBase implements EntityHandlerInterface, EntityCloneInter
         $cloned_reference = $referenced_entity->createDuplicate();
         /** @var \Drupal\entity_clone\EntityClone\EntityCloneInterface $entity_clone_handler */
         $entity_clone_handler = $this->entityTypeManager->getHandler($referenced_entity->getEntityTypeId(), 'entity_clone');
-        $entity_clone_handler->cloneEntity($referenced_entity, $cloned_reference, $child_properties['children'], $already_cloned);
+        $cloned_reference = $entity_clone_handler->cloneEntity($referenced_entity, $cloned_reference, $child_properties['children'], $already_cloned);
 
         $referenced_entities[] = $cloned_reference;
       }

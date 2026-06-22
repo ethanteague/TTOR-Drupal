@@ -113,8 +113,15 @@ class ContentEntityCloneFormBase implements EntityHandlerInterface, EntityCloneF
       $discovered_entities[$entity->getEntityTypeId()][$entity->id()] = $entity;
       foreach ($entity->getFieldDefinitions() as $field_id => $field_definition) {
         $field = $entity->get($field_id);
-        if ($this->entityCloneClonableField->isClonable($field_definition, $field) && $this->shouldRecurse($field->getSetting('target_type'))) {
-          $form['recursive'] = array_merge($form['recursive'], $this->getRecursiveFormElement($field_definition, $field_id, $field, $discovered_entities));
+        if ($this->entityCloneClonableField->isClonable($field_definition, $field)) {
+          $field_handler_settings = $field_definition->getSetting('handler_settings');
+          $bundles = $field_handler_settings['target_bundles'] ?? [];
+          if ($this->shouldRecurse($field->getSetting('target_type'), $bundles)) {
+            $form['recursive'] = array_merge(
+              $form['recursive'],
+              $this->getRecursiveFormElement($field_definition, $field_id, $field, $discovered_entities)
+            );
+          }
         }
       }
 
@@ -154,25 +161,28 @@ class ContentEntityCloneFormBase implements EntityHandlerInterface, EntityCloneF
     $cloneable_entities = $this->configFactory->get('entity_clone.cloneable_entities')->get('cloneable_entities') ?? [];
     $is_cloneable = in_array($field_definition->getFieldStorageDefinition()->getSetting('target_type'), $cloneable_entities);
 
-    $fieldset_access = !$this->entityCloneSettingsManager->getHiddenValue($field_definition->getFieldStorageDefinition()->getSetting('target_type')) && $is_cloneable;
     $form_element[$field_definition->id()] = [
       '#type' => 'fieldset',
       '#title' => $this->translationManager->translate('Entities referenced by field <em>@label (@field_id)</em>.', [
         '@label' => $field_definition->label(),
         '@field_id' => $field_id,
       ]),
-      '#access' => $fieldset_access,
-      '#description_should_be_shown' => $fieldset_access,
     ];
+
+    $fieldset_access = FALSE;
 
     foreach ($field as $value) {
       // Check if we're not dealing with an entity
       // That has been deleted in the meantime.
-      if (!$referenced_entity = $value->get('entity')->getTarget()) {
+      $entity_target = $value->get('entity')->getTarget();
+      if (!$entity_target) {
         continue;
       }
       /** @var \Drupal\Core\Entity\ContentEntityInterface $referenced_entity */
-      $referenced_entity = $value->get('entity')->getTarget()->getValue();
+      $referenced_entity = $entity_target->getValue();
+
+      $fieldset_access = $fieldset_access || !$this->entityCloneSettingsManager->getHiddenValue(
+        $referenced_entity->getEntityTypeId(), $referenced_entity->bundle());
 
       if (isset($discovered_entities[$referenced_entity->getEntityTypeId()]) && array_key_exists($referenced_entity->id(), $discovered_entities[$referenced_entity->getEntityTypeId()])) {
         $form_element[$field_definition->id()]['references'][$referenced_entity->id()]['is_circular'] = [
@@ -193,11 +203,11 @@ class ContentEntityCloneFormBase implements EntityHandlerInterface, EntityCloneF
             '@bundle' => $referenced_entity->bundle(),
             '@entity_label' => $referenced_entity->label(),
           ]),
-          '#default_value' => $is_cloneable && $this->entityCloneSettingsManager->getDefaultValue($referenced_entity->getEntityTypeId()),
+          '#default_value' => $is_cloneable && $this->entityCloneSettingsManager->getDefaultValue($referenced_entity->getEntityTypeId(), $referenced_entity->bundle()),
           '#access' => $referenced_entity->access('view label'),
         ];
 
-        if ($this->entityCloneSettingsManager->getDisableValue($referenced_entity->getEntityTypeId())) {
+        if ($this->entityCloneSettingsManager->getDisableValue($referenced_entity->getEntityTypeId(), $referenced_entity->bundle())) {
           $form_element[$field_definition->id()]['references'][$referenced_entity->id()]['clone']['#attributes'] = [
             'disabled' => TRUE,
           ];
@@ -218,6 +228,10 @@ class ContentEntityCloneFormBase implements EntityHandlerInterface, EntityCloneF
         }
       }
     }
+
+    $fieldset_access = $fieldset_access && $is_cloneable;
+    $form_element[$field_definition->id()]['#access'] = $fieldset_access;
+    $form_element[$field_definition->id()]['#description_should_be_shown'] = $fieldset_access;
 
     return $form_element;
   }
@@ -311,20 +325,47 @@ class ContentEntityCloneFormBase implements EntityHandlerInterface, EntityCloneF
   }
 
   /**
-   * Determines if the provided entity type needs to be recursed into.
+   * Determines if the entity type / bundles need to be recursed into.
    *
    * @param string $entity_type_id
    *   The entity type to check.
+   * @param array $bundles
+   *   The content entity bundles.
    *
    * @return bool
    *   TRUE if recursion should happen, FALSE otherwise.
    */
-  protected function shouldRecurse($entity_type_id) {
-    $defaultValue = $this->entityCloneSettingsManager->getDefaultValue($entity_type_id);
-    $disableValue = $this->entityCloneSettingsManager->getDisableValue($entity_type_id);
-    $hiddenValue = $this->entityCloneSettingsManager->getHiddenValue($entity_type_id);
+  protected function shouldRecurse($entity_type_id, $bundles = []) {
+    if ($this->isRecursePossible($entity_type_id)) {
+      return TRUE;
+    }
 
-    return $defaultValue || (!$disableValue && !$hiddenValue);
+    foreach ($bundles as $bundle) {
+      if ($this->isRecursePossible($entity_type_id, $bundle)) {
+        return TRUE;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * Determines if the entity type and bundle need to be recursed into.
+   *
+   * @param string $entity_type_id
+   *   The entity type to check.
+   * @param string $bundle
+   *   The content entity bundle.
+   *
+   * @return bool
+   *   TRUE if recursion should happen, FALSE otherwise.
+   */
+  protected function isRecursePossible($entity_type_id, $bundle = NULL) {
+    $default = $this->entityCloneSettingsManager->getDefaultValue($entity_type_id, $bundle);
+    $disable = $this->entityCloneSettingsManager->getDisableValue($entity_type_id, $bundle);
+    $hidden = $this->entityCloneSettingsManager->getHiddenValue($entity_type_id, $bundle);
+
+    return $default || (!$disable && !$hidden);
   }
 
 }

@@ -62,7 +62,7 @@ class EntityCloneContextualLinks extends DeriverBase implements ContainerDeriver
         'route_name' => "entity.$entity_type_id.clone_form",
         'title' => $this->translationManager->translate('Clone'),
         'group' => $entity_type_id,
-      ];
+      ] + $base_plugin_definition;
     }
     return parent::getDerivativeDefinitions($base_plugin_definition);
   }

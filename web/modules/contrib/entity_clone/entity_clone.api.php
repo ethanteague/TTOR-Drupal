@@ -70,3 +70,25 @@ class MyEntityCloneEventSubscriber implements EventSubscriberInterface {
   }
 
 }
+
+/**
+ * @addtogroup hooks
+ * @{
+ */
+
+/**
+ * Alter the entity clone settings.
+ *
+ * @param array $settings
+ *   The settings from the Entity Clone form.
+ */
+function hook_entity_clone_settings_alter(array &$form_settings) {
+  // Adding settings per entity bundle.
+  $form_settings['taxonomy_term']['vocabulary_name']['default_value'] = false;
+  $form_settings['taxonomy_term']['vocabulary_name']['disable'] = false;
+  $form_settings['taxonomy_term']['vocabulary_name']['hidden'] = false;
+}
+
+/**
+ * @} End of "addtogroup hooks".
+ */

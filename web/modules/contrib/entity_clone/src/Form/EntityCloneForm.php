@@ -319,6 +319,11 @@ class EntityCloneForm extends FormBase {
         }
       }
 
+      // Allow submission in non-default workspace.
+      if ($this->moduleHandler->moduleExists('workspaces')) {
+        $form_state->set('workspace_safe', TRUE);
+      }
+
       $form['actions'] = ['#type' => 'actions'];
       $form['actions']['clone'] = [
         '#type' => 'submit',
@@ -329,6 +334,7 @@ class EntityCloneForm extends FormBase {
       $form['actions']['abort'] = [
         '#type' => 'submit',
         '#value' => $this->stringTranslationManager->translate('Cancel'),
+        '#limit_validation_errors' => [],
         '#submit' => ['::cancelForm'],
       ];
     }
@@ -377,8 +383,13 @@ class EntityCloneForm extends FormBase {
       }
     }
 
-    if ($this->moduleHandler->moduleExists('content_moderation') && isset($properties['moderation_state']) && $duplicate->hasField('moderation_state')) {
-      $duplicate->set('moderation_state', $properties['moderation_state']);
+    if ($this->moduleHandler->moduleExists('content_moderation') && $duplicate instanceof FieldableEntityInterface && $duplicate->hasField('moderation_state')) {
+      if (isset($properties['moderation_state'])) {
+        $duplicate->set('moderation_state', $properties['moderation_state']);
+      }
+      elseif ($form_state->getValue('status')) {
+        $translation->set('moderation_state', 'published');
+      }
     }
 
     $this->eventDispatcher->dispatch(new EntityCloneEvent($this->entity, $duplicate, $properties), EntityCloneEvents::PRE_CLONE);
@@ -459,9 +470,7 @@ class EntityCloneForm extends FormBase {
     if (!$this->moduleHandler->moduleExists('content_moderation') || !$this->entity instanceof FieldableEntityInterface || !$this->entity->hasField('moderation_state')) {
       return [];
     }
-    // \Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrl::getLangcode().
-    $languages = $this->languageManager->getLanguages();
-    if (count($languages) > 1) {
+    if ($this->entity->isTranslatable()) {
       return [];
     }
 

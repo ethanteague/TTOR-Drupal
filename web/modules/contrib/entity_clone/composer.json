@@ -5,6 +5,7 @@
     "homepage": "https://drupal.org/project/entity_clone",
     "license": "GPL-2.0-or-later",
     "require-dev": {
+        "drupal/action": "1.x-dev",
         "drupal/entity_browser": "2.x-dev",
         "drupal/entity_usage": "2.x-dev",
         "drupal/paragraphs": "^1.0",

@@ -37,7 +37,8 @@ class EntityCloneClonableField implements EntityCloneClonableFieldInterface {
   public function isClonable(FieldDefinitionInterface $field_definition, FieldItemListInterface $field): bool {
     if ($field_definition instanceof FieldConfigInterface
       && $field instanceof EntityReferenceFieldItemListInterface
-      && $field->count() > 0) {
+      && $field->count() > 0
+      && $field->getSetting('target_type')) {
       $entity_storage = $this->entityTypeManager->getStorage($field->getSetting('target_type'));
       return $entity_storage instanceof ContentEntityStorageInterface;
     }

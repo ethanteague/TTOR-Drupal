@@ -21,26 +21,24 @@
         "drupal/admin_toolbar": "^3.4",
         "drupal/block_class": "^4.0",
         "drupal/bootstrap_barrio": "^5.5",
-        "drupal/classy": "^1.0",
         "drupal/config_pages": "^2.16",
-        "drupal/core-composer-scaffold": "~10.6.14",
-        "drupal/core-project-message": "~10.6.14",
-        "drupal/core-recommended": "~10.6.14",
+        "drupal/core-composer-scaffold": "^11.2",
+        "drupal/core-project-message": "^11.2",
+        "drupal/core-recommended": "^11.2",
         "drupal/ctools": "^4.0",
         "drupal/devel": "^5.1",
         "drupal/editor_advanced_link": "^2.1",
         "drupal/entity_clone": "^2.2@beta",
         "drupal/field_group": "^4.0",
-        "drupal/gin": "^4.1",
+        "drupal/gin": "^5.0",
         "drupal/gin_login": "^2.0",
-        "drupal/gin_toolbar": "^2.0",
+        "drupal/gin_toolbar": "^3.0",
         "drupal/google_analytics": "^4.0",
         "drupal/gtm": "^1.8",
         "drupal/jquery_ui_effects": "^2.0",
         "drupal/masquerade": "^2.0@RC",
         "drupal/media_video_micromodal": "^1.0",
         "drupal/menu_admin_per_menu": "^1.5",
-        "drupal/mix": "^1.4",
         "drupal/oembed_lazyload": "^2.0",
         "drupal/oembed_providers": "^2.1",
         "drupal/paragraphs": "^1.21",
@@ -49,7 +47,7 @@
         "drupal/same_page_preview": "^2.0@alpha",
         "drupal/text_field_formatter": "^2.0",
         "drupal/twig_tweak": "^3.2",
-        "drush/drush": "^12",
+        "drush/drush": "^13",
         "platformsh/config-reader": "^2.4",
         "twig/twig": "^3.5"
     },
@@ -70,7 +68,8 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "symfony/runtime": true
         },
         "sort-packages": true
     },
@@ -82,9 +81,6 @@
         "patches": {
             "drupal/ctools": {
                 "2759445 - Pass args from block to view": "https://www.drupal.org/files/issues/2023-01-18/2759445-100.patch"
-            },
-            "drupal/core": {
-                "3145188 - Paragraphs overflow in claro": "https://www.drupal.org/files/issues/2023-01-25/3145188-37_0.patch"
             }
         },
         "composer-exit-on-patch-failure": true,

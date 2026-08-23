@@ -10,9 +10,6 @@ libraries:
   - ttor/scroll-buttons
   - ttor/tta
   - ttor/tta-tooltip
-ckeditor5-stylesheets:
-  - css/style.min.css
-  - fonts/poppins.css
 libraries-override:
   bootstrap_barrio/global-styling: false
 regions:

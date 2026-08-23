@@ -59,3 +59,27 @@ function ttor_custom_preprocess_page(&$variables) {
     $variables['node_object'] = $node;
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function ttor_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Hide the revision information group on entity forms for everyone except
+  // uid 1. Replaces the hide_revision_field feature of the removed Mix module.
+  if (isset($form['revision_information']) && \Drupal::currentUser()->id() != 1) {
+    $form['revision_information']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function ttor_custom_page_attachments_alter(array &$attachments) {
+  // Remove the "Generator" meta tag from the <head> section. Replaces the
+  // remove_x_generator feature of the removed Mix module.
+  foreach ($attachments['#attached']['html_head'] ?? [] as $key => $attachment) {
+    if ($attachment[1] == 'system_meta_generator') {
+      unset($attachments['#attached']['html_head'][$key]);
+    }
+  }
+}

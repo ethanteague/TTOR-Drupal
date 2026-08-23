@@ -1,8 +1,7 @@
 name: TTOR Theme
 type: theme
 description: 'The theme used for TTOR front end.'
-core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 base theme: bootstrap_barrio
 logo: images/logo.png
 libraries:
@@ -11,9 +10,6 @@ libraries:
   - ttor/scroll-buttons
   - ttor/tta
   - ttor/tta-tooltip
-ckeditor_stylesheets:
-  - css/style.min.css
-  - fonts/poppins.css
 libraries-override:
   bootstrap_barrio/global-styling: false
 regions:

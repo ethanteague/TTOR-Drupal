@@ -3,3 +3,7 @@ services:
     class: Drupal\ttor_custom\TwigExtension\TwigUtil
     tags:
       - { name: twig.extension }
+  ttor_custom.remove_x_generator_subscriber:
+    class: Drupal\ttor_custom\EventSubscriber\RemoveXGeneratorSubscriber
+    tags:
+      - { name: event_subscriber }

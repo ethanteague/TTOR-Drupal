@@ -14,7 +14,9 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 class SamePagePreviewEditFormTest extends WebDriverTestBase {
 
   /**
-   * {@inheritdoc}
+   * Modules to enable.
+   *
+   * @var array
    */
   protected static $modules = ['same_page_preview'];
 

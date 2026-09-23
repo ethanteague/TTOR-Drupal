@@ -109,7 +109,19 @@ display:
         type: tag
         options: {  }
       empty: {  }
-      sorts: {  }
+      sorts:
+        delta:
+          id: delta
+          table: node__field_fourth_content_area_items
+          field: delta
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            field_identifier: ''
+          exposed: false
       arguments:
         parent_id:
           id: parent_id

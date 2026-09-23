@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the ttor_custom module.
+ */
+
+/**
+ * Implements hook_update_dependencies().
+ */
+function ttor_custom_update_dependencies(): array {
+  // The Drupal 11 upgrade deletes mix, tour and the classy/stable/stable9
+  // themes from the codebase in the same deploy that runs these updates, so
+  // ModuleInstaller aborts when it rescans the extensions core.extension still
+  // lists. Update 11001 has to clear them first.
+  return [
+    'search' => [
+      11401 => ['ttor_custom' => 11001],
+      11402 => ['ttor_custom' => 11001],
+    ],
+  ];
+}
+
+/**
+ * Drop extensions whose code the Drupal 11 upgrade removed.
+ */
+function ttor_custom_update_11001(): string {
+  $modules = ['mix', 'tour'];
+  $themes = ['classy', 'stable', 'stable9'];
+
+  $extension = \Drupal::configFactory()->getEditable('core.extension');
+  $installed_modules = $extension->get('module') ?: [];
+  $installed_themes = $extension->get('theme') ?: [];
+
+  $stale = array_merge(
+    array_intersect($modules, array_keys($installed_modules)),
+    array_intersect($themes, array_keys($installed_themes)),
+  );
+
+  if (!$stale) {
+    return 'core.extension is already clean; nothing removed.';
+  }
+
+  $extension
+    ->set('module', array_diff_key($installed_modules, array_flip($modules)))
+    ->set('theme', array_diff_key($installed_themes, array_flip($themes)))
+    ->save();
+
+  \Drupal::keyValue('system.schema')->deleteMultiple($modules);
+
+  return 'Removed from core.extension: ' . implode(', ', $stale) . '.';
+}

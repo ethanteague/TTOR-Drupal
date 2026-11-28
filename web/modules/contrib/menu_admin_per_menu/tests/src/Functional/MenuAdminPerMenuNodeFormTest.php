@@ -3,12 +3,14 @@
 namespace Drupal\Tests\menu_admin_per_menu\Functional;
 
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the interaction of the node system with menu links.
- *
- * @group menu_admin_per_menu
  */
+#[Group('menu_admin_per_menu')]
+#[RunTestsInSeparateProcesses]
 class MenuAdminPerMenuNodeFormTest extends BrowserTestBase {
 
   /**

@@ -165,14 +165,9 @@ class Inline
                     setlocale(\LC_NUMERIC, 'C');
                 }
                 if (\is_float($value)) {
-                    $repr = (string) $value;
+                    $repr = var_export($value, true);
                     if (is_infinite($value)) {
                         $repr = str_ireplace('INF', '.Inf', $repr);
-                    } elseif (floor($value) == $value && $repr == $value) {
-                        // Preserve float data type since storing a whole number will result in integer value.
-                        if (!str_contains($repr, 'E')) {
-                            $repr .= '.0';
-                        }
                     }
                 } else {
                     $repr = \is_string($value) ? "'$value'" : (string) $value;
@@ -391,6 +386,8 @@ class Inline
             $lastToken = null;
             while ($i < $len) {
                 if (']' === $sequence[$i]) {
+                    $state->nodeCount += \count($output);
+
                     return $output;
                 }
                 if (',' === $sequence[$i] || ' ' === $sequence[$i]) {
@@ -414,6 +411,7 @@ class Inline
                 if (null !== $anchorRef && (!isset($sequence[$i]) || ',' === $sequence[$i] || ']' === $sequence[$i])) {
                     $value = null;
                     $references[$anchorRef] = $value;
+                    $state->anchorNodeCounts[$anchorRef] = 0;
                     if (null !== $tag && '' !== $tag) {
                         $value = new TaggedValue($tag, $value);
                     }
@@ -425,6 +423,8 @@ class Inline
                 if (!isset($sequence[$i])) {
                     break;
                 }
+
+                $nodeCount = $state->nodeCount;
 
                 switch ($sequence[$i]) {
                     case '[':
@@ -461,6 +461,7 @@ class Inline
 
                 if (null !== $anchorRef) {
                     $references[$anchorRef] = $value;
+                    $state->anchorNodeCounts[$anchorRef] = $state->nodeCount - $nodeCount;
                 }
 
                 if (null !== $tag && '' !== $tag) {
@@ -583,6 +584,8 @@ class Inline
                         ++$i;
                         continue 2;
                     case '}':
+                        $state->nodeCount += \count($output);
+
                         if (self::$objectForMap) {
                             return (object) $output;
                         }
@@ -591,19 +594,37 @@ class Inline
                 }
 
                 // key
+                $keyAnchor = self::parseAnchor($mapping, $i);
+
+                if (!isset($mapping[$i])) {
+                    break;
+                }
+
+                if (Parser::preg_match('/\?[ \t]|[\[{]/A', $mapping, $match, 0, $i)) {
+                    throw new ParseException('Complex mappings are not supported.', self::$parsedLineNumber + 1, $mapping);
+                }
+
                 $offsetBeforeKeyParsing = $i;
                 $isKeyQuoted = \in_array($mapping[$i], ['"', "'"], true);
-                $key = self::parseScalar($mapping, $flags, [':', ' '], $i, false);
+                $keyDelimiters = $isKeyQuoted || Parser::preg_match('#!php/(const|enum) #A', $mapping, $match, 0, $i) ? [':', ' '] : [':'];
+                $key = self::parseScalar($mapping, $flags, $keyDelimiters, $i, false);
 
                 if ($offsetBeforeKeyParsing === $i) {
                     throw new ParseException('Missing mapping key.', self::$parsedLineNumber + 1, $mapping);
                 }
 
-                $isKeyEvaluated = '!php/const' === $key || '!php/enum' === $key;
+                if (!$isKeyQuoted && str_contains($key, ',')) {
+                    throw new ParseException(\sprintf('Malformed inline YAML string: "%s".', $mapping), self::$parsedLineNumber + 1, null, self::$parsedFilename);
+                }
+
+                $isKeyEvaluated = '!php/const' === $key || '!php/enum' === $key || (!$isKeyQuoted && str_starts_with($key, '*'));
 
                 if ($isKeyEvaluated) {
-                    $key .= ' '.self::parseScalar($mapping, $flags, ['(?<!:):(?!:)'], $i, false);
-                    $key = self::evaluateScalar($state, $key, $flags);
+                    if ('*' !== $key[0]) {
+                        $key .= ' '.self::parseScalar($mapping, $flags, ['(?<!:):(?!:)'], $i, false);
+                    }
+
+                    $key = self::evaluateScalar($state, $key, $flags, $references);
 
                     if (!\is_string($key) && !\is_int($key)) {
                         throw new ParseException((is_numeric($key) ? 'Numeric' : 'Non-string').' keys are not supported. Quote your evaluable mapping keys instead.', self::$parsedLineNumber + 1, $mapping);
@@ -630,6 +651,11 @@ class Inline
                     throw new ParseException('Colons must be followed by a space or an indication character (i.e. " ", ",", "[", "]", "{", "}").', self::$parsedLineNumber + 1, $mapping);
                 }
 
+                if (null !== $keyAnchor) {
+                    $references[$keyAnchor] = $key;
+                    $state->anchorNodeCounts[$keyAnchor] = 0;
+                }
+
                 $isMergeKey = !$isKeyQuoted && !$isKeyEvaluated && '<<' === $key;
 
                 if ($isMergeKey) {
@@ -652,6 +678,7 @@ class Inline
                     if (null !== $anchorRef && (!isset($mapping[$i]) || \in_array($mapping[$i], [',', '}', "\n"], true))) {
                         $value = null;
                         $references[$anchorRef] = $value;
+                        $state->anchorNodeCounts[$anchorRef] = 0;
                         if (!$isMergeKey) {
                             if ($allowOverwrite || !isset($output[$key])) {
                                 $output[$key] = null !== $tag ? new TaggedValue($tag, $value) : $value;
@@ -666,12 +693,15 @@ class Inline
                         break;
                     }
 
+                    $nodeCount = $state->nodeCount;
+
                     switch ($mapping[$i]) {
                         case '[':
                             // nested sequence
                             $value = self::parseSequence($state, $mapping, $flags, $i, $references);
                             if (null !== $anchorRef) {
                                 $references[$anchorRef] = $value;
+                                $state->anchorNodeCounts[$anchorRef] = $state->nodeCount - $nodeCount;
                             }
                             // Spec: Keys MUST be unique; first one wins.
                             // Parser cannot abort this mapping earlier, since lines
@@ -704,6 +734,7 @@ class Inline
                             $value = self::parseMapping($state, $mapping, $flags, $i, $references);
                             if (null !== $anchorRef) {
                                 $references[$anchorRef] = $value;
+                                $state->anchorNodeCounts[$anchorRef] = $state->nodeCount - $nodeCount;
                             }
                             // Spec: Keys MUST be unique; first one wins.
                             // Parser cannot abort this mapping earlier, since lines
@@ -725,6 +756,7 @@ class Inline
                             $value = self::parseScalar($mapping, $flags, [',', '}', "\n"], $i, null === $tag, $references, $isValueQuoted, $state);
                             if (null !== $anchorRef) {
                                 $references[$anchorRef] = $value;
+                                $state->anchorNodeCounts[$anchorRef] = $state->nodeCount - $nodeCount;
                             }
                             // Spec: Keys MUST be unique; first one wins.
                             // Parser cannot abort this mapping earlier, since lines
@@ -790,7 +822,7 @@ class Inline
                 throw new ParseException(\sprintf('Reference "%s" does not exist.', $value), self::$parsedLineNumber + 1, $value, self::$parsedFilename);
             }
 
-            $state->countAlias($references[$value], self::$parsedLineNumber + 1, null, self::$parsedFilename);
+            $state->countAlias($value, $references[$value], self::$parsedLineNumber + 1, null, self::$parsedFilename);
 
             return $references[$value];
         }

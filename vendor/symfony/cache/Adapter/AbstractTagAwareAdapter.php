@@ -113,7 +113,7 @@ abstract class AbstractTagAwareAdapter implements TagAwareAdapterInterface, TagA
 
                     if ($metadata) {
                         // For compactness, expiry and creation duration are packed, using magic numbers as separators
-                        $value['meta'] = pack('VN', (int) (0.1 + $metadata[CacheItem::METADATA_EXPIRY] - CacheItem::METADATA_EXPIRY_OFFSET), $metadata[CacheItem::METADATA_CTIME]);
+                        $value['meta'] = pack('VN', (int) (0.1 + $metadata[CacheItem::METADATA_EXPIRY] - CacheItem::METADATA_EXPIRY_OFFSET), $metadata[CacheItem::METADATA_CTIME] ?? 0);
                     }
 
                     // Extract tag changes, these should be removed from values in doSave()
@@ -186,6 +186,10 @@ abstract class AbstractTagAwareAdapter implements TagAwareAdapterInterface, TagA
 
     public function commit(): bool
     {
+        if (!$this->deferred) {
+            return true;
+        }
+
         $ok = true;
         $byLifetime = (self::$mergeByLifetime)($this->deferred, $expiredIds, $this->getId(...), self::TAGS_PREFIX, $this->defaultLifetime, $this->rootNamespace);
         $retry = $this->deferred = [];

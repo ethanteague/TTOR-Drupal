@@ -1,0 +1,5 @@
+
+services:
+  Drupal\menu_admin_per_menu_test\Hook\MenuAdminPerMenuTestHooks:
+    class: Drupal\menu_admin_per_menu_test\Hook\MenuAdminPerMenuTestHooks
+    autowire: true

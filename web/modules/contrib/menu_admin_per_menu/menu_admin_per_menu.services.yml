@@ -7,3 +7,6 @@ services:
   menu_admin_per_menu.allowed_menus:
     class: Drupal\menu_admin_per_menu\Access\MenuAdminPerMenuAccess
     arguments: ['@module_handler']
+
+  Drupal\menu_admin_per_menu\Hook\MenuAdminPerMenuHooks:
+    arguments: ['@current_user', '@menu_admin_per_menu.allowed_menus']

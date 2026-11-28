@@ -463,7 +463,7 @@ class PhpDumper extends Dumper
                         $pathInLoop[1][$k] = $pathByConstructor;
                         $loops[$k][] = &$pathInLoop;
                         $loopByConstructor = $loopByConstructor && $pathByConstructor;
-                    } elseif ($k === $id) {
+                    } elseif ((string) $k === $id) {
                         $loop = [];
                     }
                 }
@@ -482,7 +482,7 @@ class PhpDumper extends Dumper
                     foreach ($loopPath as $k => $pathByConstructor) {
                         if (null !== $fillPath) {
                             $fillPath[$k] = $pathByConstructor;
-                        } elseif ($k === $id) {
+                        } elseif ((string) $k === $id) {
                             $fillPath = $path;
                             $fillPath[$k] = $pathByConstructor;
                         }
@@ -495,7 +495,7 @@ class PhpDumper extends Dumper
                         if (null !== $loop) {
                             $loop[] = $k;
                             $loopByConstructor = $loopByConstructor && $pathByConstructor;
-                        } elseif ($k === $first) {
+                        } elseif ((string) $k === $first) {
                             $loop = [];
                         }
                     }
@@ -2033,7 +2033,7 @@ class PhpDumper extends Dumper
         } elseif ($value instanceof Parameter) {
             return $this->dumpParameter($value);
         } elseif ($interpolate && \is_string($value)) {
-            if (preg_match('/^%([^%\s]+)%$/', $value, $match)) {
+            if (preg_match('/^%([^%\s]+)%$/D', $value, $match)) {
                 // we do this to deal with non string values (Boolean, integer, ...)
                 // the preg_replace_callback converts them to strings
                 return $this->dumpParameter($match[1]);

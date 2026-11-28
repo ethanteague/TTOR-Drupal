@@ -4,9 +4,11 @@ namespace Drupal\ctools_views\Plugin\Display;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Element\EntityAutocomplete;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\options\Plugin\views\argument\StringListField;
 use Drupal\views\Plugin\Block\ViewsBlock;
 use Drupal\views\Plugin\views\display\Block as CoreBlock;
 use Drupal\views\Plugin\views\HandlerBase;
@@ -34,11 +36,25 @@ class Block extends CoreBlock {
   protected $request;
 
   /**
-   * The entity type manager.
+   * The entity field manager.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
    */
-  protected $entityTypeManager;
+  protected $entityFieldManager;
+
+  /**
+   * The token service.
+   *
+   * @var \Drupal\Core\Utility\Token
+   */
+  protected $token;
+
+  /**
+   * The context repository.
+   *
+   * @var \Drupal\Core\Plugin\Context\ContextRepositoryInterface
+   */
+  protected $contextRepository;
 
   /**
    * {@inheritdoc}
@@ -50,7 +66,9 @@ class Block extends CoreBlock {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->filterManager = $container->get('plugin.manager.views.filter');
     $instance->request = $container->get('request_stack')->getCurrentRequest();
-    $instance->entityTypeManager = $container->get('entity_type.manager');
+    $instance->entityFieldManager = $container->get('entity_field.manager');
+    $instance->token = $container->get('token');
+    $instance->contextRepository = $container->get('context.repository');
 
     return $instance;
   }
@@ -248,7 +266,7 @@ class Block extends CoreBlock {
     if (!empty($allow_settings['arguments'])) {
       $items = [];
       foreach ((array) $this->getOption('arguments') as $argument_name => $item) {
-        $item['value'] = isset($block_configuration["arguments"][$argument_name]['value']) ? $block_configuration["arguments"][$argument_name]['value'] : '';
+        $item['value'] = $block_configuration['arguments'][$argument_name]['value'] ?? '';
         $items[$argument_name] = $item;
       }
       $this->setOption('arguments', $items);
@@ -270,11 +288,32 @@ class Block extends CoreBlock {
             '#type' => 'value',
             '#value' => $plugin,
           ];
+
+          $saved_value = $block_configuration['arguments'][$argument_name]['value'] ?? '';
           $form['override']['arguments'][$argument_name]['value'] = [
             '#type' => 'textfield',
             '#title' => $admin_label,
-            '#default_value' => !empty($block_configuration['arguments'][$argument_name]['value']) ? $block_configuration['arguments'][$argument_name]['value'] : '',
+            '#default_value' => is_array($saved_value) ? implode(',', array_filter($saved_value)) : $saved_value,
           ];
+
+          // List fields get checkboxes, unless the saved value is one they
+          // cannot represent, such as the "all" exception value, a token or
+          // "a+b" typed into the textfield.
+          if ($plugin instanceof StringListField) {
+            $field_storages = $this->entityFieldManager->getFieldStorageDefinitions($plugin->definition['entity_type']);
+            $field_storage = $field_storages[$plugin->definition['field_name']] ?? NULL;
+            $options = $field_storage ? options_allowed_values($field_storage) : [];
+            // Earlier versions of this form saved the checkboxes as an array.
+            $selected = is_array($saved_value) ? array_filter($saved_value) : array_filter(explode(',', $saved_value), fn ($value) => $value !== '');
+            if ($options && !array_diff($selected, array_keys($options))) {
+              $form['override']['arguments'][$argument_name]['value'] = [
+                '#type' => 'checkboxes',
+                '#title' => $admin_label,
+                '#options' => $options,
+                '#default_value' => array_values($selected),
+              ];
+            }
+          }
         }
       }
     }
@@ -332,7 +371,6 @@ class Block extends CoreBlock {
 
           // If the current filter has a value saved in block configuration...
           if (isset($block_configuration['exposed'][$filter_key])) {
-            $identifier = $handler->options['expose']['identifier'];
             $this->mapConfigToHandler($handler, $block_configuration['exposed'][$filter_key]);
           }
 
@@ -347,27 +385,36 @@ class Block extends CoreBlock {
           }
           else {
             $handler->buildExposedForm($form['exposed'][$filter_key], $exposed_form_state);
+            $identifier = $handler->options['expose']['identifier'];
 
-            $form_field_present = isset($form['exposed'][$filter_key][$id]);
+            // An exposed operator nests the value element in a wrapper.
+            $element = &$form['exposed'][$filter_key];
+            $wrapper = $identifier . '_wrapper';
+            if (isset($element[$wrapper])) {
+              $element = &$element[$wrapper];
+            }
+
+            $form_field_present = isset($element[$identifier]);
             $block_config_present = isset($block_configuration['exposed'][$filter_key]);
 
-            $form_field_type = $form_field_present ? $form['exposed'][$filter_key][$id]['#type'] : FALSE;
+            $form_field_type = $element[$identifier]['#type'] ?? FALSE;
             $filter_plugin_id = $block_config_present ? $block_configuration['exposed'][$filter_key]['plugin_id'] : FALSE;
             if ($form_field_present && $block_config_present) {
 
               if ($form_field_type == 'select') {
                 // Single-value selects get default value set to 'All'
                 // in buildExposedForm(), so set their defaults manually.
-                $form['exposed'][$filter_key][$id]['#default_value'] = $block_configuration['exposed'][$filter_key]['value'] ?? NULL;
+                $element[$identifier]['#default_value'] = $block_configuration['exposed'][$filter_key]['value'] ?? NULL;
               }
 
               elseif ($form_field_type == 'entity_autocomplete' && $filter_plugin_id == 'taxonomy_index_tid') {
                 // Entity reference autocomplete fields need their values
                 // converted back to a string for the textfield input.
                 $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($block_configuration['exposed'][$filter_key]['value']);
-                $form['exposed'][$filter_key][$id]['#default_value'] = EntityAutocomplete::getEntityLabels($terms);
+                $element[$identifier]['#default_value'] = EntityAutocomplete::getEntityLabels($terms);
               }
             }
+            unset($element);
           }
 
           $form['exposed'][$filter_key]['exposed'] = [
@@ -474,6 +521,7 @@ class Block extends CoreBlock {
           $handler_form_state = new FormState();
           $handler_form_state->setValues($values);
           $handler->validateExposed($form, $handler_form_state);
+          $filter_key = "filter-{$key}";
 
           /*
            * Select list doesn't change validated_exposed_input value
@@ -481,8 +529,16 @@ class Block extends CoreBlock {
            */
           // @todo Determine whether this is actually necessary or not.
           if (isset($handler->options['type']) && $handler->options['type'] === 'select') {
-            if ($values['filter-' . $key][$identifier] === 'All') {
-              $handler->validated_exposed_input = NULL;
+            $wrapper = !empty($values[$filter_key][$identifier . '_wrapper']) ? $identifier . '_wrapper' : FALSE;
+            if ($wrapper) {
+              if ($values[$filter_key][$wrapper][$identifier] === 'All') {
+                $handler->validated_exposed_input = NULL;
+              }
+            }
+            else {
+              if ($values[$filter_key][$identifier] === 'All') {
+                $handler->validated_exposed_input = NULL;
+              }
             }
           }
           foreach ($handler_form_state->getErrors() as $name => $message) {
@@ -548,6 +604,11 @@ class Block extends CoreBlock {
           // Check if we want to disable this filter.
           if (!empty($allow_settings['arguments'])) {
             $arg_value = $form_state->getValue(['override', 'arguments', $argument_name, 'value']);
+            // Save checkboxes as the comma-separated string the view receives,
+            // so the value is a string like the one typed in the textfield.
+            if (is_array($arg_value)) {
+              $arg_value = implode(',', array_filter($arg_value));
+            }
             $configuration["arguments"][$argument_name]['value'] = $arg_value;
             continue;
           }
@@ -558,6 +619,9 @@ class Block extends CoreBlock {
     // Save "Configure filters" / "Disable filters" settings to block
     // configuration.
     if (!empty($allow_settings['configure_filters'])) {
+      // Core passes the parent form; block_field passes the settings subform.
+      $settings_form = $form['settings'] ?? $form;
+
       // Store the validated and raw exposed filters.
       $handlers = $this->view->getDisplay()->getHandlers('filter');
 
@@ -575,14 +639,14 @@ class Block extends CoreBlock {
             if ($wrapper) {
               $configuration['exposed'][$config_key] = $this->extractExposedValues(
                 $handler,
-                $form['settings']['exposed'][$config_key][$wrapper],
+                $settings_form['exposed'][$config_key][$wrapper],
                 $values[$config_key][$wrapper]
               );
             }
             else {
               $configuration['exposed'][$config_key] = $this->extractExposedValues(
                 $handler,
-                $form['settings']['exposed'][$config_key],
+                $settings_form['exposed'][$config_key],
                 $values[$config_key]
               );
             }
@@ -671,15 +735,35 @@ class Block extends CoreBlock {
     if (!empty($allow_settings['arguments'])) {
       $arguments = $this->view->getHandlers('argument', $display_id);
       if (!empty($config['arguments'])) {
-        $args_config_values = array_values($config['arguments']);
         $args = [];
-        $token = \Drupal::token();
+        $overridden = FALSE;
         $data = $this->getContextAsTokenData();
+        $contexts = $block->getContexts();
 
-        for ($i = 0; $i < count($arguments); $i++) {
-          if (!empty($args_config_values[$i]['value'])) {
-            $args[] = $token->replace($args_config_values[$i]['value'], $data);
+        // Views reads arguments by position, so keep one per contextual
+        // filter. An empty value gets what ViewsBlock::build() would pass:
+        // the block's context value, else the filter's default.
+        foreach ($arguments as $argument_name => $argument) {
+          $value = $config['arguments'][$argument_name]['value'] ?? '';
+          // Earlier versions of the block form saved list field checkboxes
+          // as an array.
+          if (is_array($value)) {
+            $value = implode(',', array_filter($value));
           }
+          if (!empty($value)) {
+            $args[] = $this->token->replace($value, $data);
+            $overridden = TRUE;
+            continue;
+          }
+
+          $context_value = isset($contexts[$argument_name]) && $contexts[$argument_name]->hasContextValue() ? $contexts[$argument_name]->getContextValue() : NULL;
+          if ($context_value instanceof EntityInterface) {
+            $context_value = $context_value->id();
+          }
+          $args[] = $context_value ?: (($argument['default_action'] ?? NULL) === 'ignore' ? 'all' : NULL);
+        }
+        if (!$overridden) {
+          $args = [];
         }
         if (!empty($args)) {
           $this->view->setArguments($args);
@@ -909,10 +993,8 @@ class Block extends CoreBlock {
    */
   protected function getContextAsTokenData() {
     $data = [];
-    /** @var ContextRepositoryInterface $context_service */
-    $context_service = \Drupal::service('context.repository');
-    $container_ids = array_keys($context_service->getAvailableContexts());
-    foreach ($context_service->getRuntimeContexts($container_ids) as $name => $context) {
+    $container_ids = array_keys($this->contextRepository->getAvailableContexts());
+    foreach ($this->contextRepository->getRuntimeContexts($container_ids) as $name => $context) {
       // Only continue for entity contexts.
       if (strpos($context->getContextDefinition()->getDataType(), 'entity:') === 0) {
         $token_type = substr($context->getContextDefinition()->getDataType(), 7);
@@ -1017,6 +1099,7 @@ class Block extends CoreBlock {
     // Grouped filters store values at a different key,
     // which we match, to match the handler's schema.
     elseif ($handler->isAGroup()) {
+      $identifier = $handler->options['group_info']['identifier'];
       $is_multiple = $handler->multipleExposedInput();
       $value_key = $is_multiple ? 'default_group_multiple' : 'default_group';
       if ($is_multiple) {

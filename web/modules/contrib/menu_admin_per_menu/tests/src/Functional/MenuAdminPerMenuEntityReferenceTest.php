@@ -5,12 +5,16 @@ namespace Drupal\Tests\menu_admin_per_menu\Functional;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests a menu reference field in combination with Menu Admin per Menu.
  *
  * @group menu_admin_per_menu
  */
+#[Group('menu_admin_per_menu')]
+#[RunTestsInSeparateProcesses]
 class MenuAdminPerMenuEntityReferenceTest extends BrowserTestBase {
 
   use EntityReferenceFieldCreationTrait;

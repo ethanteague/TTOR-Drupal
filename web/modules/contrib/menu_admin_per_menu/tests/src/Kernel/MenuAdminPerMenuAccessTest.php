@@ -126,25 +126,11 @@ class MenuAdminPerMenuAccessTest extends KernelTestBase {
   protected $menuAdminPerMenuAllowedMenus;
 
   /**
-   * The menu link content storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $menuLinkContentStorage;
-
-  /**
    * The menu link manager.
    *
    * @var \Drupal\Core\Menu\MenuLinkManagerInterface
    */
   protected $menuLinkManager;
-
-  /**
-   * The menu storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $menuStorage;
 
   /**
    * {@inheritdoc}
@@ -163,13 +149,11 @@ class MenuAdminPerMenuAccessTest extends KernelTestBase {
     $this->installConfig('menu_admin_per_menu_test');
 
     $this->menuAdminPerMenuAllowedMenus = $this->container->get('menu_admin_per_menu.allowed_menus');
-    $this->menuLinkContentStorage = $this->container->get('entity_type.manager')->getStorage('menu_link_content');
     $this->menuLinkManager = $this->container->get('plugin.manager.menu.link');
-    $this->menuStorage = $this->container->get('entity_type.manager')->getStorage('menu');
 
-    $this->menu1 = $this->menuStorage->load('menu_1');
-    $this->menu2 = $this->menuStorage->load('menu_2');
-    $this->menu3 = $this->menuStorage->load('menu_3');
+    $this->menu1 = $this->container->get('entity_type.manager')->getStorage('menu')->load('menu_1');
+    $this->menu2 = $this->container->get('entity_type.manager')->getStorage('menu')->load('menu_2');
+    $this->menu3 = $this->container->get('entity_type.manager')->getStorage('menu')->load('menu_3');
 
     $this->anonymousUser = new AnonymousUserSession();
     // The admin user is created as first user, so this user has ID 1.
@@ -305,9 +289,9 @@ class MenuAdminPerMenuAccessTest extends KernelTestBase {
    * @covers ::menuItemAccess
    */
   public function testMenuItemAccess() {
-    $menu_1_link = $this->menuLinkContentStorage->create(['menu_name' => $this->menu1->id()]);
-    $menu_2_link = $this->menuLinkContentStorage->create(['menu_name' => $this->menu2->id()]);
-    $menu_3_link = $this->menuLinkContentStorage->create(['menu_name' => $this->menu3->id()]);
+    $menu_1_link = $this->container->get('entity_type.manager')->getStorage('menu_link_content')->create(['menu_name' => $this->menu1->id()]);
+    $menu_2_link = $this->container->get('entity_type.manager')->getStorage('menu_link_content')->create(['menu_name' => $this->menu2->id()]);
+    $menu_3_link = $this->container->get('entity_type.manager')->getStorage('menu_link_content')->create(['menu_name' => $this->menu3->id()]);
 
     // Anonymous users has no access to one of the menu items.
     $this->assertEquals(new AccessResultNeutral(), $this->menuAdminPerMenuAllowedMenus->menuItemAccess($this->anonymousUser, $menu_1_link));

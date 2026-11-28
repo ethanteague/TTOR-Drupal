@@ -6,12 +6,16 @@ use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\language\Entity\ContentLanguageSettings;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\menu_admin_per_menu\Traits\MenuLinkContentTrait;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the Menu pages in combination with Menu Admin per Menu.
  *
  * @group menu_admin_per_menu
  */
+#[Group('menu_admin_per_menu')]
+#[RunTestsInSeparateProcesses]
 class MenuAdminPerMenuMenuPagesTest extends BrowserTestBase {
 
   use MenuLinkContentTrait;
@@ -29,20 +33,6 @@ class MenuAdminPerMenuMenuPagesTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
-
-  /**
-   * The menu storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $menuStorage;
-
-  /**
-   * The menu link content storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $menuLinkContentStorage;
 
   /**
    * The menu link manager.
@@ -137,13 +127,11 @@ class MenuAdminPerMenuMenuPagesTest extends BrowserTestBase {
       ->setThirdPartySetting('content_translation', 'enabled', TRUE)
       ->save();
 
-    $this->menuLinkContentStorage = $this->container->get('entity_type.manager')->getStorage('menu_link_content');
     $this->menuLinkManager = $this->container->get('plugin.manager.menu.link');
-    $this->menuStorage = $this->container->get('entity_type.manager')->getStorage('menu');
 
-    $this->menu1 = $this->menuStorage->load('menu_1');
-    $this->menu2 = $this->menuStorage->load('menu_2');
-    $this->menu3 = $this->menuStorage->load('menu_3');
+    $this->menu1 = $this->container->get('entity_type.manager')->getStorage('menu')->load('menu_1');
+    $this->menu2 = $this->container->get('entity_type.manager')->getStorage('menu')->load('menu_2');
+    $this->menu3 = $this->container->get('entity_type.manager')->getStorage('menu')->load('menu_3');
 
     $this->authenticatedUser = $this->createUser([], 'Authenticated user');
     $this->adminMenuUser = $this->createUser(['administer menu'], 'Admin menu user');

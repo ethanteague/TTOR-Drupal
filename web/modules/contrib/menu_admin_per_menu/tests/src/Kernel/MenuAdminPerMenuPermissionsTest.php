@@ -31,13 +31,6 @@ class MenuAdminPerMenuPermissionsTest extends KernelTestBase {
   protected $menuAdminPerMenuPermissions;
 
   /**
-   * The menu storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $menuStorage;
-
-  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -47,7 +40,6 @@ class MenuAdminPerMenuPermissionsTest extends KernelTestBase {
     $this->installConfig('system');
 
     $this->menuAdminPerMenuPermissions = new MenuAdminPerMenuPermissions();
-    $this->menuStorage = $this->container->get('entity_type.manager')->getStorage('menu');
   }
 
   /**
@@ -64,7 +56,7 @@ class MenuAdminPerMenuPermissionsTest extends KernelTestBase {
       'administer account menu items',
     ], array_keys($this->menuAdminPerMenuPermissions->permissions()));
 
-    $menu = $this->menuStorage->create([
+    $menu = $this->container->get('entity_type.manager')->getStorage('menu')->create([
       'id' => 'my_custom_menu',
       'label' => 'My custom menu',
     ]);
@@ -79,7 +71,7 @@ class MenuAdminPerMenuPermissionsTest extends KernelTestBase {
       'administer account menu items',
     ], array_keys($this->menuAdminPerMenuPermissions->permissions()));
 
-    $this->menuStorage->delete([$menu]);
+    $this->container->get('entity_type.manager')->getStorage('menu')->delete([$menu]);
 
     $this->assertEquals([
       'administer admin menu items',
